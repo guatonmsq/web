@@ -1,0 +1,984 @@
+<title>নির্মাণ অগ্রগতি — উত্তর গুয়াটন জামে মসজিদ</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap">
+
+<style>
+/* ===================================================
+   DESIGN TOKENS
+   Layout: stacked cards in a centered single-column,
+   hero flush top, timeline bar, then 2-col update grid
+   =================================================== */
+:root {
+  --bg:        #f7f5f1;
+  --bg-card:   #ffffff;
+  --bg-muted:  #eeeae2;
+  --fg:        #1c1c1c;
+  --fg-muted:  #6b6b6b;
+  --fg-subtle: #9e9e9e;
+  --border:    #ddd8cf;
+
+  --green-deep: #1a3a2a;
+  --green-mid:  #2d6a4f;
+  --green-lite: #e6f2ec;
+  --gold:       #b5883a;
+  --gold-lite:  #fdf5e4;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+
+  --shadow-sm: 0 1px 4px rgba(0,0,0,.06);
+  --shadow-md: 0 3px 18px rgba(0,0,0,.09);
+
+  --font-body: 'Tajawal', 'Segoe UI', Arial, sans-serif;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:        #111a14;
+    --bg-card:   #1b2820;
+    --bg-muted:  #1e2d24;
+    --fg:        #e8ede9;
+    --fg-muted:  #8fa894;
+    --fg-subtle: #5e7a66;
+    --border:    #2a3d30;
+    --green-deep: #0e2118;
+    --green-mid:  #3a8263;
+    --green-lite: #1b3025;
+    --gold:       #c9a84c;
+    --gold-lite:  #2b2310;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:        #111a14;
+  --bg-card:   #1b2820;
+  --bg-muted:  #1e2d24;
+  --fg:        #e8ede9;
+  --fg-muted:  #8fa894;
+  --fg-subtle: #5e7a66;
+  --border:    #2a3d30;
+  --green-deep: #0e2118;
+  --green-mid:  #3a8263;
+  --green-lite: #1b3025;
+  --gold:       #c9a84c;
+  --gold-lite:  #2b2310;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 15px;
+  line-height: 1.6;
+  padding-inline: 0;
+}
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(155deg, var(--green-deep) 0%, var(--green-mid) 60%, #3e8f68 100%);
+  color: #fff;
+  padding: 48px 24px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.hero-icon { font-size: 48px; margin-bottom: 12px; display: block; }
+.hero h1 {
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: .5px;
+  margin-bottom: 6px;
+  text-wrap: balance;
+}
+.hero-sub {
+  font-size: .9rem;
+  opacity: .78;
+  margin-bottom: 20px;
+}
+.hero-nav {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.hero-nav a {
+  background: rgba(255,255,255,.13);
+  border: 1px solid rgba(255,255,255,.22);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 20px;
+  padding: 5px 16px;
+  font-size: .82rem;
+  font-weight: 600;
+  transition: background .2s;
+}
+.hero-nav a:hover { background: rgba(255,255,255,.25); }
+
+/* ── PAGE WRAP ── */
+.wrap {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+/* ── STATS BAR ── */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.stat {
+  padding: 18px 12px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+}
+.stat:last-child { border-right: none; }
+.stat-num {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--green-mid);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.stat-label { font-size: .72rem; color: var(--fg-subtle); margin-top: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+
+/* ── PHASE TIMELINE ── */
+.timeline-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: 22px 20px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 20px;
+}
+.card-heading {
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 16px;
+}
+.phases {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.phase {
+  flex: 1;
+  min-width: 72px;
+  text-align: center;
+  position: relative;
+}
+.phase::after {
+  content: '';
+  position: absolute;
+  top: 16px; left: 50%; right: -50%;
+  height: 3px;
+  background: var(--border);
+  z-index: 0;
+}
+.phase:last-child::after { display: none; }
+.phase.done::after { background: var(--green-mid); }
+.phase.active::after { background: linear-gradient(90deg, var(--green-mid), var(--border)); }
+
+.phase-dot {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--bg-muted);
+  border: 3px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 6px;
+  font-size: .85rem;
+  position: relative; z-index: 1;
+  transition: all .3s;
+}
+.phase.done .phase-dot  { background: var(--green-mid); border-color: var(--green-mid); }
+.phase.active .phase-dot {
+  background: var(--gold-lite);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--gold) 20%, transparent);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--gold) 35%, transparent); }
+  50%       { box-shadow: 0 0 0 9px color-mix(in srgb, var(--gold) 0%, transparent); }
+}
+.phase-label { font-size: .68rem; color: var(--fg-subtle); font-weight: 600; line-height: 1.3; }
+.phase.done   .phase-label { color: var(--green-mid); }
+.phase.active .phase-label { color: var(--gold); font-weight: 700; }
+
+/* ── ADMIN TOGGLE ── */
+.admin-toggle-wrap { text-align: center; margin-bottom: 20px; }
+.admin-toggle-btn {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  color: var(--fg-muted);
+  border-radius: var(--radius-sm);
+  padding: 9px 22px;
+  font-family: var(--font-body);
+  font-size: .85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+.admin-toggle-btn:hover { border-color: var(--green-mid); color: var(--green-mid); }
+.admin-toggle-btn.open { background: var(--green-lite); border-color: var(--green-mid); color: var(--green-mid); }
+
+/* ── ADMIN PANEL ── */
+.admin-panel {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 24px;
+  border: 1.5px solid var(--green-lite);
+}
+.admin-panel-head {
+  font-size: .82rem; font-weight: 700;
+  color: var(--fg-muted); text-transform: uppercase; letter-spacing: .08em;
+  margin-bottom: 18px;
+}
+
+/* Phase setter */
+.phase-setter {
+  background: var(--green-lite);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.phase-setter label { font-size: .82rem; font-weight: 700; color: var(--green-mid); white-space: nowrap; }
+.phase-setter select {
+  flex: 1; min-width: 180px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-family: var(--font-body);
+  font-size: .85rem;
+  background: var(--bg-card);
+  color: var(--fg);
+  outline: none;
+}
+
+/* Tabs */
+.tab-bar { display: flex; gap: 6px; margin-bottom: 18px; flex-wrap: wrap; }
+.tab-btn {
+  padding: 8px 18px;
+  border-radius: 7px;
+  border: 2px solid var(--border);
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: .84rem;
+  font-weight: 700;
+  color: var(--fg-muted);
+  cursor: pointer;
+  transition: all .18s;
+}
+.tab-btn:hover { border-color: var(--green-mid); color: var(--green-mid); }
+.tab-btn.active { background: var(--green-mid); color: #fff; border-color: var(--green-mid); }
+
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+
+/* Form controls */
+.form-row { margin-bottom: 12px; }
+.form-row label { display: block; font-size: .75rem; font-weight: 700; color: var(--fg-muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: .05em; }
+.form-row input,
+.form-row textarea,
+.form-row select {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  font-family: var(--font-body);
+  font-size: .88rem;
+  background: var(--bg);
+  color: var(--fg);
+  outline: none;
+  transition: border-color .18s;
+}
+.form-row input:focus,
+.form-row textarea:focus,
+.form-row select:focus { border-color: var(--green-mid); }
+.form-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 480px) { .form-2col { grid-template-columns: 1fr; } }
+
+.btn-submit {
+  width: 100%;
+  margin-top: 6px;
+  background: var(--green-mid);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 11px 24px;
+  font-family: var(--font-body);
+  font-size: .92rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background .2s;
+}
+.btn-submit:hover { background: var(--green-deep); }
+
+/* ── FILTER BAR ── */
+.filter-bar {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;
+}
+.filter-btn {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 2px solid var(--border);
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--fg-muted);
+  cursor: pointer;
+  transition: all .18s;
+}
+.filter-btn:hover  { border-color: var(--green-mid); color: var(--green-mid); }
+.filter-btn.active { background: var(--green-mid); color: #fff; border-color: var(--green-mid); }
+
+/* ── SECTION HEAD ── */
+.section-head {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+}
+.section-title { font-size: 1rem; font-weight: 800; color: var(--fg); }
+.count-chip {
+  background: var(--green-mid);
+  color: #fff;
+  border-radius: 12px;
+  padding: 2px 10px;
+  font-size: .72rem;
+  font-weight: 700;
+}
+
+/* ── UPDATE GRID ── */
+.updates-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+@media (max-width: 560px) { .updates-grid { grid-template-columns: 1fr; } }
+
+.update-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow .2s, transform .2s;
+}
+.update-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+/* Video embed */
+.video-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  background: #0a0a0a;
+}
+.video-wrap iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+/* Photo thumb */
+.photo-wrap {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: var(--bg-muted);
+  cursor: zoom-in;
+}
+.photo-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .35s ease;
+  display: block;
+}
+.photo-wrap:hover img { transform: scale(1.06); }
+.photo-zoom-hint {
+  position: absolute; bottom: 8px; right: 8px;
+  background: rgba(0,0,0,.52);
+  color: #fff;
+  border-radius: 5px;
+  padding: 3px 8px;
+  font-size: .7rem;
+  pointer-events: none;
+}
+
+/* Text-only card banner */
+.text-banner {
+  background: linear-gradient(135deg, var(--green-lite), var(--gold-lite));
+  height: 90px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem;
+}
+
+.card-body { padding: 14px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+
+.card-meta { display: flex; align-items: center; gap: 6px; }
+.type-chip {
+  font-size: .68rem; font-weight: 800;
+  padding: 2px 9px; border-radius: 10px;
+  text-transform: uppercase; letter-spacing: .05em;
+}
+.chip-video { background: #dbeafe; color: #1d4ed8; }
+.chip-photo { background: var(--green-lite); color: var(--green-mid); }
+.chip-text  { background: var(--gold-lite); color: var(--gold); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .chip-video { background: #1e3458; color: #93c5fd; }
+  :root:not([data-theme="light"]) .chip-photo { background: var(--green-lite); color: #6ee7b7; }
+  :root:not([data-theme="light"]) .chip-text  { background: var(--gold-lite); color: var(--gold); }
+}
+:root[data-theme="dark"] .chip-video { background: #1e3458; color: #93c5fd; }
+:root[data-theme="dark"] .chip-photo { background: var(--green-lite); color: #6ee7b7; }
+:root[data-theme="dark"] .chip-text  { background: var(--gold-lite); color: var(--gold); }
+
+.card-date { font-size: .72rem; color: var(--fg-subtle); margin-left: auto; font-variant-numeric: tabular-nums; }
+
+.card-title { font-size: .95rem; font-weight: 800; color: var(--fg); line-height: 1.35; text-wrap: balance; }
+.card-desc  { font-size: .82rem; color: var(--fg-muted); line-height: 1.55; flex: 1; }
+.card-phase {
+  display: inline-block;
+  background: var(--bg-muted);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 2px 10px;
+  font-size: .7rem;
+  color: var(--fg-muted);
+  font-weight: 600;
+  align-self: flex-start;
+}
+.del-btn {
+  background: none; border: none;
+  color: #ef4444; font-size: .78rem;
+  cursor: pointer; padding: 0; margin-top: 4px;
+  align-self: flex-start;
+  font-family: var(--font-body);
+}
+.del-btn:hover { color: #b91c1c; }
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 52px 24px;
+  color: var(--fg-subtle);
+}
+.empty-state .empty-icon { font-size: 3rem; margin-bottom: 12px; display: block; }
+.empty-state p { font-size: .88rem; line-height: 1.7; }
+
+/* ── LIGHTBOX ── */
+.lightbox {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.92);
+  z-index: 9999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+  max-width: 92vw;
+  max-height: 82vh;
+  border-radius: 8px;
+  object-fit: contain;
+}
+.lb-close {
+  position: absolute; top: 18px; right: 22px;
+  color: #fff; font-size: 2rem; cursor: pointer;
+  background: none; border: none;
+  line-height: 1;
+}
+.lb-cap { color: rgba(255,255,255,.75); font-size: .88rem; margin-top: 12px; text-align: center; }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--green-deep);
+  color: rgba(255,255,255,.55);
+  text-align: center;
+  padding: 28px 24px;
+  font-size: .8rem;
+  line-height: 1.8;
+}
+.footer strong { color: rgba(255,255,255,.85); }
+</style>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" onclick="closeLB()" aria-label="Close">✕</button>
+  <img id="lb-img" src="" alt="">
+  <div class="lb-cap" id="lb-cap"></div>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <span class="hero-icon">🏗️</span>
+  <h1>নির্মাণ অগ্রগতি</h1>
+  <p class="hero-sub">উত্তর গুয়াটন জামে মসজিদ পুনর্নির্মাণ — সর্বশেষ আপডেট</p>
+  <nav class="hero-nav">
+    <a href="index.html">🇧🇩 বাংলা সাইট</a>
+    <a href="index-en.html">🇺🇸 English Site</a>
+    <a href="fundraiser.html">💰 ফান্ড ট্র্যাকার</a>
+  </nav>
+</div>
+
+<!-- ═══ MAIN CONTENT ═══ -->
+<div class="wrap">
+
+  <!-- STATS -->
+  <div class="stats" id="statsBar">
+    <div class="stat">
+      <div class="stat-num" id="st-total">0</div>
+      <div class="stat-label">মোট আপডেট</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" id="st-videos">0</div>
+      <div class="stat-label">ভিডিও</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" id="st-photos">0</div>
+      <div class="stat-label">ছবি</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" id="st-date">—</div>
+      <div class="stat-label">সর্বশেষ</div>
+    </div>
+  </div>
+
+  <!-- PHASE TIMELINE -->
+  <div class="timeline-card">
+    <div class="card-heading">📍 নির্মাণ পর্যায়</div>
+    <div class="phases" id="phasesRow">
+      <div class="phase" id="ph-1"><div class="phase-dot">🔨</div><div class="phase-label">ভাঙন কাজ</div></div>
+      <div class="phase" id="ph-2"><div class="phase-dot">🏗️</div><div class="phase-label">ফাউন্ডেশন</div></div>
+      <div class="phase" id="ph-3"><div class="phase-dot">🧱</div><div class="phase-label">RCC কলাম</div></div>
+      <div class="phase" id="ph-4"><div class="phase-dot">🪵</div><div class="phase-label">ছাদ স্ল্যাব</div></div>
+      <div class="phase" id="ph-5"><div class="phase-dot">🧱</div><div class="phase-label">দেয়াল ও প্লাস্টার</div></div>
+      <div class="phase" id="ph-6"><div class="phase-dot">⚡</div><div class="phase-label">বৈদ্যুতিক</div></div>
+      <div class="phase" id="ph-7"><div class="phase-dot">🚿</div><div class="phase-label">স্যানিটারি</div></div>
+      <div class="phase" id="ph-8"><div class="phase-dot">🎨</div><div class="phase-label">ফিনিশিং</div></div>
+      <div class="phase" id="ph-9"><div class="phase-dot">✅</div><div class="phase-label">সম্পন্ন</div></div>
+    </div>
+  </div>
+
+  <!-- ADMIN TOGGLE -->
+  <div class="admin-toggle-wrap">
+    <button class="admin-toggle-btn" id="adminToggleBtn" onclick="toggleAdmin()">
+      🔐 অ্যাডমিন প্যানেল — আপডেট যোগ করুন
+    </button>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div id="adminPanel" hidden>
+    <div class="admin-panel">
+      <div class="admin-panel-head">⚙️ নতুন আপডেট যোগ করুন</div>
+
+      <!-- Phase setter -->
+      <div class="phase-setter">
+        <label for="phaseSelect">📍 বর্তমান নির্মাণ পর্যায়:</label>
+        <select id="phaseSelect" onchange="setCurrentPhase()">
+          <option value="0">— শুরু হয়নি —</option>
+          <option value="1">পর্যায় ১ — পুরনো মসজিদ ভাঙন</option>
+          <option value="2">পর্যায় ২ — ফাউন্ডেশন খনন ও নির্মাণ</option>
+          <option value="3">পর্যায় ৩ — RCC কলাম ও বিম</option>
+          <option value="4">পর্যায় ৪ — ছাদ স্ল্যাব</option>
+          <option value="5">পর্যায় ৫ — ইটের দেয়াল ও প্লাস্টার</option>
+          <option value="6">পর্যায় ৬ — বৈদ্যুতিক কাজ</option>
+          <option value="7">পর্যায় ৭ — স্যানিটারি ও ওযুখানা</option>
+          <option value="8">পর্যায় ৮ — ফিনিশিং ও রং</option>
+          <option value="9">পর্যায় ৯ — সম্পন্ন 🎉</option>
+        </select>
+      </div>
+
+      <!-- Tab bar -->
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchTab('video')">▶️ YouTube ভিডিও</button>
+        <button class="tab-btn" onclick="switchTab('photo')">📸 ছবি</button>
+        <button class="tab-btn" onclick="switchTab('text')">📝 টেক্সট আপডেট</button>
+      </div>
+
+      <!-- VIDEO TAB -->
+      <div class="tab-pane active" id="pane-video">
+        <div class="form-row">
+          <label>YouTube লিংক</label>
+          <input type="url" id="v-url" placeholder="https://www.youtube.com/watch?v=...">
+        </div>
+        <div class="form-2col">
+          <div class="form-row">
+            <label>শিরোনাম</label>
+            <input type="text" id="v-title" placeholder="যেমন: ফাউন্ডেশন কাজ শুরু">
+          </div>
+          <div class="form-row">
+            <label>তারিখ</label>
+            <input type="date" id="v-date">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>বিবরণ (ঐচ্ছিক)</label>
+          <textarea id="v-desc" rows="2" placeholder="ভিডিওতে কী দেখানো হয়েছে..."></textarea>
+        </div>
+        <div class="form-row">
+          <label>নির্মাণ পর্যায়</label>
+          <select id="v-phase">
+            <option>ভাঙন কাজ</option>
+            <option>ফাউন্ডেশন</option>
+            <option>RCC কলাম ও বিম</option>
+            <option>ছাদ স্ল্যাব</option>
+            <option>দেয়াল ও প্লাস্টার</option>
+            <option>বৈদ্যুতিক কাজ</option>
+            <option>স্যানিটারি ও ওযুখানা</option>
+            <option>ফিনিশিং</option>
+            <option>সাধারণ আপডেট</option>
+          </select>
+        </div>
+        <button class="btn-submit" onclick="addUpdate('video')">➕ ভিডিও যোগ করুন</button>
+      </div>
+
+      <!-- PHOTO TAB -->
+      <div class="tab-pane" id="pane-photo">
+        <div class="form-row">
+          <label>ছবির লিংক (GitHub raw URL বা যেকোনো ইমেজ লিংক)</label>
+          <input type="url" id="p-url" placeholder="https://raw.githubusercontent.com/guatonmsq/web/main/images/...">
+        </div>
+        <div class="form-2col">
+          <div class="form-row">
+            <label>ক্যাপশন</label>
+            <input type="text" id="p-title" placeholder="যেমন: ফাউন্ডেশন সম্পন্ন">
+          </div>
+          <div class="form-row">
+            <label>তারিখ</label>
+            <input type="date" id="p-date">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>বিবরণ (ঐচ্ছিক)</label>
+          <textarea id="p-desc" rows="2" placeholder="ছবিতে কী দেখা যাচ্ছে..."></textarea>
+        </div>
+        <div class="form-row">
+          <label>নির্মাণ পর্যায়</label>
+          <select id="p-phase">
+            <option>ভাঙন কাজ</option>
+            <option>ফাউন্ডেশন</option>
+            <option>RCC কলাম ও বিম</option>
+            <option>ছাদ স্ল্যাব</option>
+            <option>দেয়াল ও প্লাস্টার</option>
+            <option>বৈদ্যুতিক কাজ</option>
+            <option>স্যানিটারি ও ওযুখানা</option>
+            <option>ফিনিশিং</option>
+            <option>সাধারণ আপডেট</option>
+          </select>
+        </div>
+        <button class="btn-submit" onclick="addUpdate('photo')">➕ ছবি যোগ করুন</button>
+      </div>
+
+      <!-- TEXT TAB -->
+      <div class="tab-pane" id="pane-text">
+        <div class="form-2col">
+          <div class="form-row">
+            <label>শিরোনাম</label>
+            <input type="text" id="t-title" placeholder="যেমন: সপ্তাহ ৩ আপডেট">
+          </div>
+          <div class="form-row">
+            <label>তারিখ</label>
+            <input type="date" id="t-date">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>বিস্তারিত</label>
+          <textarea id="t-desc" rows="4" placeholder="এই সপ্তাহে কী কাজ হয়েছে, কোনো চ্যালেঞ্জ, পরবর্তী পদক্ষেপ..."></textarea>
+        </div>
+        <div class="form-row">
+          <label>নির্মাণ পর্যায়</label>
+          <select id="t-phase">
+            <option>ভাঙন কাজ</option>
+            <option>ফাউন্ডেশন</option>
+            <option>RCC কলাম ও বিম</option>
+            <option>ছাদ স্ল্যাব</option>
+            <option>দেয়াল ও প্লাস্টার</option>
+            <option>বৈদ্যুতিক কাজ</option>
+            <option>স্যানিটারি ও ওযুখানা</option>
+            <option>ফিনিশিং</option>
+            <option>সাধারণ আপডেট</option>
+          </select>
+        </div>
+        <button class="btn-submit" onclick="addUpdate('text')">➕ আপডেট যোগ করুন</button>
+      </div>
+    </div><!-- /admin-panel -->
+  </div><!-- /adminPanel wrapper -->
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="setFilter('all',this)">সব</button>
+    <button class="filter-btn" onclick="setFilter('video',this)">▶️ ভিডিও</button>
+    <button class="filter-btn" onclick="setFilter('photo',this)">📸 ছবি</button>
+    <button class="filter-btn" onclick="setFilter('text',this)">📝 আপডেট</button>
+  </div>
+
+  <!-- SECTION HEAD -->
+  <div class="section-head">
+    <span class="section-title">📋 সকল আপডেট</span>
+    <span class="count-chip" id="shown-count">0</span>
+  </div>
+
+  <!-- UPDATES GRID -->
+  <div class="updates-grid" id="updatesGrid">
+    <div class="empty-state">
+      <span class="empty-icon">🏗️</span>
+      <p>এখনো কোনো আপডেট নেই।<br>অ্যাডমিন প্যানেল খুলে ভিডিও, ছবি বা টেক্সট আপডেট যোগ করুন।</p>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <strong>উত্তর গুয়াটন জামে মসজিদ পুনর্নির্মাণ</strong><br>
+  ঝালকাঠি সদর, ঝালকাঠি জেলা, বরিশাল বিভাগ, বাংলাদেশ<br><br>
+  আল্লাহ এই নির্মাণ কাজ সহজ ও কবুল করুন। আমিন। 🤲
+</footer>
+
+<script>
+// ── STATE ──
+const TODAY = new Date().toISOString().split('T')[0];
+let state = { phase: 0, updates: [] };
+let activeFilter = 'all';
+
+// ── INIT ──
+function load() {
+  try {
+    const raw = localStorage.getItem('mosque_progress_v2');
+    if (raw) state = JSON.parse(raw);
+  } catch(e) {}
+  // set today on date inputs
+  ['v-date','p-date','t-date'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = TODAY;
+  });
+  document.getElementById('phaseSelect').value = state.phase || 0;
+  renderPhases();
+  renderGrid();
+}
+
+function save() {
+  try { localStorage.setItem('mosque_progress_v2', JSON.stringify(state)); } catch(e) {}
+}
+
+// ── ADMIN PANEL ──
+function toggleAdmin() {
+  const panel = document.getElementById('adminPanel');
+  const btn   = document.getElementById('adminToggleBtn');
+  panel.hidden = !panel.hidden;
+  btn.classList.toggle('open', !panel.hidden);
+}
+
+// ── TABS ──
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach((b,i) => {
+    b.classList.toggle('active', ['video','photo','text'][i] === name);
+  });
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.getElementById('pane-' + name).classList.add('active');
+}
+
+// ── PHASE ──
+function setCurrentPhase() {
+  state.phase = parseInt(document.getElementById('phaseSelect').value) || 0;
+  save();
+  renderPhases();
+}
+
+function renderPhases() {
+  const p = state.phase;
+  for (let i = 1; i <= 9; i++) {
+    const el = document.getElementById('ph-' + i);
+    if (!el) continue;
+    el.className = 'phase' + (i < p ? ' done' : i === p ? ' active' : '');
+  }
+}
+
+// ── YOUTUBE ID ──
+function ytID(url) {
+  const m = url.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([^&?\n#]{11})/);
+  return m ? m[1] : null;
+}
+
+// ── ADD UPDATE ──
+function addUpdate(type) {
+  const item = { id: Date.now().toString(), type };
+
+  if (type === 'video') {
+    const url = document.getElementById('v-url').value.trim();
+    const id  = ytID(url);
+    if (!id) { alert('সঠিক YouTube লিংক দিন।'); return; }
+    item.ytid  = id;
+    item.title = document.getElementById('v-title').value.trim() || 'নির্মাণ ভিডিও';
+    item.desc  = document.getElementById('v-desc').value.trim();
+    item.phase = document.getElementById('v-phase').value;
+    item.date  = document.getElementById('v-date').value || TODAY;
+    // clear
+    ['v-url','v-title','v-desc'].forEach(id => document.getElementById(id).value = '');
+  }
+  else if (type === 'photo') {
+    const url = document.getElementById('p-url').value.trim();
+    if (!url) { alert('ছবির লিংক দিন।'); return; }
+    item.url   = url;
+    item.title = document.getElementById('p-title').value.trim() || 'নির্মাণ ছবি';
+    item.desc  = document.getElementById('p-desc').value.trim();
+    item.phase = document.getElementById('p-phase').value;
+    item.date  = document.getElementById('p-date').value || TODAY;
+    ['p-url','p-title','p-desc'].forEach(id => document.getElementById(id).value = '');
+  }
+  else {
+    const title = document.getElementById('t-title').value.trim();
+    if (!title) { alert('শিরোনাম দিন।'); return; }
+    item.title = title;
+    item.desc  = document.getElementById('t-desc').value.trim();
+    item.phase = document.getElementById('t-phase').value;
+    item.date  = document.getElementById('t-date').value || TODAY;
+    ['t-title','t-desc'].forEach(id => document.getElementById(id).value = '');
+  }
+
+  state.updates.unshift(item);
+  save();
+  renderGrid();
+}
+
+// ── DELETE ──
+function delUpdate(id) {
+  state.updates = state.updates.filter(u => u.id !== id);
+  save();
+  renderGrid();
+}
+
+// ── FILTER ──
+function setFilter(f, btn) {
+  activeFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid();
+}
+
+// ── FORMAT DATE ──
+function fmtDate(d) {
+  if (!d) return '—';
+  try {
+    return new Date(d + 'T00:00:00').toLocaleDateString('bn-BD', {
+      day:'numeric', month:'short', year:'numeric'
+    });
+  } catch(e) { return d; }
+}
+
+function fmtDateShort(d) {
+  if (!d) return '—';
+  try {
+    return new Date(d + 'T00:00:00').toLocaleDateString('bn-BD', {
+      day:'numeric', month:'short'
+    });
+  } catch(e) { return d; }
+}
+
+// ── RENDER ──
+function renderGrid() {
+  const all     = state.updates;
+  const visible = activeFilter === 'all' ? all : all.filter(u => u.type === activeFilter);
+  const videos  = all.filter(u => u.type === 'video').length;
+  const photos  = all.filter(u => u.type === 'photo').length;
+
+  // stats
+  document.getElementById('st-total').textContent  = all.length;
+  document.getElementById('st-videos').textContent = videos;
+  document.getElementById('st-photos').textContent = photos;
+  document.getElementById('st-date').textContent   = all.length ? fmtDateShort(all[0].date) : '—';
+  document.getElementById('shown-count').textContent = visible.length;
+
+  const grid = document.getElementById('updatesGrid');
+  if (!visible.length) {
+    grid.innerHTML = `<div class="empty-state">
+      <span class="empty-icon">🏗️</span>
+      <p>এই ক্যাটাগরিতে এখনো কোনো আপডেট নেই।<br>অ্যাডমিন প্যানেল খুলে আপডেট যোগ করুন।</p>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = visible.map(u => {
+    // media block
+    let media = '';
+    if (u.type === 'video') {
+      media = `<div class="video-wrap"><iframe
+        src="https://www.youtube.com/embed/${u.ytid}"
+        title="${u.title}"
+        allowfullscreen loading="lazy"></iframe></div>`;
+    } else if (u.type === 'photo') {
+      const safe = u.url.replace(/"/g, '%22');
+      const titleSafe = (u.title||'').replace(/'/g, '&#39;');
+      media = `<div class="photo-wrap" onclick="openLB('${safe}','${titleSafe}')">
+        <img src="${safe}" alt="${titleSafe}" loading="lazy">
+        <div class="photo-zoom-hint">🔍 বড় দেখুন</div>
+      </div>`;
+    } else {
+      media = `<div class="text-banner">📝</div>`;
+    }
+
+    // chips
+    const chipClass = u.type === 'video' ? 'chip-video' : u.type === 'photo' ? 'chip-photo' : 'chip-text';
+    const chipLabel = u.type === 'video' ? '▶️ ভিডিও' : u.type === 'photo' ? '📸 ছবি' : '📝 আপডেট';
+
+    return `<div class="update-card">
+      ${media}
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="type-chip ${chipClass}">${chipLabel}</span>
+          <span class="card-date">${fmtDate(u.date)}</span>
+        </div>
+        <div class="card-title">${u.title || ''}</div>
+        ${u.desc ? `<div class="card-desc">${u.desc}</div>` : ''}
+        ${u.phase ? `<div class="card-phase">📍 ${u.phase}</div>` : ''}
+        <button class="del-btn" onclick="delUpdate('${u.id}')">🗑 মুছুন</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── LIGHTBOX ──
+function openLB(src, cap) {
+  document.getElementById('lb-img').src = src;
+  document.getElementById('lb-cap').textContent = cap || '';
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLB() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.getElementById('lb-img').src = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLB();
+});
+
+// ── BOOT ──
+load();
+</script>
