@@ -435,7 +435,6 @@
     window.galPage = function(p) {
       if (p < 1 || p > pages) return;
       renderGal(p);
-      document.querySelector('.section-header .icon').closest('.section').scrollIntoView({behavior:'smooth', block:'nearest'});
     };
 
     renderGal(1);
@@ -553,7 +552,6 @@
       var pages = Math.ceil(all.length / PER_PAGE);
       if (pg < 1 || pg > pages) return;
       render(pg);
-      document.getElementById('progressSection').scrollIntoView({behavior:'smooth', block:'nearest'});
     };
 
     // ── Load: fetch progress.json first, fallback to localStorage ──
