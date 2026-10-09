@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>নির্মাণ অগ্রগতি — উত্তর গুয়াটন জামে মসজিদ</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
 <style>
 :root {
   --bg:        #f7f5f1;
@@ -259,14 +260,9 @@ body {
 
 <!-- ═══ HERO ═══ -->
 <div class="hero">
-  <span class="hero-icon">🏗️</span>
+  <span class="hero-icon"><i class="fas fa-trowel-bricks" style="color:#ffd84d;filter:drop-shadow(0 3px 14px rgba(0,0,0,.4));"></i></span>
   <h1>নির্মাণ অগ্রগতি</h1>
   <p class="hero-sub">উত্তর গুয়াটন জামে মসজিদ পুনর্নির্মাণ — সর্বশেষ আপডেট</p>
-  <nav class="hero-nav">
-    <a href="index.html">🇧🇩 বাংলা সাইট</a>
-    <a href="index-en.html">🇺🇸 English Site</a>
-    <a href="fundraiser.html">💰 ফান্ড ট্র্যাকার</a>
-  </nav>
 </div>
 
 <!-- ═══ MAIN CONTENT ═══ -->
@@ -294,39 +290,39 @@ body {
 
   <!-- PHASE TIMELINE -->
   <div class="timeline-card">
-    <div class="card-heading">📍 নির্মাণ পর্যায়</div>
+    <div class="card-heading"><i class="fas fa-map-pin" style="margin-right:6px;color:var(--green-mid);"></i>নির্মাণ পর্যায়</div>
     <div class="phases" id="phasesRow">
-      <div class="phase" id="ph-1"><div class="phase-dot">🔨</div><div class="phase-label">ভাঙন কাজ</div></div>
-      <div class="phase" id="ph-2"><div class="phase-dot">🏗️</div><div class="phase-label">ফাউন্ডেশন</div></div>
-      <div class="phase" id="ph-3"><div class="phase-dot">🧱</div><div class="phase-label">RCC কলাম</div></div>
-      <div class="phase" id="ph-4"><div class="phase-dot">🪵</div><div class="phase-label">ছাদ স্ল্যাব</div></div>
-      <div class="phase" id="ph-5"><div class="phase-dot">🧱</div><div class="phase-label">দেয়াল ও প্লাস্টার</div></div>
-      <div class="phase" id="ph-6"><div class="phase-dot">⚡</div><div class="phase-label">বৈদ্যুতিক</div></div>
-      <div class="phase" id="ph-7"><div class="phase-dot">🚿</div><div class="phase-label">স্যানিটারি</div></div>
-      <div class="phase" id="ph-8"><div class="phase-dot">🎨</div><div class="phase-label">ফিনিশিং</div></div>
-      <div class="phase" id="ph-9"><div class="phase-dot">✅</div><div class="phase-label">সম্পন্ন</div></div>
+      <div class="phase" id="ph-1"><div class="phase-dot"><i class="fas fa-hammer"></i></div><div class="phase-label">ভাঙন কাজ</div></div>
+      <div class="phase" id="ph-2"><div class="phase-dot"><i class="fas fa-trowel-bricks"></i></div><div class="phase-label">ফাউন্ডেশন</div></div>
+      <div class="phase" id="ph-3"><div class="phase-dot"><i class="fas fa-columns"></i></div><div class="phase-label">RCC কলাম</div></div>
+      <div class="phase" id="ph-4"><div class="phase-dot"><i class="fas fa-layer-group"></i></div><div class="phase-label">ছাদ স্ল্যাব</div></div>
+      <div class="phase" id="ph-5"><div class="phase-dot"><i class="fas fa-th-large"></i></div><div class="phase-label">দেয়াল ও প্লাস্টার</div></div>
+      <div class="phase" id="ph-6"><div class="phase-dot"><i class="fas fa-bolt"></i></div><div class="phase-label">বৈদ্যুতিক</div></div>
+      <div class="phase" id="ph-7"><div class="phase-dot"><i class="fas fa-faucet"></i></div><div class="phase-label">স্যানিটারি</div></div>
+      <div class="phase" id="ph-8"><div class="phase-dot"><i class="fas fa-paint-roller"></i></div><div class="phase-label">ফিনিশিং</div></div>
+      <div class="phase" id="ph-9"><div class="phase-dot"><i class="fas fa-check-circle"></i></div><div class="phase-label">সম্পন্ন</div></div>
     </div>
   </div>
 
   <!-- FILTER BAR -->
   <div class="filter-bar">
     <button class="filter-btn active" onclick="setFilter('all',this)">সব</button>
-    <button class="filter-btn" onclick="setFilter('video',this)">▶️ ভিডিও</button>
-    <button class="filter-btn" onclick="setFilter('photo',this)">📸 ছবি</button>
-    <button class="filter-btn" onclick="setFilter('text',this)">📝 আপডেট</button>
+    <button class="filter-btn" onclick="setFilter('video',this)"><i class="fas fa-play-circle"></i> ভিডিও</button>
+    <button class="filter-btn" onclick="setFilter('photo',this)"><i class="fas fa-image"></i> ছবি</button>
+    <button class="filter-btn" onclick="setFilter('text',this)"><i class="fas fa-align-left"></i> আপডেট</button>
   </div>
 
   <!-- SECTION HEAD -->
   <div class="section-head">
-    <span class="section-title">📋 সকল আপডেট</span>
+    <span class="section-title"><i class="fas fa-list" style="margin-right:6px;color:var(--green-mid);"></i>সকল আপডেট</span>
     <span class="count-chip" id="shown-count">0</span>
   </div>
 
   <!-- UPDATES GRID -->
   <div class="updates-grid" id="updatesGrid">
     <div class="empty-state">
-      <span class="empty-icon">🏗️</span>
-      <p>নির্মাণ কাজ শুরু হলেই এখানে আপডেট, ভিডিও ও ছবি প্রকাশিত হবে।<br>আমাদের সাথে থাকুন। 🤲</p>
+      <span class="empty-icon"><i class="fas fa-trowel-bricks" style="color:#aaa;"></i></span>
+      <p>নির্মাণ কাজ শুরু হলেই এখানে আপডেট, ভিডিও ও ছবি প্রকাশিত হবে।<br>আমাদের সাথে থাকুন।</p>
     </div>
   </div>
 
@@ -336,7 +332,7 @@ body {
 <footer class="footer">
   <strong>উত্তর গুয়াটন জামে মসজিদ পুনর্নির্মাণ</strong><br>
   ঝালকাঠি সদর, ঝালকাঠি জেলা, বরিশাল বিভাগ, বাংলাদেশ<br><br>
-  আল্লাহ এই নির্মাণ কাজ সহজ ও কবুল করুন। আমিন। 🤲
+  আল্লাহ এই নির্মাণ কাজ সহজ ও কবুল করুন। আমিন। <i class="fas fa-hands" style="margin-left:4px;"></i>
 </footer>
 
 <script>
@@ -417,7 +413,7 @@ function renderGrid() {
     const msg = activeFilter === 'all'
       ? 'নির্মাণ কাজ শুরু হলেই এখানে আপডেট, ভিডিও ও ছবি প্রকাশিত হবে।<br>আমাদের সাথে থাকুন। 🤲'
       : 'এই ক্যাটাগরিতে এখনো কোনো আপডেট নেই।';
-    grid.innerHTML = `<div class="empty-state"><span class="empty-icon">🏗️</span><p>${msg}</p></div>`;
+    grid.innerHTML = `<div class="empty-state"><span class="empty-icon"><i class="fas fa-trowel-bricks" style="color:#aaa;"></i></span><p>${msg}</p></div>`;
     return;
   }
 
@@ -437,11 +433,11 @@ function renderGrid() {
         <div class="img-error-msg" style="display:none;">ছবি লোড হয়নি</div>
       </div>`;
     } else {
-      media = `<div class="text-banner">📝</div>`;
+      media = `<div class="text-banner"><i class="fas fa-align-left" style="color:var(--gold);"></i></div>`;
     }
 
     const chipClass = u.type==='video' ? 'chip-video' : u.type==='photo' ? 'chip-photo' : 'chip-text';
-    const chipLabel = u.type==='video' ? '▶️ ভিডিও' : u.type==='photo' ? '📸 ছবি' : '📝 আপডেট';
+    const chipLabel = u.type==='video' ? '<i class="fas fa-play-circle"></i> ভিডিও' : u.type==='photo' ? '<i class="fas fa-image"></i> ছবি' : '<i class="fas fa-align-left"></i> আপডেট';
 
     return `<div class="update-card">
       ${media}
@@ -452,7 +448,7 @@ function renderGrid() {
         </div>
         <div class="card-title">${u.title||''}</div>
         ${u.desc ? `<div class="card-desc">${u.desc}</div>` : ''}
-        ${u.phase ? `<div class="card-phase">📍 ${u.phase}</div>` : ''}
+        ${u.phase ? `<div class="card-phase"><i class="fas fa-map-pin" style="margin-right:4px;"></i>${u.phase}</div>` : ''}
       </div>
     </div>`;
   }).join('');
