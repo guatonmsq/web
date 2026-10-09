@@ -310,6 +310,10 @@ body {
 }
 .danger-btn:hover { background: #b91c1c; }
 
+.photo-preview-box { margin-top: 8px; display: none; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--bg-muted); }
+.photo-preview-box img { width: 100%; max-height: 200px; object-fit: contain; display: block; }
+.preview-err { padding: 12px; font-size: .82em; color: #c62828; background: #ffebee; }
+
 /* ── PAGE NOTICE ── */
 .page-notice {
   background: var(--gold-lite); border: 1.5px solid var(--gold);
@@ -364,7 +368,7 @@ body {
 
   <!-- NOTICE -->
   <div class="page-notice">
-    ⚠️ এই পাতাটি শুধুমাত্র অ্যাডমিনের জন্য। এখানে যোগ করা সকল আপডেট <strong>progress.html</strong> পাতায় সয়ংক্রিয়ভাবে দেখাবে।
+    ⚠️ এই পাতাটি শুধুমাত্র অ্যাডমিনের জন্য। আপডেট যোগ করার পর <strong>"JSON কপি করুন"</strong> বোতামে ক্লিক করে GitHub-এ progress.json আপডেট করুন — তাহলে সব ডিভাইস ও মোবাইলে দেখা যাবে।
   </div>
 
   <!-- STATS -->
@@ -444,8 +448,12 @@ body {
     <!-- PHOTO TAB -->
     <div class="tab-pane" id="pane-photo">
       <div class="form-row">
-        <label>ছবির লিংক (GitHub raw URL বা যেকোনো ইমেজ লিংক) *</label>
-        <input type="url" id="p-url" placeholder="https://raw.githubusercontent.com/guatonmsq/web/main/images/...">
+        <label>ছবির লিংক * — GitHub raw URL (raw.githubusercontent.com/...) বা Imgur direct link (.jpg/.png শেষে) দিন</label>
+        <input type="url" id="p-url" placeholder="https://raw.githubusercontent.com/guatonmsq/web/main/images/..." oninput="previewPhoto()">
+      </div>
+      <div class="photo-preview-box" id="photo-preview">
+        <img src="" alt="Preview">
+        <div class="preview-err" style="display:none;"></div>
       </div>
       <div class="form-2col">
         <div class="form-row">
@@ -504,6 +512,32 @@ body {
       <button class="btn-submit" onclick="addUpdate('text')">➕ আপডেট প্রকাশ করুন</button>
       <div class="form-success" id="succ-text">✅ আপডেট সফলভাবে যোগ হয়েছে! progress.html-এ দেখা যাবে।</div>
     </div>
+  </div>
+
+  <!-- PUBLISH TO GITHUB SECTION -->
+  <div class="section-card" id="exportCard">
+    <div class="section-heading"><span>🌐</span> সবার জন্য প্রকাশ করুন (GitHub)</div>
+    <div style="font-size:.84rem;color:var(--fg-muted);margin-bottom:14px;line-height:1.7;">
+      আপডেট যোগ করার পর নিচের JSON টি কপি করুন এবং GitHub-এ <strong>progress.json</strong> ফাইলটি আপডেট করুন — তাহলে মোবাইলসহ সব ডিভাইসে দেখা যাবে।
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+      <button onclick="copyJSON()" style="background:var(--green-mid);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:.9rem;font-weight:700;cursor:pointer;">📋 JSON কপি করুন</button>
+      <a href="https://github.com/guatonmsq/web/blob/main/progress.json" target="_blank" style="background:var(--bg-muted);color:var(--fg);border:1.5px solid var(--border);border-radius:8px;padding:10px 20px;font-size:.9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;">✏️ GitHub-এ সম্পাদনা করুন</a>
+    </div>
+    <div id="copySuccess" style="display:none;background:#e6f4ea;border:1px solid #2d6a4f;border-radius:8px;padding:10px 14px;font-size:.84rem;color:#1a3a2a;margin-bottom:10px;">
+      ✅ JSON কপি হয়েছে! এখন GitHub-এ গিয়ে <strong>progress.json</strong> ফাইলে পেস্ট করুন এবং Commit করুন।
+    </div>
+    <details style="margin-top:8px;">
+      <summary style="cursor:pointer;font-size:.82rem;color:var(--fg-subtle);padding:6px 0;">📖 GitHub-এ কীভাবে আপলোড করবেন?</summary>
+      <ol style="font-size:.82rem;color:var(--fg-muted);line-height:2;padding-left:20px;margin-top:8px;">
+        <li>উপরের "JSON কপি করুন" বোতামে ক্লিক করুন</li>
+        <li>"GitHub-এ সম্পাদনা করুন" বোতামে ক্লিক করুন</li>
+        <li>পেনসিল আইকনে ক্লিক করুন (Edit this file)</li>
+        <li>সব মুছে কপি করা JSON পেস্ট করুন (Ctrl+A তারপর Ctrl+V)</li>
+        <li>"Commit changes" বোতামে ক্লিক করুন</li>
+        <li>১–২ মিনিট পর সাইটে দেখা যাবে ✅</li>
+      </ol>
+    </details>
   </div>
 
   <!-- MANAGE UPDATES SECTION -->
@@ -738,6 +772,58 @@ function renderList() {
       </div>
     </div>`;
   }).join('') + '</div>';
+}
+
+// ── COPY JSON FOR GITHUB ──
+function copyJSON() {
+  const json = JSON.stringify(state, null, 2);
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(json).then(function() {
+      showCopySuccess();
+    }).catch(function() { fallbackCopy(json); });
+  } else {
+    fallbackCopy(json);
+  }
+}
+function fallbackCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.focus(); ta.select();
+  try { document.execCommand('copy'); showCopySuccess(); }
+  catch(e) { alert('কপি করতে পারেনি। নিচের JSON ম্যানুয়ালি কপি করুন:\n\n' + text); }
+  document.body.removeChild(ta);
+}
+function showCopySuccess() {
+  const el = document.getElementById('copySuccess');
+  if (!el) return;
+  el.style.display = 'block';
+  setTimeout(function() { el.style.display = 'none'; }, 5000);
+}
+
+// ── PHOTO PREVIEW ──
+function previewPhoto() {
+  const url = document.getElementById('p-url').value.trim();
+  let prev = document.getElementById('photo-preview');
+  if (!prev) return;
+  if (!url) { prev.style.display = 'none'; return; }
+  prev.style.display = 'block';
+  const img = prev.querySelector('img');
+  const err = prev.querySelector('.preview-err');
+  img.src = url;
+  img.style.display = 'block';
+  err.style.display = 'none';
+  img.onerror = function() {
+    img.style.display = 'none';
+    err.style.display = 'block';
+    err.textContent = '❌ এই লিংক থেকে ছবি লোড হচ্ছে না। GitHub raw URL বা Imgur/Google Photos direct link ব্যবহার করুন।';
+  };
+  img.onload = function() {
+    img.style.display = 'block';
+    err.style.display = 'none';
+  };
 }
 
 // ── BOOT ──
