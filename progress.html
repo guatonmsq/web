@@ -236,6 +236,10 @@ body {
 }
 .lb-cap { color: rgba(255,255,255,.75); font-size: .88rem; margin-top: 12px; text-align: center; }
 
+.photo-wrap.img-error { cursor: default; background: var(--bg-muted); display: flex; align-items: center; justify-content: center; }
+.photo-wrap.img-error .img-error-msg { display: flex !important; font-size: .8rem; color: var(--fg-subtle); }
+.photo-wrap.img-error .photo-zoom-hint { display: none; }
+
 /* ── FOOTER ── */
 .footer {
   background: var(--green-deep); color: rgba(255,255,255,.55);
@@ -336,18 +340,29 @@ body {
 </footer>
 
 <script>
-// ── STATE (reads from same localStorage key as admin.html) ──
+// ── STATE (fetches from progress.json, fallback to localStorage) ──
 const STORE_KEY = 'mosque_progress_v2';
+const JSON_URL  = 'https://raw.githubusercontent.com/guatonmsq/web/main/progress.json';
 let state = { phase: 0, updates: [] };
 let activeFilter = 'all';
 
 function load() {
-  try {
-    const raw = localStorage.getItem(STORE_KEY);
-    if (raw) state = JSON.parse(raw);
-  } catch(e) {}
-  renderPhases();
-  renderGrid();
+  fetch(JSON_URL + '?t=' + Date.now())
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .then(data => {
+      state = data || { phase: 0, updates: [] };
+      renderPhases();
+      renderGrid();
+    })
+    .catch(() => {
+      // fallback: localStorage (admin on same device)
+      try {
+        const raw = localStorage.getItem(STORE_KEY);
+        if (raw) state = JSON.parse(raw);
+      } catch(e) {}
+      renderPhases();
+      renderGrid();
+    });
 }
 
 // ── PHASE ──
@@ -417,8 +432,9 @@ function renderGrid() {
       const safe = (u.url||'').replace(/"/g,'%22');
       const ts   = (u.title||'').replace(/'/g,'&#39;');
       media = `<div class="photo-wrap" onclick="openLB('${safe}','${ts}')">
-        <img src="${safe}" alt="${ts}" loading="lazy">
+        <img src="${safe}" alt="${ts}" loading="lazy" onerror="this.parentElement.classList.add('img-error');this.style.display='none'">
         <div class="photo-zoom-hint">🔍 বড় দেখুন</div>
+        <div class="img-error-msg" style="display:none;">ছবি লোড হয়নি</div>
       </div>`;
     } else {
       media = `<div class="text-banner">📝</div>`;
