@@ -454,20 +454,13 @@
   document.addEventListener('keydown', e => { if(e.key==='Escape') closeLB(); });
 
   /* ── CONSTRUCTION PROGRESS WITH PAGINATION ── */
+  /* Fetches from progress.json (cross-device), falls back to localStorage */
   (function() {
+    var JSON_URL = 'https://raw.githubusercontent.com/guatonmsq/web/main/progress.json';
     var STORE_KEY = 'mosque_progress_v2';
     var PER_PAGE  = 4;
     var curPage   = 1;
-    var state     = { phase: 0, updates: [] };
-
-    try {
-      var raw = localStorage.getItem(STORE_KEY);
-      if (raw) state = JSON.parse(raw);
-    } catch(e) {}
-
-    var all = state.updates || [];
-    var p   = state.phase   || 0;
-    if (!all.length && !p) return; // keep empty placeholder
+    var all = [], p = 0;
 
     var phaseNames = ['','ভাঙন কাজ','ফাউন্ডেশন','RCC কলাম','ছাদ স্ল্যাব','দেয়াল','বৈদ্যুতিক','স্যানিটারি','ফিনিশিং','সম্পন্ন ✅'];
     var phaseIcons = ['','🔨','🏗️','🧱','🪵','🧱','⚡','🚿','🎨','✅'];
@@ -522,6 +515,7 @@
     /* ── main render ── */
     function render(page) {
       curPage = page;
+      if (!all.length && !p) return; // keep empty placeholder visible
       var html = '';
 
       // Phase bar
@@ -562,7 +556,22 @@
       document.getElementById('progressSection').scrollIntoView({behavior:'smooth', block:'nearest'});
     };
 
-    render(1);
+    // ── Load: fetch progress.json first, fallback to localStorage ──
+    fetch(JSON_URL + '?t=' + Date.now())
+      .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function(data) {
+        all = (data && data.updates) ? data.updates : [];
+        p   = (data && data.phase)   ? data.phase   : 0;
+        render(1);
+      })
+      .catch(function() {
+        // fallback: try localStorage (for admin on same device)
+        try {
+          var raw = localStorage.getItem(STORE_KEY);
+          if (raw) { var s = JSON.parse(raw); all = s.updates||[]; p = s.phase||0; }
+        } catch(e) {}
+        render(1);
+      });
   })();
 </script>
 </body>
