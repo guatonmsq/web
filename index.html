@@ -145,6 +145,19 @@
   }
   .view-all-btn:hover { background:linear-gradient(135deg,#1a3a2a,#2d6a4f); box-shadow:0 5px 18px rgba(45,106,79,.4); transform:translateY(-1px); }
 
+  /* PAGINATION */
+  .pg-bar { display:flex; align-items:center; justify-content:center; gap:8px; margin-top:18px; flex-wrap:wrap; }
+  .pg-btn {
+    min-width:36px; height:36px; border-radius:8px; border:1.5px solid #d4e8db;
+    background:#fff; color:#2d6a4f; font-size:.85em; font-weight:700; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; padding:0 10px;
+    transition:all .18s;
+  }
+  .pg-btn:hover:not(:disabled) { background:#e6f2ec; border-color:#2d6a4f; }
+  .pg-btn.active { background:#2d6a4f; color:#fff; border-color:#2d6a4f; }
+  .pg-btn:disabled { opacity:.35; cursor:default; }
+  .pg-info { font-size:.75em; color:#888; margin:0 4px; }
+
   /* BANK INFO */
   .bank-box { background:linear-gradient(135deg,#1a3a2a,#2d6a4f); color:white; border-radius:12px; padding:30px; text-align:center; }
   .bank-box h3 { font-family:'Noto Serif Bengali',serif; font-size:1.3em; margin-bottom:18px; }
@@ -396,69 +409,116 @@
   }
   document.addEventListener('keydown', e => { if(e.key==='Escape') closeLB(); });
 
-  /* ── CONSTRUCTION PROGRESS ── */
-  (function renderProgress() {
-    var raw, state = { phase: 0, updates: [] };
-    try { raw = localStorage.getItem('mosque_progress_v2'); if (raw) state = JSON.parse(raw); } catch(e) {}
+  /* ── CONSTRUCTION PROGRESS WITH PAGINATION ── */
+  (function() {
+    var STORE_KEY = 'mosque_progress_v2';
+    var PER_PAGE  = 4;
+    var curPage   = 1;
+    var state     = { phase: 0, updates: [] };
+
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      if (raw) state = JSON.parse(raw);
+    } catch(e) {}
 
     var all = state.updates || [];
-    if (!all.length && !state.phase) return; // keep empty message
+    var p   = state.phase   || 0;
+    if (!all.length && !p) return; // keep empty placeholder
 
     var phaseNames = ['','ভাঙন কাজ','ফাউন্ডেশন','RCC কলাম','ছাদ স্ল্যাব','দেয়াল','বৈদ্যুতিক','স্যানিটারি','ফিনিশিং','সম্পন্ন ✅'];
     var phaseIcons = ['','🔨','🏗️','🧱','🪵','🧱','⚡','🚿','🎨','✅'];
-    var p = state.phase || 0;
 
-    var html = '';
-
-    // Phase bar (always shown if phase > 0)
-    if (p > 0) {
-      html += '<div style="margin-bottom:16px;">';
-      html += '<div style="font-size:.78em;font-weight:700;color:#2d6a4f;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;">📍 বর্তমান নির্মাণ পর্যায়</div>';
-      html += '<div class="phase-bar">';
-      for (var i = 1; i <= 9; i++) {
-        var cls = i < p ? 'ph done' : i === p ? 'ph active' : 'ph';
-        html += '<div class="' + cls + '">';
-        html += '<div class="ph-dot">' + (i < p ? '✓' : phaseIcons[i]) + '</div>';
-        html += '<div class="ph-label">' + phaseNames[i] + '</div>';
-        html += '</div>';
+    /* ── render one card ── */
+    function cardHTML(u) {
+      var media = '';
+      if (u.type === 'video') {
+        media = '<div class="upd-video"><iframe src="https://www.youtube.com/embed/' + u.ytid +
+                '" title="' + (u.title||'').replace(/"/g,'&quot;') + '" allowfullscreen loading="lazy"></iframe></div>';
+      } else if (u.type === 'photo') {
+        var safe = (u.url||'').replace(/"/g,'%22');
+        var ts   = (u.title||'').replace(/'/g,'&#39;');
+        media = '<div class="upd-photo" onclick="openLB(\'' + safe + '\',\'' + ts +
+                '\')"><img src="' + safe + '" alt="' + ts + '" loading="lazy"></div>';
+      } else {
+        media = '<div class="upd-text-banner">📝</div>';
       }
-      html += '</div></div>';
+      var chipCls = u.type==='video' ? 'chip-v' : u.type==='photo' ? 'chip-p' : 'chip-t';
+      var chipLbl = u.type==='video' ? '▶ ভিডিও' : u.type==='photo' ? '📸 ছবি' : '📝 আপডেট';
+      var dateStr = '';
+      if (u.date) {
+        try { dateStr = new Date(u.date+'T00:00:00').toLocaleDateString('bn-BD',{day:'numeric',month:'short'}); }
+        catch(e) { dateStr = u.date; }
+      }
+      return '<div class="upd-card">' + media +
+        '<div class="upd-body">' +
+        '<div class="upd-meta"><span class="upd-chip ' + chipCls + '">' + chipLbl + '</span>' +
+        '<span class="upd-date">' + dateStr + '</span></div>' +
+        '<div class="upd-title">' + (u.title||'') + '</div>' +
+        (u.desc ? '<div class="upd-desc">' + u.desc + '</div>' : '') +
+        '</div></div>';
     }
 
-    // Latest updates (max 4)
-    var latest = all.slice(0, 4);
-    if (latest.length) {
-      html += '<div style="font-size:.78em;font-weight:700;color:#2d6a4f;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px;">🗂️ সর্বশেষ আপডেট</div>';
-      html += '<div class="upd-grid">';
-      latest.forEach(function(u) {
-        var media = '';
-        if (u.type === 'video') {
-          media = '<div class="upd-video"><iframe src="https://www.youtube.com/embed/' + u.ytid + '" title="' + (u.title||'').replace(/"/g,'&quot;') + '" allowfullscreen loading="lazy"></iframe></div>';
-        } else if (u.type === 'photo') {
-          var safe = (u.url||'').replace(/"/g,'%22');
-          var ts = (u.title||'').replace(/'/g,'&#39;');
-          media = '<div class="upd-photo" onclick="openLB(\'' + safe + '\',\'' + ts + '\')"><img src="' + safe + '" alt="' + ts + '" loading="lazy"></div>';
-        } else {
-          media = '<div class="upd-text-banner">📝</div>';
+    /* ── render pagination bar ── */
+    function pgHTML(total, cur) {
+      var pages = Math.ceil(total / PER_PAGE);
+      if (pages <= 1) return '';
+      var h = '<div class="pg-bar" id="pgBar">';
+      h += '<button class="pg-btn" id="pgPrev" onclick="progPage(' + (cur-1) + ')" ' +
+           (cur===1 ? 'disabled' : '') + '>&#8592; আগে</button>';
+      for (var i = 1; i <= pages; i++) {
+        h += '<button class="pg-btn' + (i===cur ? ' active' : '') + '" onclick="progPage(' + i + ')">' + i + '</button>';
+      }
+      h += '<button class="pg-btn" id="pgNext" onclick="progPage(' + (cur+1) + ')" ' +
+           (cur===pages ? 'disabled' : '') + '>পরে &#8594;</button>';
+      h += '<span class="pg-info">(' + cur + '/' + pages + ')</span>';
+      h += '</div>';
+      return h;
+    }
+
+    /* ── main render ── */
+    function render(page) {
+      curPage = page;
+      var html = '';
+
+      // Phase bar
+      if (p > 0) {
+        html += '<div style="margin-bottom:16px;">';
+        html += '<div style="font-size:.78em;font-weight:700;color:#2d6a4f;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;">📍 বর্তমান নির্মাণ পর্যায়</div>';
+        html += '<div class="phase-bar">';
+        for (var i = 1; i <= 9; i++) {
+          var cls = i < p ? 'ph done' : i === p ? 'ph active' : 'ph';
+          html += '<div class="' + cls + '"><div class="ph-dot">' + (i < p ? '✓' : phaseIcons[i]) +
+                  '</div><div class="ph-label">' + phaseNames[i] + '</div></div>';
         }
-        var chipCls = u.type==='video' ? 'chip-v' : u.type==='photo' ? 'chip-p' : 'chip-t';
-        var chipLbl = u.type==='video' ? '▶ ভিডিও' : u.type==='photo' ? '📸 ছবি' : '📝 আপডেট';
-        var dateStr = '';
-        if (u.date) { try { dateStr = new Date(u.date+'T00:00:00').toLocaleDateString('bn-BD',{day:'numeric',month:'short'}); } catch(e) { dateStr = u.date; } }
-        html += '<div class="upd-card">' + media;
-        html += '<div class="upd-body">';
-        html += '<div class="upd-meta"><span class="upd-chip ' + chipCls + '">' + chipLbl + '</span><span class="upd-date">' + dateStr + '</span></div>';
-        html += '<div class="upd-title">' + (u.title||'') + '</div>';
-        if (u.desc) html += '<div class="upd-desc">' + u.desc + '</div>';
         html += '</div></div>';
-      });
-      html += '</div>';
+      }
+
+      // Update grid for current page
+      if (all.length) {
+        var start  = (page - 1) * PER_PAGE;
+        var slice  = all.slice(start, start + PER_PAGE);
+        html += '<div style="font-size:.78em;font-weight:700;color:#2d6a4f;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px;">🗂️ নির্মাণ আপডেট</div>';
+        html += '<div class="upd-grid">';
+        slice.forEach(function(u) { html += cardHTML(u); });
+        html += '</div>';
+        html += pgHTML(all.length, page);
+      }
+
+      // View all link
+      html += '<div class="view-all-wrap"><a class="view-all-btn" href="progress.html">🏗️ সম্পূর্ণ অগ্রগতি দেখুন →</a></div>';
+
+      document.getElementById('progressBody').innerHTML = html;
     }
 
-    // View all link
-    html += '<div class="view-all-wrap"><a class="view-all-btn" href="progress.html">🏗️ সম্পূর্ণ অগ্রগতি দেখুন →</a></div>';
+    // expose for onclick handlers
+    window.progPage = function(pg) {
+      var pages = Math.ceil(all.length / PER_PAGE);
+      if (pg < 1 || pg > pages) return;
+      render(pg);
+      document.getElementById('progressSection').scrollIntoView({behavior:'smooth', block:'nearest'});
+    };
 
-    document.getElementById('progressBody').innerHTML = html;
+    render(1);
   })();
 </script>
 </body>
