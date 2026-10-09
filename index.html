@@ -12,8 +12,8 @@
 
   .hero { background:linear-gradient(160deg,#1a3a2a 0%,#2d6a4f 50%,#1a3a2a 100%); color:white; text-align:center; padding:60px 20px 50px; position:relative; overflow:hidden; }
   .hero::before { content:''; position:absolute; top:0;left:0;right:0;bottom:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
-  .hero-icon { font-size:52px; margin-bottom:15px; position:relative; line-height:1; }
-  .hero-icon i { color:rgba(255,255,255,.92); filter:drop-shadow(0 2px 8px rgba(0,0,0,.35)); }
+  .hero-icon { font-size:72px; margin-bottom:18px; position:relative; line-height:1; }
+  .hero-icon i { color:#ffd84d; filter:drop-shadow(0 3px 14px rgba(0,0,0,.4)); }
   .qnav-icon i { font-size:1.1em; }
   .section-icon i { font-size:1em; }
   .land-icon i { font-size:1.5em; color:#2d6a4f; }
@@ -258,7 +258,7 @@
   <div class="section-header"><span class="icon"><i class="fas fa-camera"></i></span><h2>বর্তমান অবস্থা — সরেজমিন চিত্র</h2></div>
   <div class="section-body">
     <!-- photo counter -->
-    <div style="font-size:.78em;color:#888;margin-bottom:12px;" id="galCount">মোট ১৮টি ছবি</div>
+    <div style="display:none;" id="galCount"></div>
     <!-- paginated grid -->
     <div id="galGrid"></div>
     <!-- pagination -->
@@ -336,7 +336,7 @@
      shared with admin.html & progress.html
      ══════════════════════════════════════════ -->
 <div class="section" id="progressSection">
-  <div class="section-header"><span class="icon"><i class="fas fa-hard-hat"></i></span><h2>নির্মাণ অগ্রগতি</h2></div>
+  <div class="section-header"><span class="icon"><i class="fas fa-tools"></i></span><h2>নির্মাণ অগ্রগতি</h2></div>
   <div class="section-body" id="progressBody">
     <div class="progress-empty">
       <span class="pe-icon"><i class="fas fa-hard-hat" style="color:#aaa;"></i></span>
@@ -367,7 +367,7 @@
   <div class="section-header"><span class="icon"><i class="fas fa-donate"></i></span><h2>দানের পদ্ধতি</h2></div>
   <div class="section-body">
     <div class="donate-ways">
-      <div class="dw"><div class="dw-icon"><i class="fas fa-star-of-david"></i></div><div><h4>সম্পূর্ণ স্পনসর</h4><p>পুরো মসজিদ বা একটি নির্দিষ্ট অংশ (ছাদ, মিনার, ওযুখানা) স্পনসর করুন</p></div></div>
+      <div class="dw"><div class="dw-icon"><i class="fas fa-award"></i></div><div><h4>সম্পূর্ণ স্পনসর</h4><p>পুরো মসজিদ বা একটি নির্দিষ্ট অংশ (ছাদ, মিনার, ওযুখানা) স্পনসর করুন</p></div></div>
       <div class="dw"><div class="dw-icon"><i class="fas fa-hand-holding-usd"></i></div><div><h4>আংশিক দান</h4><p>যেকোনো পরিমাণ অবদান সাদরে গৃহীত হবে — ছোট বা বড় সব দানই সমান মূল্যবান</p></div></div>
       <div class="dw"><div class="dw-icon"><i class="fas fa-cubes"></i></div><div><h4>নির্মাণ সামগ্রী</h4><p>ইট, সিমেন্ট, রড, বালি বা অন্য যেকোনো নির্মাণ উপকরণ সরাসরি দান করুন</p></div></div>
       <div class="dw"><div class="dw-icon"><i class="fas fa-hands-helping"></i></div><div><h4>শ্রম সহায়তা</h4><p>দক্ষ মিস্ত্রি বা শ্রমিকের ব্যবস্থা করে সহায়তা করতে পারেন</p></div></div>
