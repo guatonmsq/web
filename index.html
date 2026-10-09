@@ -95,6 +95,56 @@
   .dw h4 { font-size:.95em; font-weight:600; color:#1a3a2a; margin-bottom:3px; }
   .dw p  { font-size:.85em; color:#555; }
 
+  /* ── CONSTRUCTION PROGRESS SECTION ── */
+  .phase-bar { display:flex; overflow-x:auto; padding:4px 0 8px; gap:0; }
+  .ph { flex:1; min-width:58px; text-align:center; position:relative; }
+  .ph::after { content:''; position:absolute; top:13px; left:50%; right:-50%; height:3px; background:#ddd; z-index:0; }
+  .ph:last-child::after { display:none; }
+  .ph.done::after { background:#2d6a4f; }
+  .ph.active::after { background:linear-gradient(90deg,#2d6a4f,#ddd); }
+  .ph-dot { width:26px; height:26px; border-radius:50%; background:#eee; border:3px solid #ddd; margin:0 auto 5px; font-size:.68rem; display:flex; align-items:center; justify-content:center; position:relative; z-index:1; }
+  .ph.done .ph-dot  { background:#2d6a4f; border-color:#2d6a4f; color:#fff; }
+  .ph.active .ph-dot { background:#fdf5e4; border-color:#b5883a; animation:phPulse 1.8s ease-in-out infinite; }
+  @keyframes phPulse {
+    0%,100% { box-shadow:0 0 0 0 rgba(181,136,58,.35); }
+    50%      { box-shadow:0 0 0 7px rgba(181,136,58,0); }
+  }
+  .ph-label { font-size:.58rem; color:#999; line-height:1.3; }
+  .ph.done .ph-label { color:#2d6a4f; }
+  .ph.active .ph-label { color:#b5883a; font-weight:700; }
+
+  .upd-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:18px; }
+  @media(max-width:560px) { .upd-grid { grid-template-columns:1fr; } }
+  .upd-card { border:1px solid #e8e8e8; border-radius:10px; overflow:hidden; background:#fafafa; transition:box-shadow .2s, transform .2s; }
+  .upd-card:hover { box-shadow:0 4px 18px rgba(0,0,0,.1); transform:translateY(-2px); }
+  .upd-video { position:relative; width:100%; padding-top:56.25%; background:#000; }
+  .upd-video iframe { position:absolute; inset:0; width:100%; height:100%; border:none; }
+  .upd-photo { width:100%; height:160px; overflow:hidden; background:#e8e8e8; cursor:zoom-in; }
+  .upd-photo img { width:100%; height:100%; object-fit:cover; transition:transform .3s; display:block; }
+  .upd-photo:hover img { transform:scale(1.05); }
+  .upd-text-banner { height:75px; background:linear-gradient(135deg,#e6f2ec,#fdf5e4); display:flex; align-items:center; justify-content:center; font-size:1.7rem; }
+  .upd-body { padding:10px 12px; }
+  .upd-meta { display:flex; align-items:center; gap:5px; margin-bottom:4px; flex-wrap:wrap; }
+  .upd-chip { font-size:.63rem; font-weight:800; padding:2px 7px; border-radius:10px; text-transform:uppercase; letter-spacing:.04em; }
+  .chip-v { background:#dbeafe; color:#1d4ed8; }
+  .chip-p { background:#e6f2ec; color:#2d6a4f; }
+  .chip-t { background:#fdf5e4; color:#b5883a; }
+  .upd-date { font-size:.68rem; color:#aaa; margin-left:auto; }
+  .upd-title { font-size:.86rem; font-weight:700; color:#1a3a2a; line-height:1.3; }
+  .upd-desc  { font-size:.76rem; color:#666; margin-top:3px; line-height:1.5; }
+
+  .progress-empty { text-align:center; padding:36px 20px; color:#aaa; font-size:.9em; }
+  .progress-empty .pe-icon { font-size:2.5rem; margin-bottom:10px; display:block; }
+
+  .view-all-wrap { text-align:center; margin-top:20px; }
+  .view-all-btn {
+    display:inline-block; background:linear-gradient(135deg,#2d6a4f,#40916c);
+    color:white; text-decoration:none; border-radius:25px; padding:11px 30px;
+    font-size:.92em; font-weight:600; letter-spacing:.3px;
+    box-shadow:0 3px 12px rgba(45,106,79,.3); transition:all .2s;
+  }
+  .view-all-btn:hover { background:linear-gradient(135deg,#1a3a2a,#2d6a4f); box-shadow:0 5px 18px rgba(45,106,79,.4); transform:translateY(-1px); }
+
   /* BANK INFO */
   .bank-box { background:linear-gradient(135deg,#1a3a2a,#2d6a4f); color:white; border-radius:12px; padding:30px; text-align:center; }
   .bank-box h3 { font-family:'Noto Serif Bengali',serif; font-size:1.3em; margin-bottom:18px; }
@@ -156,93 +206,35 @@
 <div class="section">
   <div class="section-header"><span class="icon">📷</span><h2>বর্তমান অবস্থা — সরেজমিন চিত্র</h2></div>
   <div class="section-body">
-
     <div class="photo-grid">
-      <div class="photo-item">
-        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo1.jpg" alt="ছাদে বড় গর্ত ও খসে পড়া প্লাস্টার" onclick="openLB(this.src,this.alt)">
-        <div class="photo-label">📸 ছাদে বড় গর্ত ও খসে পড়া প্লাস্টার</div>
-      </div>
-      <div class="photo-item">
-        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo2.jpg" alt="ভাঙা ও বিচ্ছিন্ন দরজা" onclick="openLB(this.src,this.alt)">
-        <div class="photo-label">📸 ভাঙা ও বিচ্ছিন্ন দরজা</div>
-      </div>
-      <div class="photo-item">
-        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo3.jpg" alt="ভেতর থেকে ছাদের গুরুতর অবস্থা" onclick="openLB(this.src,this.alt)">
-        <div class="photo-label">📸 ভেতর থেকে ছাদের গুরুতর অবস্থা</div>
-      </div>
+      <div class="photo-item"><img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo1.jpg" alt="ছাদে বড় গর্ত ও খসে পড়া প্লাস্টার" onclick="openLB(this.src,this.alt)"><div class="photo-label">📸 ছাদে বড় গর্ত ও খসে পড়া প্লাস্টার</div></div>
+      <div class="photo-item"><img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo2.jpg" alt="ভাঙা ও বিচ্ছিন্ন দরজা" onclick="openLB(this.src,this.alt)"><div class="photo-label">📸 ভাঙা ও বিচ্ছিন্ন দরজা</div></div>
+      <div class="photo-item"><img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo3.jpg" alt="ভেতর থেকে ছাদের গুরুতর অবস্থা" onclick="openLB(this.src,this.alt)"><div class="photo-label">📸 ভেতর থেকে ছাদের গুরুতর অবস্থা</div></div>
     </div>
-
     <div class="photo-grid">
-      <div class="photo-item">
-        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo4.jpg" alt="বাইরের দেওয়ালে ক্ষয় ও ফাটল" onclick="openLB(this.src,this.alt)">
-        <div class="photo-label">📸 বাইরের দেওয়ালে ক্ষয় ও ফাটল</div>
-      </div>
-      <div class="photo-item">
-        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo5.jpg" alt="মরিচাধরা জানালা ও ক্ষতিগ্রস্ত দেওয়াল" onclick="openLB(this.src,this.alt)">
-        <div class="photo-label">📸 মরিচাধরা জানালা ও ক্ষতিগ্রস্ত দেওয়াল</div>
-      </div>
-      <div class="photo-item">
-        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo6.jpg" alt="ভেতর থেকে জানালার অবস্থা" onclick="openLB(this.src,this.alt)">
-        <div class="photo-label">📸 ভেতর থেকে জানালার অবস্থা</div>
-      </div>
+      <div class="photo-item"><img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo4.jpg" alt="বাইরের দেওয়ালে ক্ষয় ও ফাটল" onclick="openLB(this.src,this.alt)"><div class="photo-label">📸 বাইরের দেওয়ালে ক্ষয় ও ফাটল</div></div>
+      <div class="photo-item"><img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo5.jpg" alt="মরিচাধরা জানালা ও ক্ষতিগ্রস্ত দেওয়াল" onclick="openLB(this.src,this.alt)"><div class="photo-label">📸 মরিচাধরা জানালা ও ক্ষতিগ্রস্ত দেওয়াল</div></div>
+      <div class="photo-item"><img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo6.jpg" alt="ভেতর থেকে জানালার অবস্থা" onclick="openLB(this.src,this.alt)"><div class="photo-label">📸 ভেতর থেকে জানালার অবস্থা</div></div>
     </div>
-
     <div class="photo-grid-2">
-      <div class="photo-item-wide">
-        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo8.jpg" alt="মসজিদের বাইরের অবস্থা" onclick="openLB(this.src,this.alt)">
-        <div class="photo-label">📸 মসজিদের বাইরের অবস্থা</div>
-      </div>
-      <div class="photo-item-wide">
-        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo9.jpg" alt="মসজিদের কোণের বিপজ্জনক অবস্থা" onclick="openLB(this.src,this.alt)">
-        <div class="photo-label">📸 মসজিদের কোণের ক্ষতিগ্রস্ত অবস্থা</div>
-      </div>
+      <div class="photo-item-wide"><img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo8.jpg" alt="মসজিদের বাইরের অবস্থা" onclick="openLB(this.src,this.alt)"><div class="photo-label">📸 মসজিদের বাইরের অবস্থা</div></div>
+      <div class="photo-item-wide"><img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo9.jpg" alt="মসজিদের কোণের বিপজ্জনক অবস্থা" onclick="openLB(this.src,this.alt)"><div class="photo-label">📸 মসজিদের কোণের ক্ষতিগ্রস্ত অবস্থা</div></div>
     </div>
-
     <div class="photo-grid">
-      <div class="photo-item">
-        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo10.jpg" alt="পিলারে গভীর ও বিপজ্জনক ফাটল" onclick="openLB(this.src,this.alt)">
-        <div class="photo-label">📸 পিলারে গভীর ও উদ্বেগজনক ফাটল</div>
-      </div>
-      <div class="photo-item">
-        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo11.jpg" alt="আঙিনায় জলাবদ্ধতা" onclick="openLB(this.src,this.alt)">
-        <div class="photo-label">📸 আঙিনায় জলাবদ্ধতা</div>
-      </div>
-      <div class="photo-item">
-        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo12.jpg" alt="মসজিদের পুরো কাঠামোর অবস্থা" onclick="openLB(this.src,this.alt)">
-        <div class="photo-label">📸 মসজিদের পুরো কাঠামোর অবস্থা</div>
-      </div>
+      <div class="photo-item"><img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo10.jpg" alt="পিলারে গভীর ও বিপজ্জনক ফাটল" onclick="openLB(this.src,this.alt)"><div class="photo-label">📸 পিলারে গভীর ও উদ্বেগজনক ফাটল</div></div>
+      <div class="photo-item"><img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo11.jpg" alt="আঙিনায় জলাবদ্ধতা" onclick="openLB(this.src,this.alt)"><div class="photo-label">📸 আঙিনায় জলাবদ্ধতা</div></div>
+      <div class="photo-item"><img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo12.jpg" alt="মসজিদের পুরো কাঠামোর অবস্থা" onclick="openLB(this.src,this.alt)"><div class="photo-label">📸 মসজিদের পুরো কাঠামোর অবস্থা</div></div>
     </div>
-
     <div class="photo-grid">
-      <div class="photo-item">
-        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo13.jpg" alt="সামনের দেওয়ালে ফাটল" onclick="openLB(this.src,this.alt)">
-        <div class="photo-label">📸 সামনের দেওয়ালে ফাটল</div>
-      </div>
-      <div class="photo-item">
-        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo14.jpg" alt="পাশের দেওয়ালের গুরুতর অবস্থা" onclick="openLB(this.src,this.alt)">
-        <div class="photo-label">📸 পাশের দেওয়ালের গুরুতর অবস্থা</div>
-      </div>
-      <div class="photo-item">
-        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo15.jpg" alt="ওযুখানা ও বাথরুমের অবস্থা" onclick="openLB(this.src,this.alt)">
-        <div class="photo-label">📸 ওযুখানা ও বাথরুমের অবস্থা</div>
-      </div>
+      <div class="photo-item"><img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo13.jpg" alt="সামনের দেওয়ালে ফাটল" onclick="openLB(this.src,this.alt)"><div class="photo-label">📸 সামনের দেওয়ালে ফাটল</div></div>
+      <div class="photo-item"><img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo14.jpg" alt="পাশের দেওয়ালের গুরুতর অবস্থা" onclick="openLB(this.src,this.alt)"><div class="photo-label">📸 পাশের দেওয়ালের গুরুতর অবস্থা</div></div>
+      <div class="photo-item"><img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo15.jpg" alt="ওযুখানা ও বাথরুমের অবস্থা" onclick="openLB(this.src,this.alt)"><div class="photo-label">📸 ওযুখানা ও বাথরুমের অবস্থা</div></div>
     </div>
-
     <div class="photo-grid">
-      <div class="photo-item">
-        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo16.jpg" alt="কর্নার পিলারে বিপজ্জনক ফাটল" onclick="openLB(this.src,this.alt)">
-        <div class="photo-label">📸 কর্নার পিলারে গুরুতর ফাটল</div>
-      </div>
-      <div class="photo-item">
-        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo17.jpg" alt="দেওয়ালে একাধিক গভীর ফাটল" onclick="openLB(this.src,this.alt)">
-        <div class="photo-label">📸 দেওয়ালে একাধিক গভীর ফাটল</div>
-      </div>
-      <div class="photo-item">
-        <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo18.jpg" alt="অনিরাপদ বৈদ্যুতিক ব্যবস্থা" onclick="openLB(this.src,this.alt)">
-        <div class="photo-label">📸 অনিরাপদ বৈদ্যুতিক ব্যবস্থা</div>
-      </div>
+      <div class="photo-item"><img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo16.jpg" alt="কর্নার পিলারে বিপজ্জনক ফাটল" onclick="openLB(this.src,this.alt)"><div class="photo-label">📸 কর্নার পিলারে গুরুতর ফাটল</div></div>
+      <div class="photo-item"><img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo17.jpg" alt="দেওয়ালে একাধিক গভীর ফাটল" onclick="openLB(this.src,this.alt)"><div class="photo-label">📸 দেওয়ালে একাধিক গভীর ফাটল</div></div>
+      <div class="photo-item"><img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo18.jpg" alt="অনিরাপদ বৈদ্যুতিক ব্যবস্থা" onclick="openLB(this.src,this.alt)"><div class="photo-label">📸 অনিরাপদ বৈদ্যুতিক ব্যবস্থা</div></div>
     </div>
-
     <div class="photo-note">⚠️ <strong>বিশেষজ্ঞ মতামত:</strong> উপরোক্ত চিত্রসমূহ সরেজমিন পরিদর্শনে গৃহীত। ছাদ, পিলার ও দেওয়ালের কাঠামোগত দুর্বলতার কারণে যেকোনো সময় দুর্ঘটনার আশঙ্কা রয়েছে। সম্পূর্ণ পুনর্নির্মাণ ছাড়া কোনো বিকল্প নেই।</div>
   </div>
 </div>
@@ -310,6 +302,21 @@
   </div>
 </div>
 
+<!-- ══════════════════════════════════════════
+     CONSTRUCTION PROGRESS SECTION
+     Reads from localStorage (mosque_progress_v2)
+     shared with admin.html & progress.html
+     ══════════════════════════════════════════ -->
+<div class="section" id="progressSection">
+  <div class="section-header"><span class="icon">🏗️</span><h2>নির্মাণ অগ্রগতি</h2></div>
+  <div class="section-body" id="progressBody">
+    <div class="progress-empty">
+      <span class="pe-icon">🏗️</span>
+      নির্মাণ কাজ শুরু হলেই এখানে সর্বশেষ আপডেট দেখা যাবে।
+    </div>
+  </div>
+</div>
+
 <!-- WHY DONATE -->
 <div class="section">
   <div class="section-header"><span class="icon">🤲</span><h2>কেন এই মসজিদে দান করবেন?</h2></div>
@@ -344,49 +351,30 @@
 <div style="max-width:900px;margin:0 auto 30px;padding:0 20px;">
   <div class="bank-box">
     <h3>🏦 দান পাঠানোর তথ্য</h3>
-
-    <!-- USA SECTION -->
     <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:18px;margin-bottom:16px;">
-      <div style="font-size:1em;font-weight:600;color:#a8e6c4;margin-bottom:12px;letter-spacing:.5px;">
-        🇺🇸 যুক্তরাষ্ট্র (USA)
-      </div>
+      <div style="font-size:1em;font-weight:600;color:#a8e6c4;margin-bottom:12px;letter-spacing:.5px;">🇺🇸 যুক্তরাষ্ট্র (USA)</div>
       <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;">
         <div style="background:#6D1ED4;border-radius:8px;padding:8px 20px;font-size:1.1em;font-weight:700;color:white;letter-spacing:1px;">Zelle</div>
-        <div>
-          <div style="font-size:.82em;opacity:.7;margin-bottom:4px;">Zelle নম্বর</div>
-          <div style="font-size:1.2em;font-weight:700;letter-spacing:1px;">+1 480-703-5453</div>
-        </div>
+        <div><div style="font-size:.82em;opacity:.7;margin-bottom:4px;">Zelle নম্বর</div><div style="font-size:1.2em;font-weight:700;letter-spacing:1px;">+1 480-703-5453</div></div>
       </div>
       <div style="font-size:.8em;opacity:.7;margin-top:10px;">* Zelle অ্যাপ থেকে Send Money অপশন ব্যবহার করুন</div>
     </div>
-
-    <!-- BANGLADESH SECTION -->
     <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:18px;margin-bottom:16px;">
-      <div style="font-size:1em;font-weight:600;color:#a8e6c4;margin-bottom:12px;letter-spacing:.5px;">
-        🇧🇩 বাংলাদেশ — ব্যাংক ট্রান্সফার
-      </div>
+      <div style="font-size:1em;font-weight:600;color:#a8e6c4;margin-bottom:12px;letter-spacing:.5px;">🇧🇩 বাংলাদেশ — ব্যাংক ট্রান্সফার</div>
       <div class="bank-line">🕌 মসজিদ: <strong>উত্তর গুয়াটন জামে মসজিদ</strong></div>
       <div class="bank-line">🏦 ব্যাংক: <strong>Bangladesh Krishi Bank PLC</strong></div>
       <div class="bank-line">🏢 শাখা: <strong>ঝালকাঠি শাখা, ঝালকাঠি সদর, বাংলাদেশ</strong></div>
       <div class="bank-line">💳 একাউন্ট নং: <strong>04010394001690</strong></div>
       <div class="bank-line">🔁 রাউটিং নং: <strong>035420318</strong></div>
     </div>
-
-    <!-- BKASH SECTION -->
     <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:18px;">
-      <div style="font-size:1em;font-weight:600;color:#a8e6c4;margin-bottom:12px;letter-spacing:.5px;">
-        🇧🇩 বাংলাদেশ — বিকাশ (Personal)
-      </div>
+      <div style="font-size:1em;font-weight:600;color:#a8e6c4;margin-bottom:12px;letter-spacing:.5px;">🇧🇩 বাংলাদেশ — বিকাশ (Personal)</div>
       <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;">
         <div style="background:#E2136E;border-radius:8px;padding:8px 20px;font-size:1.1em;font-weight:700;color:white;letter-spacing:1px;">bKash</div>
-        <div>
-          <div style="font-size:.82em;opacity:.7;margin-bottom:4px;">বিকাশ নম্বর</div>
-          <div style="font-size:1.2em;font-weight:700;letter-spacing:1px;">+880 1712252033</div>
-        </div>
+        <div><div style="font-size:.82em;opacity:.7;margin-bottom:4px;">বিকাশ নম্বর</div><div style="font-size:1.2em;font-weight:700;letter-spacing:1px;">+880 1712252033</div></div>
       </div>
       <div style="font-size:.8em;opacity:.7;margin-top:10px;">* Send Money অপশন ব্যবহার করুন</div>
     </div>
-
   </div>
 </div>
 
@@ -396,6 +384,7 @@
 </div>
 
 <script>
+  /* ── LIGHTBOX ── */
   function openLB(src, cap) {
     document.getElementById('lb-img').src = src;
     document.getElementById('lb-cap').textContent = cap || '';
@@ -406,6 +395,71 @@
     document.getElementById('lb-img').src = '';
   }
   document.addEventListener('keydown', e => { if(e.key==='Escape') closeLB(); });
+
+  /* ── CONSTRUCTION PROGRESS ── */
+  (function renderProgress() {
+    var raw, state = { phase: 0, updates: [] };
+    try { raw = localStorage.getItem('mosque_progress_v2'); if (raw) state = JSON.parse(raw); } catch(e) {}
+
+    var all = state.updates || [];
+    if (!all.length && !state.phase) return; // keep empty message
+
+    var phaseNames = ['','ভাঙন কাজ','ফাউন্ডেশন','RCC কলাম','ছাদ স্ল্যাব','দেয়াল','বৈদ্যুতিক','স্যানিটারি','ফিনিশিং','সম্পন্ন ✅'];
+    var phaseIcons = ['','🔨','🏗️','🧱','🪵','🧱','⚡','🚿','🎨','✅'];
+    var p = state.phase || 0;
+
+    var html = '';
+
+    // Phase bar (always shown if phase > 0)
+    if (p > 0) {
+      html += '<div style="margin-bottom:16px;">';
+      html += '<div style="font-size:.78em;font-weight:700;color:#2d6a4f;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;">📍 বর্তমান নির্মাণ পর্যায়</div>';
+      html += '<div class="phase-bar">';
+      for (var i = 1; i <= 9; i++) {
+        var cls = i < p ? 'ph done' : i === p ? 'ph active' : 'ph';
+        html += '<div class="' + cls + '">';
+        html += '<div class="ph-dot">' + (i < p ? '✓' : phaseIcons[i]) + '</div>';
+        html += '<div class="ph-label">' + phaseNames[i] + '</div>';
+        html += '</div>';
+      }
+      html += '</div></div>';
+    }
+
+    // Latest updates (max 4)
+    var latest = all.slice(0, 4);
+    if (latest.length) {
+      html += '<div style="font-size:.78em;font-weight:700;color:#2d6a4f;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px;">🗂️ সর্বশেষ আপডেট</div>';
+      html += '<div class="upd-grid">';
+      latest.forEach(function(u) {
+        var media = '';
+        if (u.type === 'video') {
+          media = '<div class="upd-video"><iframe src="https://www.youtube.com/embed/' + u.ytid + '" title="' + (u.title||'').replace(/"/g,'&quot;') + '" allowfullscreen loading="lazy"></iframe></div>';
+        } else if (u.type === 'photo') {
+          var safe = (u.url||'').replace(/"/g,'%22');
+          var ts = (u.title||'').replace(/'/g,'&#39;');
+          media = '<div class="upd-photo" onclick="openLB(\'' + safe + '\',\'' + ts + '\')"><img src="' + safe + '" alt="' + ts + '" loading="lazy"></div>';
+        } else {
+          media = '<div class="upd-text-banner">📝</div>';
+        }
+        var chipCls = u.type==='video' ? 'chip-v' : u.type==='photo' ? 'chip-p' : 'chip-t';
+        var chipLbl = u.type==='video' ? '▶ ভিডিও' : u.type==='photo' ? '📸 ছবি' : '📝 আপডেট';
+        var dateStr = '';
+        if (u.date) { try { dateStr = new Date(u.date+'T00:00:00').toLocaleDateString('bn-BD',{day:'numeric',month:'short'}); } catch(e) { dateStr = u.date; } }
+        html += '<div class="upd-card">' + media;
+        html += '<div class="upd-body">';
+        html += '<div class="upd-meta"><span class="upd-chip ' + chipCls + '">' + chipLbl + '</span><span class="upd-date">' + dateStr + '</span></div>';
+        html += '<div class="upd-title">' + (u.title||'') + '</div>';
+        if (u.desc) html += '<div class="upd-desc">' + u.desc + '</div>';
+        html += '</div></div>';
+      });
+      html += '</div>';
+    }
+
+    // View all link
+    html += '<div class="view-all-wrap"><a class="view-all-btn" href="progress.html">🏗️ সম্পূর্ণ অগ্রগতি দেখুন →</a></div>';
+
+    document.getElementById('progressBody').innerHTML = html;
+  })();
 </script>
 </body>
 </html>
