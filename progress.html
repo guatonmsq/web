@@ -379,6 +379,11 @@ function setFilter(f, btn) {
   renderGrid();
 }
 
+// ── BANGLA DIGITS ──
+function toBn(n) {
+  return String(n).replace(/[0-9]/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+}
+
 // ── FORMAT DATE ──
 function fmtDate(d) {
   if (!d) return '—';
@@ -402,11 +407,11 @@ function renderGrid() {
   const all     = state.updates || [];
   const visible = activeFilter === 'all' ? all : all.filter(u => u.type === activeFilter);
 
-  document.getElementById('st-total').textContent  = all.length;
-  document.getElementById('st-videos').textContent = all.filter(u => u.type==='video').length;
-  document.getElementById('st-photos').textContent = all.filter(u => u.type==='photo').length;
+  document.getElementById('st-total').textContent  = toBn(all.length);
+  document.getElementById('st-videos').textContent = toBn(all.filter(u => u.type==='video').length);
+  document.getElementById('st-photos').textContent = toBn(all.filter(u => u.type==='photo').length);
   document.getElementById('st-date').textContent   = all.length ? fmtDateShort(all[0].date) : '—';
-  document.getElementById('shown-count').textContent = visible.length;
+  document.getElementById('shown-count').textContent = toBn(visible.length);
 
   const grid = document.getElementById('updatesGrid');
   if (!visible.length) {
