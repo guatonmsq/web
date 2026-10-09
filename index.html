@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>উত্তর গুয়াটন জামে মসজিদ পুনর্নির্মাণ প্রস্তাবনা</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600&display=swap');
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -11,10 +12,29 @@
 
   .hero { background:linear-gradient(160deg,#1a3a2a 0%,#2d6a4f 50%,#1a3a2a 100%); color:white; text-align:center; padding:60px 20px 50px; position:relative; overflow:hidden; }
   .hero::before { content:''; position:absolute; top:0;left:0;right:0;bottom:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
-  .hero-icon { font-size:60px; margin-bottom:15px; position:relative; }
+  .hero-icon { font-size:52px; margin-bottom:15px; position:relative; line-height:1; }
+  .hero-icon i { color:rgba(255,255,255,.92); filter:drop-shadow(0 2px 8px rgba(0,0,0,.35)); }
+  .qnav-icon i { font-size:1.1em; }
+  .section-icon i { font-size:1em; }
+  .land-icon i { font-size:1.5em; color:#2d6a4f; }
+  .di i { font-size:1.6em; }
+  .dw-icon i { font-size:1.5em; color:#2d6a4f; }
   .hero h1 { font-family:'Noto Serif Bengali',serif; font-size:2.2em; font-weight:700; margin-bottom:8px; text-shadow:0 2px 8px rgba(0,0,0,0.3); position:relative; }
   .hero .subtitle { font-size:1.1em; opacity:.85; margin-bottom:6px; position:relative; }
   .hero .location { display:inline-block; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.3); border-radius:20px; padding:5px 18px; font-size:.95em; margin-top:10px; position:relative; }
+
+  /* ── QUICK NAV BAR ── */
+  .quick-nav { background:#1a3a2a; padding:14px 16px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .qnav-btn { display:flex; align-items:center; gap:10px; border-radius:12px; padding:14px 22px; font-family:'Noto Sans Bengali',sans-serif; font-size:1em; font-weight:700; text-decoration:none; cursor:pointer; border:none; transition:transform .15s, box-shadow .15s; flex:1; max-width:320px; justify-content:center; }
+  .qnav-btn:active { transform:scale(.97); }
+  .qnav-btn.donate { background:linear-gradient(145deg,rgba(255,223,120,.5) 0%,rgba(212,170,60,.35) 40%,rgba(170,128,30,.3) 100%); color:#fff; border:none; border-radius:12px; backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); outline:1px solid rgba(255,220,100,.35); box-shadow:0 4px 24px rgba(180,140,30,.4), inset 0 1px 0 rgba(255,240,150,.85), inset 0 -1px 0 rgba(160,120,20,.3), inset 1px 0 0 rgba(255,230,120,.35), inset -1px 0 0 rgba(255,230,120,.2); text-shadow:0 1px 3px rgba(0,0,0,.3); }
+  .qnav-btn.donate:hover { background:linear-gradient(145deg,rgba(255,230,130,.6) 0%,rgba(220,180,70,.42) 40%,rgba(180,138,40,.36) 100%); box-shadow:0 6px 32px rgba(180,140,30,.55), inset 0 1px 0 rgba(255,245,160,.92), inset 0 -1px 0 rgba(160,120,20,.38), inset 1px 0 0 rgba(255,235,130,.42), inset -1px 0 0 rgba(255,235,130,.25); transform:translateY(-1px); }
+  .qnav-btn.progress { background:linear-gradient(145deg,rgba(255,255,255,.45) 0%,rgba(192,200,215,.3) 40%,rgba(140,155,175,.25) 100%); color:#fff; border:none; border-radius:12px; backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); outline: 1px solid rgba(255,255,255,.35); box-shadow:0 4px 24px rgba(100,120,160,.35), inset 0 1px 0 rgba(255,255,255,.8), inset 0 -1px 0 rgba(180,190,210,.25), inset 1px 0 0 rgba(255,255,255,.3), inset -1px 0 0 rgba(255,255,255,.15); text-shadow:0 1px 3px rgba(0,0,0,.3); }
+  .qnav-btn.progress:hover { background:linear-gradient(145deg,rgba(255,255,255,.55) 0%,rgba(210,218,230,.38) 40%,rgba(160,175,195,.32) 100%); box-shadow:0 6px 32px rgba(100,120,160,.5), inset 0 1px 0 rgba(255,255,255,.9), inset 0 -1px 0 rgba(180,190,210,.35), inset 1px 0 0 rgba(255,255,255,.4), inset -1px 0 0 rgba(255,255,255,.2); transform:translateY(-1px); }
+  .qnav-icon { font-size:1.4em; }
+  .qnav-text { text-align:left; }
+  .qnav-text-main { font-size:1em; font-weight:700; line-height:1.2; }
+  .qnav-text-sub { font-size:.72em; opacity:.75; font-weight:400; margin-top:2px; }
 
   .arabic-banner { background:#2d6a4f; color:#f0e6c8; text-align:center; padding:18px 20px; font-size:1.3em; font-family:'Noto Serif Bengali',serif; }
   .arabic-banner small { display:block; font-size:.7em; opacity:.8; margin-top:4px; }
@@ -186,16 +206,34 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-icon">🕌</div>
+  <div class="hero-icon"><i class="fas fa-mosque"></i></div>
   <h1>উত্তর গুয়াটন জামে মসজিদ</h1>
   <p class="subtitle">পুনর্নির্মাণ প্রস্তাবনা</p>
-  <span class="location">📍 ঝালকাঠি জেলা, বরিশাল বিভাগ, বাংলাদেশ</span>
+  <span class="location"><i class="fas fa-map-marker-alt" style="margin-right:6px;"></i>ঝালকাঠি জেলা, বরিশাল বিভাগ, বাংলাদেশ</span>
 </div>
 
 <!-- ARABIC -->
 <div class="arabic-banner">
   بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
   <small>পরম করুণাময় ও অসীম দয়ালু আল্লাহর নামে শুরু করছি</small>
+</div>
+
+<!-- ── QUICK NAV ── -->
+<div class="quick-nav">
+  <a class="qnav-btn donate" href="#donate">
+    <span class="qnav-icon"><i class="fas fa-hand-holding-heart"></i></span>
+    <span class="qnav-text">
+      <div class="qnav-text-main">দান করুন</div>
+      <div class="qnav-text-sub">ব্যাংক · বিকাশ · Zelle</div>
+    </span>
+  </a>
+  <a class="qnav-btn progress" href="progress.html">
+    <span class="qnav-icon"><i class="fas fa-hard-hat"></i></span>
+    <span class="qnav-text">
+      <div class="qnav-text-main">নির্মাণ অগ্রগতি</div>
+      <div class="qnav-text-sub">সর্বশেষ আপডেট দেখুন</div>
+    </span>
+  </a>
 </div>
 
 <!-- BANNER PHOTO -->
@@ -208,7 +246,7 @@
 
 <!-- INTRO -->
 <div class="section">
-  <div class="section-header"><span class="icon">📋</span><h2>ভূমিকা</h2></div>
+  <div class="section-header"><span class="icon"><i class="fas fa-file-alt"></i></span><h2>ভূমিকা</h2></div>
   <div class="section-body">
     <p class="intro-text">প্রায় ১৯৩০ সালে প্রতিষ্ঠিত উত্তর গুয়াটন জামে মসজিদটি দীর্ঘদিন ধরে এলাকার মুসলিম জনগণের ইবাদতের কেন্দ্র হিসেবে সেবা প্রদান করে আসছে। দীর্ঘদিনের পুরোনো হওয়ায় মসজিদটি বর্তমানে অত্যন্ত জরাজীর্ণ অবস্থায় রয়েছে। প্রায় ১০ বছর আগে একবার মসজিদটির সংস্কার করা হয়েছিল, কিন্তু বর্তমানে পুনরায় ব্যাপক সংস্কার ও মেরামতের প্রয়োজন দেখা দিয়েছে।<br><br>
     স্থানীয়ভাবে পর্যাপ্ত সামর্থ্যবান মানুষের অভাবে মসজিদটির সংস্কারকাজ সম্পন্ন করা কঠিন হয়ে পড়েছে। মসজিদের সামগ্রিক অবকাঠামো এতটাই দুর্বল হয়ে পড়েছে যে আংশিক সংস্কার কোনো স্থায়ী সমাধান নয় — কাঠামোগত দুর্বলতার কারণে <strong>সম্পূর্ণ পুনর্নির্মাণই একমাত্র নিরাপদ ও টেকসই সমাধান।</strong></p>
@@ -217,7 +255,7 @@
 
 <!-- PHOTOS -->
 <div class="section">
-  <div class="section-header"><span class="icon">📷</span><h2>বর্তমান অবস্থা — সরেজমিন চিত্র</h2></div>
+  <div class="section-header"><span class="icon"><i class="fas fa-camera"></i></span><h2>বর্তমান অবস্থা — সরেজমিন চিত্র</h2></div>
   <div class="section-body">
     <!-- photo counter -->
     <div style="font-size:.78em;color:#888;margin-bottom:12px;" id="galCount">মোট ১৮টি ছবি</div>
@@ -225,13 +263,13 @@
     <div id="galGrid"></div>
     <!-- pagination -->
     <div class="pg-bar" id="galPg" style="margin-top:14px;"></div>
-    <div class="photo-note" style="margin-top:14px;">⚠️ <strong>বিশেষজ্ঞ মতামত:</strong> উপরোক্ত চিত্রসমূহ সরেজমিন পরিদর্শনে গৃহীত। ছাদ, পিলার ও দেওয়ালের কাঠামোগত দুর্বলতার কারণে যেকোনো সময় দুর্ঘটনার আশঙ্কা রয়েছে। সম্পূর্ণ পুনর্নির্মাণ ছাড়া কোনো বিকল্প নেই।</div>
+    <div class="photo-note" style="margin-top:14px;"><i class="fas fa-exclamation-circle" style="color:#e67e22;margin-right:4px;"></i><strong>বিশেষজ্ঞ মতামত:</strong> উপরোক্ত চিত্রসমূহ সরেজমিন পরিদর্শনে গৃহীত। ছাদ, পিলার ও দেওয়ালের কাঠামোগত দুর্বলতার কারণে যেকোনো সময় দুর্ঘটনার আশঙ্কা রয়েছে। সম্পূর্ণ পুনর্নির্মাণ ছাড়া কোনো বিকল্প নেই।</div>
   </div>
 </div>
 
 <!-- PROBLEMS TABLE -->
 <div class="section">
-  <div class="section-header"><span class="icon">🔍</span><h2>চিহ্নিত সমস্যাসমূহ</h2></div>
+  <div class="section-header"><span class="icon"><i class="fas fa-exclamation-triangle"></i></span><h2>চিহ্নিত সমস্যাসমূহ</h2></div>
   <div class="section-body" style="padding:0;">
     <table class="prob-table">
       <tr><th width="5%">#</th><th width="25%">সমস্যার ধরন</th><th>বিবরণ</th><th width="20%">অবস্থা</th></tr>
@@ -249,20 +287,20 @@
 
 <!-- LAND INFO -->
 <div class="section">
-  <div class="section-header"><span class="icon">📜</span><h2>জমির তথ্য</h2></div>
+  <div class="section-header"><span class="icon"><i class="fas fa-scroll"></i></span><h2>জমির তথ্য</h2></div>
   <div class="section-body">
     <div class="land-grid">
-      <div class="land-card"><div class="land-icon">🕌</div><div><h4>মসজিদের নাম</h4><p>উত্তর গুয়াটন জামে মসজিদ</p></div></div>
-      <div class="land-card"><div class="land-icon">📍</div><div><h4>অবস্থান</h4><p>ঝালকাঠি জেলা, বরিশাল বিভাগ</p></div></div>
-      <div class="land-card"><div class="land-icon">📏</div><div><h4>জমির পরিমাণ</h4><p>আনুমানিক ৩৩ শতক</p></div></div>
-      <div class="land-card"><div class="land-icon">📋</div><div><h4>দলিলের ধরন</h4><p>রেজিস্ট্রিকৃত, সরকারি সিলযুক্ত</p></div></div>
+      <div class="land-card"><div class="land-icon"><i class="fas fa-mosque"></i></div><div><h4>মসজিদের নাম</h4><p>উত্তর গুয়াটন জামে মসজিদ</p></div></div>
+      <div class="land-card"><div class="land-icon"><i class="fas fa-map-marker-alt"></i></div><div><h4>অবস্থান</h4><p>ঝালকাঠি জেলা, বরিশাল বিভাগ</p></div></div>
+      <div class="land-card"><div class="land-icon"><i class="fas fa-ruler-combined"></i></div><div><h4>জমির পরিমাণ</h4><p>আনুমানিক ৩৩ শতক</p></div></div>
+      <div class="land-card"><div class="land-icon"><i class="fas fa-certificate"></i></div><div><h4>দলিলের ধরন</h4><p>রেজিস্ট্রিকৃত, সরকারি সিলযুক্ত</p></div></div>
     </div>
   </div>
 </div>
 
 <!-- PLAN -->
 <div class="section">
-  <div class="section-header"><span class="icon">🏗️</span><h2>পুনর্নির্মাণ পরিকল্পনা</h2></div>
+  <div class="section-header"><span class="icon"><i class="fas fa-drafting-compass"></i></span><h2>পুনর্নির্মাণ পরিকল্পনা</h2></div>
   <div class="section-body">
     <div class="plan-steps">
       <div class="step"><div class="step-num">১</div><div class="step-content"><h4>ভাঙন ও মাটিকাজ</h4><ul><li>পুরনো কাঠামো সম্পূর্ণ অপসারণ</li><li>মাটি পরীক্ষা (Soil Test)</li><li>ভিত্তি প্রস্তুতি ও লেভেলিং</li></ul></div></div>
@@ -276,7 +314,7 @@
 
 <!-- BUDGET -->
 <div class="section">
-  <div class="section-header"><span class="icon">💰</span><h2>আনুমানিক বাজেট</h2></div>
+  <div class="section-header"><span class="icon"><i class="fas fa-coins"></i></span><h2>আনুমানিক বাজেট</h2></div>
   <div class="section-body" style="padding:0;">
     <table class="budget-table">
       <tr><th>ক্রম</th><th>বিভাগ</th><th>আনুমানিক ব্যয় (টাকা)</th></tr>
@@ -298,10 +336,10 @@
      shared with admin.html & progress.html
      ══════════════════════════════════════════ -->
 <div class="section" id="progressSection">
-  <div class="section-header"><span class="icon">🏗️</span><h2>নির্মাণ অগ্রগতি</h2></div>
+  <div class="section-header"><span class="icon"><i class="fas fa-hard-hat"></i></span><h2>নির্মাণ অগ্রগতি</h2></div>
   <div class="section-body" id="progressBody">
     <div class="progress-empty">
-      <span class="pe-icon">🏗️</span>
+      <span class="pe-icon"><i class="fas fa-hard-hat" style="color:#aaa;"></i></span>
       নির্মাণ কাজ শুরু হলেই এখানে সর্বশেষ আপডেট দেখা যাবে।
     </div>
   </div>
@@ -309,38 +347,38 @@
 
 <!-- WHY DONATE -->
 <div class="section">
-  <div class="section-header"><span class="icon">🤲</span><h2>কেন এই মসজিদে দান করবেন?</h2></div>
+  <div class="section-header"><span class="icon"><i class="fas fa-hand-holding-heart"></i></span><h2>কেন এই মসজিদে দান করবেন?</h2></div>
   <div class="section-body">
     <div class="hadith-box">
       <p>যে ব্যক্তি আল্লাহর সন্তুষ্টির জন্য মসজিদ নির্মাণ করে,<br>আল্লাহ তার জন্য জান্নাতে একটি ঘর নির্মাণ করেন।</p>
       <small>— সহিহ বুখারি ও মুসলিম</small>
     </div>
     <div class="donate-grid">
-      <div class="donate-card"><div class="di">🕋</div><p>প্রতিদিন পাঁচ ওয়াক্ত নামাজ ও সাপ্তাহিক জুমার নামাজের কেন্দ্র</p></div>
-      <div class="donate-card"><div class="di">📚</div><p>ধর্মীয় শিক্ষা ও এলাকার সামাজিক কার্যক্রমের প্রাণকেন্দ্র</p></div>
-      <div class="donate-card"><div class="di">♾️</div><p>সদকায়ে জারিয়া — মৃত্যুর পরেও কেয়ামত পর্যন্ত নেকি জারি থাকবে</p></div>
-      <div class="donate-card"><div class="di">👨‍👩‍👧‍👦</div><p>শত শত মুসল্লি পরিবারের আধ্যাত্মিক আশ্রয়স্থল রক্ষার সুযোগ</p></div>
+      <div class="donate-card"><div class="di"><i class="fas fa-mosque"></i></div><p>প্রতিদিন পাঁচ ওয়াক্ত নামাজ ও সাপ্তাহিক জুমার নামাজের কেন্দ্র</p></div>
+      <div class="donate-card"><div class="di"><i class="fas fa-book-open"></i></div><p>ধর্মীয় শিক্ষা ও এলাকার সামাজিক কার্যক্রমের প্রাণকেন্দ্র</p></div>
+      <div class="donate-card"><div class="di"><i class="fas fa-infinity"></i></div><p>সদকায়ে জারিয়া — মৃত্যুর পরেও কেয়ামত পর্যন্ত নেকি জারি থাকবে</p></div>
+      <div class="donate-card"><div class="di"><i class="fas fa-users"></i></div><p>শত শত মুসল্লি পরিবারের আধ্যাত্মিক আশ্রয়স্থল রক্ষার সুযোগ</p></div>
     </div>
   </div>
 </div>
 
 <!-- HOW TO DONATE -->
 <div class="section">
-  <div class="section-header"><span class="icon">💳</span><h2>দানের পদ্ধতি</h2></div>
+  <div class="section-header"><span class="icon"><i class="fas fa-donate"></i></span><h2>দানের পদ্ধতি</h2></div>
   <div class="section-body">
     <div class="donate-ways">
-      <div class="dw"><div class="dw-icon">🏦</div><div><h4>সম্পূর্ণ স্পনসর</h4><p>পুরো মসজিদ বা একটি নির্দিষ্ট অংশ (ছাদ, মিনার, ওযুখানা) স্পনসর করুন</p></div></div>
-      <div class="dw"><div class="dw-icon">💵</div><div><h4>আংশিক দান</h4><p>যেকোনো পরিমাণ অবদান সাদরে গৃহীত হবে — ছোট বা বড় সব দানই সমান মূল্যবান</p></div></div>
-      <div class="dw"><div class="dw-icon">🧱</div><div><h4>নির্মাণ সামগ্রী</h4><p>ইট, সিমেন্ট, রড, বালি বা অন্য যেকোনো নির্মাণ উপকরণ সরাসরি দান করুন</p></div></div>
-      <div class="dw"><div class="dw-icon">👷</div><div><h4>শ্রম সহায়তা</h4><p>দক্ষ মিস্ত্রি বা শ্রমিকের ব্যবস্থা করে সহায়তা করতে পারেন</p></div></div>
+      <div class="dw"><div class="dw-icon"><i class="fas fa-star-of-david"></i></div><div><h4>সম্পূর্ণ স্পনসর</h4><p>পুরো মসজিদ বা একটি নির্দিষ্ট অংশ (ছাদ, মিনার, ওযুখানা) স্পনসর করুন</p></div></div>
+      <div class="dw"><div class="dw-icon"><i class="fas fa-hand-holding-usd"></i></div><div><h4>আংশিক দান</h4><p>যেকোনো পরিমাণ অবদান সাদরে গৃহীত হবে — ছোট বা বড় সব দানই সমান মূল্যবান</p></div></div>
+      <div class="dw"><div class="dw-icon"><i class="fas fa-cubes"></i></div><div><h4>নির্মাণ সামগ্রী</h4><p>ইট, সিমেন্ট, রড, বালি বা অন্য যেকোনো নির্মাণ উপকরণ সরাসরি দান করুন</p></div></div>
+      <div class="dw"><div class="dw-icon"><i class="fas fa-hands-helping"></i></div><div><h4>শ্রম সহায়তা</h4><p>দক্ষ মিস্ত্রি বা শ্রমিকের ব্যবস্থা করে সহায়তা করতে পারেন</p></div></div>
     </div>
   </div>
 </div>
 
 <!-- BANK INFO -->
-<div style="max-width:900px;margin:0 auto 30px;padding:0 20px;">
+<div id="donate" style="max-width:900px;margin:0 auto 30px;padding:0 20px;">
   <div class="bank-box">
-    <h3>🏦 দান পাঠানোর তথ্য</h3>
+    <h3><i class="fas fa-university" style="margin-right:8px;"></i>দান পাঠানোর তথ্য</h3>
     <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:18px;margin-bottom:16px;">
       <div style="font-size:1em;font-weight:600;color:#a8e6c4;margin-bottom:12px;letter-spacing:.5px;">🇺🇸 যুক্তরাষ্ট্র (USA)</div>
       <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;">
@@ -351,11 +389,11 @@
     </div>
     <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:18px;margin-bottom:16px;">
       <div style="font-size:1em;font-weight:600;color:#a8e6c4;margin-bottom:12px;letter-spacing:.5px;">🇧🇩 বাংলাদেশ — ব্যাংক ট্রান্সফার</div>
-      <div class="bank-line">🕌 একাউন্টের নাম: <strong>Uttar Guatan Jame Masjid</strong></div>
-      <div class="bank-line">🏦 ব্যাংক: <strong>Bangladesh Krishi Bank PLC</strong></div>
-      <div class="bank-line">🏢 শাখা: <strong>Jhalokath Branch, Jhalokath Sadar, Bangladesh</strong></div>
-      <div class="bank-line">💳 একাউন্ট নং: <strong>04010394001690</strong></div>
-      <div class="bank-line">🔁 রাউটিং নং: <strong>035420318</strong></div>
+      <div class="bank-line"><i class="fas fa-mosque" style="width:18px;margin-right:6px;color:#a8e6c4;"></i>একাউন্টের নাম: <strong>Uttar Guatan Jame Masjid</strong></div>
+      <div class="bank-line"><i class="fas fa-university" style="width:18px;margin-right:6px;color:#a8e6c4;"></i>ব্যাংক: <strong>Bangladesh Krishi Bank PLC</strong></div>
+      <div class="bank-line"><i class="fas fa-building" style="width:18px;margin-right:6px;color:#a8e6c4;"></i>শাখা: <strong>Jhalokath Branch, Jhalokath Sadar, Bangladesh</strong></div>
+      <div class="bank-line"><i class="fas fa-credit-card" style="width:18px;margin-right:6px;color:#a8e6c4;"></i>একাউন্ট নং: <strong>04010394001690</strong></div>
+      <div class="bank-line"><i class="fas fa-exchange-alt" style="width:18px;margin-right:6px;color:#a8e6c4;"></i>রাউটিং নং: <strong>035420318</strong></div>
     </div>
     <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:18px;">
       <div style="font-size:1em;font-weight:600;color:#a8e6c4;margin-bottom:12px;letter-spacing:.5px;">🇧🇩 বাংলাদেশ — বিকাশ (Personal)</div>
@@ -369,7 +407,7 @@
 </div>
 
 <div class="footer">
-  আল্লাহ আপনাদের দানকে কবুল করুন এবং উত্তম প্রতিদান দিন। আমিন। 🤲<br>
+  আল্লাহ আপনাদের দানকে কবুল করুন এবং উত্তম প্রতিদান দিন। আমিন। <i class="fas fa-hands" style="margin-left:4px;"></i><br>
   <span style="font-size:.85em;">উত্তর গুয়াটন জামে মসজিদ পুনর্নির্মাণ কমিটি | ঝালকাঠি, বরিশাল</span>
 </div>
 
@@ -414,7 +452,7 @@
         grid += '<div class="photo-item">' +
           '<img src="' + ph.src + '" alt="' + ph.cap + '" loading="lazy" ' +
           'onclick="openLB(\'' + safeSrc + '\',\'' + safeCap + '\')">' +
-          '<div class="photo-label">📸 ' + ph.cap + '</div></div>';
+          '<div class="photo-label"><i class="fas fa-image"></i> ' + ph.cap + '</div></div>';
       });
       // pad last row if needed
       while (slice.length % 3 !== 0) { grid += '<div class="photo-item" style="visibility:hidden;"></div>'; slice.push({}); }
@@ -462,7 +500,7 @@
     var all = [], p = 0;
 
     var phaseNames = ['','ভাঙন কাজ','ফাউন্ডেশন','RCC কলাম','ছাদ স্ল্যাব','দেয়াল','বৈদ্যুতিক','স্যানিটারি','ফিনিশিং','সম্পন্ন ✅'];
-    var phaseIcons = ['','🔨','🏗️','🧱','🪵','🧱','⚡','🚿','🎨','✅'];
+    var phaseIcons = ['','<i class="fas fa-hammer"></i>','<i class="fas fa-hard-hat"></i>','<i class="fas fa-columns"></i>','<i class="fas fa-layer-group"></i>','<i class="fas fa-th-large"></i>','<i class="fas fa-bolt"></i>','<i class="fas fa-faucet"></i>','<i class="fas fa-paint-roller"></i>','<i class="fas fa-check-circle"></i>'];
 
     /* ── render one card ── */
     function cardHTML(u) {
@@ -476,10 +514,10 @@
         media = '<div class="upd-photo" onclick="openLB(\'' + safe + '\',\'' + ts +
                 '\')"><img src="' + safe + '" alt="' + ts + '" loading="lazy" onerror="this.parentElement.style.background=\'#f0f0f0\';this.style.display=\'none\'"></div>';
       } else {
-        media = '<div class="upd-text-banner">📝</div>';
+        media = '<div class="upd-text-banner"><i class="fas fa-align-left"></i></div>';
       }
       var chipCls = u.type==='video' ? 'chip-v' : u.type==='photo' ? 'chip-p' : 'chip-t';
-      var chipLbl = u.type==='video' ? '▶ ভিডিও' : u.type==='photo' ? '📸 ছবি' : '📝 আপডেট';
+      var chipLbl = u.type==='video' ? '<i class="fas fa-play-circle"></i> ভিডিও' : u.type==='photo' ? '<i class="fas fa-image"></i> ছবি' : '<i class="fas fa-align-left"></i> আপডেট';
       var dateStr = '';
       if (u.date) {
         try { dateStr = new Date(u.date+'T00:00:00').toLocaleDateString('bn-BD',{day:'numeric',month:'short'}); }
@@ -520,7 +558,7 @@
       // Phase bar
       if (p > 0) {
         html += '<div style="margin-bottom:16px;">';
-        html += '<div style="font-size:.78em;font-weight:700;color:#2d6a4f;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;">📍 বর্তমান নির্মাণ পর্যায়</div>';
+        html += '<div style="font-size:.78em;font-weight:700;color:#2d6a4f;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;"><i class=\'fas fa-map-pin\' style=\'margin-right:5px;\'></i>বর্তমান নির্মাণ পর্যায়</div>';
         html += '<div class="phase-bar">';
         for (var i = 1; i <= 9; i++) {
           var cls = i < p ? 'ph done' : i === p ? 'ph active' : 'ph';
