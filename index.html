@@ -697,8 +697,8 @@
     var curPage   = 1;
     var all = [], p = 0;
 
-    var phaseNames = ['','ভাঙন কাজ','ফাউন্ডেশন','RCC কলাম','ছাদ স্ল্যাব','দেয়াল ও প্লাস্টার','বৈদ্যুতিক','স্যানিটারি','ফিনিশিং'];
-    var phaseIcons = ['','<i class="fas fa-hammer"></i>','<i class="fas fa-trowel-bricks"></i>','<i class="fas fa-columns"></i>','<i class="fas fa-layer-group"></i>','<i class="fas fa-th-large"></i>','<i class="fas fa-bolt"></i>','<i class="fas fa-faucet"></i>','<i class="fas fa-paint-roller"></i>'];
+    var phaseNames = ['','ভাঙন কাজ','ফাউন্ডেশন','RCC কলাম','ছাদ স্ল্যাব','দেয়াল ও প্লাস্টার','বৈদ্যুতিক','স্যানিটারি','ফিনিশিং','সম্পন্ন'];
+    var phaseIcons = ['','<i class="fas fa-hammer"></i>','<i class="fas fa-trowel-bricks"></i>','<i class="fas fa-columns"></i>','<i class="fas fa-layer-group"></i>','<i class="fas fa-th-large"></i>','<i class="fas fa-bolt"></i>','<i class="fas fa-faucet"></i>','<i class="fas fa-paint-roller"></i>','<i class="fas fa-check"></i>'];
 
     /* ── render one card ── */
     function cardHTML(u) {
@@ -758,7 +758,7 @@
         html += '<div style="margin-bottom:16px;">';
         html += '<div style="font-size:.78em;font-weight:700;color:#2d6a4f;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;"><i class=\'fas fa-map-pin\' style=\'margin-right:5px;\'></i>বর্তমান নির্মাণ পর্যায়</div>';
         html += '<div class="phase-bar">';
-        for (var i = 1; i <= 8; i++) {
+        for (var i = 1; i <= 9; i++) {
           var cls = i < p ? 'ph done' : i === p ? 'ph active' : 'ph';
           html += '<div class="' + cls + '"><div class="ph-dot">' + phaseIcons[i] +
                   '</div><div class="ph-label">' + phaseNames[i] + '</div></div>';
