@@ -758,7 +758,7 @@
         html += '<div style="margin-bottom:16px;">';
         html += '<div style="font-size:.78em;font-weight:700;color:#2d6a4f;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;"><i class=\'fas fa-map-pin\' style=\'margin-right:5px;\'></i>বর্তমান নির্মাণ পর্যায়</div>';
         html += '<div class="phase-bar">';
-        for (var i = 1; i <= 9; i++) {
+        for (var i = 1; i <= 8; i++) {
           var cls = i < p ? 'ph done' : i === p ? 'ph active' : 'ph';
           html += '<div class="' + cls + '"><div class="ph-dot">' + (i < p ? '✓' : phaseIcons[i]) +
                   '</div><div class="ph-label">' + phaseNames[i] + '</div></div>';
