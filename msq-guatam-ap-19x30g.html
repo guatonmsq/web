@@ -587,6 +587,10 @@ body {
         <div class="fund-admin-preview-label">সংগৃহীত</div>
       </div>
       <div class="fund-admin-preview-item">
+        <div class="fund-admin-preview-num" id="fpv-goal">৳ ২৮.৯ লক্ষ</div>
+        <div class="fund-admin-preview-label">লক্ষ্যমাত্রা</div>
+      </div>
+      <div class="fund-admin-preview-item">
         <div class="fund-admin-preview-num" id="fpv-pending">৳ ২৮.৯ লক্ষ</div>
         <div class="fund-admin-preview-label">বাকি</div>
       </div>
@@ -609,12 +613,16 @@ body {
     <div class="fund-admin-grid">
       <div class="fund-admin-field">
         <label>সংগৃহীত পরিমাণ (টাকায়) *</label>
-        <input type="number" id="f-collected" placeholder="যেমন: 150000" min="0" max="2890000" oninput="updateFundPreview()">
+        <input type="number" id="f-collected" placeholder="যেমন: 150000" min="0" oninput="updateFundPreview()">
       </div>
       <div class="fund-admin-field">
         <label>মোট দাতা সংখ্যা *</label>
         <input type="number" id="f-backers" placeholder="যেমন: 12" min="0" oninput="updateFundPreview()">
       </div>
+    </div>
+    <div class="fund-admin-field" style="margin-bottom:16px;">
+      <label>লক্ষ্যমাত্রা (টাকায়) *</label>
+      <input type="number" id="f-goal" placeholder="যেমন: 2890000" min="1" oninput="updateFundPreview()">
     </div>
 
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
@@ -921,9 +929,9 @@ function previewPhoto() {
 }
 
 // ── FUNDRAISER ──
-const FUND_KEY  = 'mosque_fund_v1';
-const FUND_GOAL = 2890000;
-let fundState = { collected: 0, backers: 0 };
+const FUND_KEY       = 'mosque_fund_v1';
+const FUND_GOAL_DEFAULT = 2890000;
+let fundState = { collected: 0, backers: 0, goal: FUND_GOAL_DEFAULT };
 
 function toBnF(n) { return String(n).replace(/[0-9]/g, d => '০১২৩৪৫৬৭৮৯'[d]); }
 function fmtTakaF(n) {
@@ -934,19 +942,22 @@ function fmtTakaF(n) {
 function loadFundState() {
   try {
     const raw = localStorage.getItem(FUND_KEY);
-    if (raw) fundState = JSON.parse(raw);
+    if (raw) fundState = { ...fundState, ...JSON.parse(raw) };
   } catch(e) {}
   document.getElementById('f-collected').value = fundState.collected || 0;
   document.getElementById('f-backers').value   = fundState.backers   || 0;
+  document.getElementById('f-goal').value      = fundState.goal      || FUND_GOAL_DEFAULT;
   updateFundPreview();
 }
 
 function updateFundPreview() {
-  const collected = Math.min(Math.max(parseInt(document.getElementById('f-collected').value)||0, 0), FUND_GOAL);
+  const goal      = Math.max(parseInt(document.getElementById('f-goal').value)||FUND_GOAL_DEFAULT, 1);
+  const collected = Math.min(Math.max(parseInt(document.getElementById('f-collected').value)||0, 0), goal);
   const backers   = Math.max(parseInt(document.getElementById('f-backers').value)||0, 0);
-  const pct       = Math.round((collected / FUND_GOAL) * 100);
-  const pending   = FUND_GOAL - collected;
+  const pct       = Math.round((collected / goal) * 100);
+  const pending   = goal - collected;
   document.getElementById('fpv-collected').textContent = fmtTakaF(collected);
+  document.getElementById('fpv-goal').textContent      = fmtTakaF(goal);
   document.getElementById('fpv-pending').textContent   = fmtTakaF(pending);
   document.getElementById('fpv-backers').textContent   = toBnF(backers);
   document.getElementById('fpv-pct').textContent       = toBnF(pct) + '%';
@@ -955,9 +966,10 @@ function updateFundPreview() {
 }
 
 function saveFund() {
-  const collected = Math.min(Math.max(parseInt(document.getElementById('f-collected').value)||0, 0), FUND_GOAL);
+  const goal      = Math.max(parseInt(document.getElementById('f-goal').value)||FUND_GOAL_DEFAULT, 1);
+  const collected = Math.min(Math.max(parseInt(document.getElementById('f-collected').value)||0, 0), goal);
   const backers   = Math.max(parseInt(document.getElementById('f-backers').value)||0, 0);
-  fundState = { collected, backers };
+  fundState = { collected, backers, goal };
   try { localStorage.setItem(FUND_KEY, JSON.stringify(fundState)); } catch(e) {}
   updateFundPreview();
   const el = document.getElementById('fundSaveSuccess');
@@ -966,9 +978,10 @@ function saveFund() {
 }
 
 function copyFundJSON() {
-  const collected = Math.min(Math.max(parseInt(document.getElementById('f-collected').value)||0, 0), FUND_GOAL);
+  const goal      = Math.max(parseInt(document.getElementById('f-goal').value)||FUND_GOAL_DEFAULT, 1);
+  const collected = Math.min(Math.max(parseInt(document.getElementById('f-collected').value)||0, 0), goal);
   const backers   = Math.max(parseInt(document.getElementById('f-backers').value)||0, 0);
-  const json = JSON.stringify({ collected, backers }, null, 2);
+  const json = JSON.stringify({ collected, backers, goal }, null, 2);
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(json).then(showFundCopySuccess).catch(function(){ fallbackCopyFund(json); });
   } else {
