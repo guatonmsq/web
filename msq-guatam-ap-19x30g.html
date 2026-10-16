@@ -321,6 +321,35 @@ body {
   font-size: .82rem; color: var(--gold); font-weight: 600;
   margin-bottom: 20px; line-height: 1.6;
 }
+
+/* ── FUND SECTION ── */
+.fund-admin-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px;
+}
+@media (max-width: 480px) { .fund-admin-grid { grid-template-columns: 1fr; } }
+.fund-admin-field label {
+  display: block; font-size: .74rem; font-weight: 700;
+  color: var(--fg-muted); margin-bottom: 5px;
+  text-transform: uppercase; letter-spacing: .05em;
+}
+.fund-admin-field input {
+  width: 100%; border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  padding: 10px 13px; font-family: var(--font-body); font-size: .9rem;
+  background: var(--bg); color: var(--fg); outline: none; transition: border-color .18s;
+}
+.fund-admin-field input:focus { border-color: var(--gold); }
+.fund-admin-preview {
+  background: var(--gold-lite); border: 1.5px solid var(--gold);
+  border-radius: var(--radius-sm); padding: 12px 16px;
+  display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 14px;
+}
+.fund-admin-preview-item { text-align: center; }
+.fund-admin-preview-num { font-size: 1.4rem; font-weight: 800; color: var(--gold); line-height: 1; }
+.fund-admin-preview-label { font-size: .68rem; color: var(--fg-muted); font-weight: 600; text-transform: uppercase; letter-spacing: .05em; margin-top: 3px; }
+.fund-bar-preview-wrap { margin-bottom: 14px; }
+.fund-bar-preview-bg { background: var(--border); border-radius: 99px; height: 10px; overflow: hidden; }
+.fund-bar-preview-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--gold) 0%, #e2a93b 100%); transition: width .8s; }
+.fund-bar-preview-label { font-size: .75rem; color: var(--fg-muted); margin-top: 5px; }
 </style>
 </head>
 <body>
@@ -548,6 +577,70 @@ body {
     </div>
   </div>
 
+  <!-- FUNDRAISER SECTION -->
+  <div class="section-card">
+    <div class="section-heading"><span>💰</span> ফান্ডরাইজিং আপডেট করুন</div>
+
+    <div class="fund-admin-preview" id="fundPreview">
+      <div class="fund-admin-preview-item">
+        <div class="fund-admin-preview-num" id="fpv-collected">৳ ০</div>
+        <div class="fund-admin-preview-label">সংগৃহীত</div>
+      </div>
+      <div class="fund-admin-preview-item">
+        <div class="fund-admin-preview-num" id="fpv-pending">৳ ২৮.৯ লক্ষ</div>
+        <div class="fund-admin-preview-label">বাকি</div>
+      </div>
+      <div class="fund-admin-preview-item">
+        <div class="fund-admin-preview-num" id="fpv-backers">০</div>
+        <div class="fund-admin-preview-label">দাতা</div>
+      </div>
+      <div class="fund-admin-preview-item">
+        <div class="fund-admin-preview-num" id="fpv-pct">০%</div>
+        <div class="fund-admin-preview-label">সম্পন্ন</div>
+      </div>
+    </div>
+    <div class="fund-bar-preview-wrap">
+      <div class="fund-bar-preview-bg">
+        <div class="fund-bar-preview-fill" id="fpv-bar" style="width:0%"></div>
+      </div>
+      <div class="fund-bar-preview-label" id="fpv-bar-label">লক্ষ্যমাত্রার ০% সম্পন্ন</div>
+    </div>
+
+    <div class="fund-admin-grid">
+      <div class="fund-admin-field">
+        <label>সংগৃহীত পরিমাণ (টাকায়) *</label>
+        <input type="number" id="f-collected" placeholder="যেমন: 150000" min="0" max="2890000" oninput="updateFundPreview()">
+      </div>
+      <div class="fund-admin-field">
+        <label>মোট দাতা সংখ্যা *</label>
+        <input type="number" id="f-backers" placeholder="যেমন: 12" min="0" oninput="updateFundPreview()">
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
+      <button onclick="saveFund()" style="background:var(--gold);color:#fff;border:none;border-radius:8px;padding:10px 22px;font-size:.9rem;font-weight:800;cursor:pointer;font-family:var(--font-body);">💾 সংরক্ষণ করুন</button>
+      <button onclick="copyFundJSON()" style="background:var(--green-mid);color:#fff;border:none;border-radius:8px;padding:10px 22px;font-size:.9rem;font-weight:700;cursor:pointer;font-family:var(--font-body);">📋 fund.json কপি করুন</button>
+      <a href="https://github.com/guatonmsq/web/blob/main/fund.json" target="_blank" style="background:var(--bg-muted);color:var(--fg);border:1.5px solid var(--border);border-radius:8px;padding:10px 18px;font-size:.9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;">✏️ GitHub-এ সম্পাদনা করুন</a>
+    </div>
+    <div id="fundSaveSuccess" style="display:none;background:#e6f4ea;border:1px solid #2d6a4f;border-radius:8px;padding:10px 14px;font-size:.84rem;color:#1a3a2a;margin-bottom:8px;">
+      ✅ সংরক্ষিত! এখন "fund.json কপি করুন" → GitHub-এ পেস্ট করুন।
+    </div>
+    <div id="fundCopySuccess" style="display:none;background:#e6f4ea;border:1px solid #2d6a4f;border-radius:8px;padding:10px 14px;font-size:.84rem;color:#1a3a2a;">
+      ✅ fund.json কপি হয়েছে! GitHub-এ <strong>fund.json</strong> ফাইলে পেস্ট করে Commit করুন।
+    </div>
+    <details style="margin-top:8px;">
+      <summary style="cursor:pointer;font-size:.82rem;color:var(--fg-subtle);padding:6px 0;">📖 GitHub-এ কীভাবে আপলোড করবেন?</summary>
+      <ol style="font-size:.82rem;color:var(--fg-muted);line-height:2;padding-left:20px;margin-top:8px;">
+        <li>"fund.json কপি করুন" বোতামে ক্লিক করুন</li>
+        <li>"GitHub-এ সম্পাদনা করুন" বোতামে ক্লিক করুন</li>
+        <li>পেনসিল আইকনে ক্লিক করুন (Edit this file)</li>
+        <li>সব মুছে কপি করা JSON পেস্ট করুন (Ctrl+A তারপর Ctrl+V)</li>
+        <li>"Commit changes" বোতামে ক্লিক করুন</li>
+        <li>১–২ মিনিট পর সাইটে ফান্ডরাইজিং সেকশনে আপডেট দেখা যাবে ✅</li>
+      </ol>
+    </details>
+  </div>
+
   <!-- DANGER ZONE -->
   <div class="section-card">
     <div class="section-heading"><span>⚠️</span> বিপজ্জনক অঞ্চল</div>
@@ -583,6 +676,7 @@ function doLogin() {
     document.getElementById('mainWrap').style.display = 'block';
     document.getElementById('loginError').textContent = '';
     loadState();
+    loadFundState();
   } else {
     document.getElementById('loginError').textContent = '❌ ভুল নাম বা পাসওয়ার্ড। আবার চেষ্টা করুন।';
     document.getElementById('loginPass').value = '';
@@ -826,6 +920,75 @@ function previewPhoto() {
   };
 }
 
+// ── FUNDRAISER ──
+const FUND_KEY  = 'mosque_fund_v1';
+const FUND_GOAL = 2890000;
+let fundState = { collected: 0, backers: 0 };
+
+function toBnF(n) { return String(n).replace(/[0-9]/g, d => '০১২৩৪৫৬৭৮৯'[d]); }
+function fmtTakaF(n) {
+  if (n >= 100000) return '৳ ' + toBnF((n/100000).toFixed(n%100000===0?0:1)) + ' লক্ষ';
+  return '৳ ' + toBnF(n.toLocaleString('en'));
+}
+
+function loadFundState() {
+  try {
+    const raw = localStorage.getItem(FUND_KEY);
+    if (raw) fundState = JSON.parse(raw);
+  } catch(e) {}
+  document.getElementById('f-collected').value = fundState.collected || 0;
+  document.getElementById('f-backers').value   = fundState.backers   || 0;
+  updateFundPreview();
+}
+
+function updateFundPreview() {
+  const collected = Math.min(Math.max(parseInt(document.getElementById('f-collected').value)||0, 0), FUND_GOAL);
+  const backers   = Math.max(parseInt(document.getElementById('f-backers').value)||0, 0);
+  const pct       = Math.round((collected / FUND_GOAL) * 100);
+  const pending   = FUND_GOAL - collected;
+  document.getElementById('fpv-collected').textContent = fmtTakaF(collected);
+  document.getElementById('fpv-pending').textContent   = fmtTakaF(pending);
+  document.getElementById('fpv-backers').textContent   = toBnF(backers);
+  document.getElementById('fpv-pct').textContent       = toBnF(pct) + '%';
+  document.getElementById('fpv-bar').style.width       = pct + '%';
+  document.getElementById('fpv-bar-label').textContent = 'লক্ষ্যমাত্রার ' + toBnF(pct) + '% সম্পন্ন';
+}
+
+function saveFund() {
+  const collected = Math.min(Math.max(parseInt(document.getElementById('f-collected').value)||0, 0), FUND_GOAL);
+  const backers   = Math.max(parseInt(document.getElementById('f-backers').value)||0, 0);
+  fundState = { collected, backers };
+  try { localStorage.setItem(FUND_KEY, JSON.stringify(fundState)); } catch(e) {}
+  updateFundPreview();
+  const el = document.getElementById('fundSaveSuccess');
+  el.style.display = 'block';
+  setTimeout(function(){ el.style.display = 'none'; }, 4000);
+}
+
+function copyFundJSON() {
+  const collected = Math.min(Math.max(parseInt(document.getElementById('f-collected').value)||0, 0), FUND_GOAL);
+  const backers   = Math.max(parseInt(document.getElementById('f-backers').value)||0, 0);
+  const json = JSON.stringify({ collected, backers }, null, 2);
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(json).then(showFundCopySuccess).catch(function(){ fallbackCopyFund(json); });
+  } else {
+    fallbackCopyFund(json);
+  }
+}
+function fallbackCopyFund(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  try { document.execCommand('copy'); showFundCopySuccess(); }
+  catch(e) { alert('কপি করতে পারেনি।\n\n' + text); }
+  document.body.removeChild(ta);
+}
+function showFundCopySuccess() {
+  const el = document.getElementById('fundCopySuccess');
+  el.style.display = 'block';
+  setTimeout(function(){ el.style.display = 'none'; }, 5000);
+}
+
 // ── BOOT ──
 (function init() {
   if (isLoggedIn()) {
@@ -833,6 +996,7 @@ function previewPhoto() {
     document.getElementById('adminHeader').style.display = 'flex';
     document.getElementById('mainWrap').style.display = 'block';
     loadState();
+    loadFundState();
   }
 })();
 </script>
