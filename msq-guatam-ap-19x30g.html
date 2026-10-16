@@ -3,901 +3,1025 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>উত্তর গুয়াটন জামে মসজিদ পুনর্নির্মাণ প্রস্তাবনা</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+<title>অ্যাডমিন প্যানেল — উত্তর গুয়াটন জামে মসজিদ</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600&display=swap');
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Noto Sans Bengali',sans-serif; background:#f5f0e8; color:#2c2c2c; }
-
-  .hero { background:linear-gradient(160deg,#1a3a2a 0%,#2d6a4f 50%,#1a3a2a 100%); color:white; text-align:center; padding:60px 20px 50px; position:relative; overflow:hidden; }
-  .hero::before { content:''; position:absolute; top:0;left:0;right:0;bottom:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
-  .hero-icon { font-size:72px; margin-bottom:8px; position:relative; line-height:1; }
-  .hero-icon i { color:#ffd84d; filter:drop-shadow(0 3px 14px rgba(0,0,0,.4)); }
-  .hero-icon svg { overflow:visible; }
-  .qnav-icon i { font-size:1.1em; }
-  .section-icon i { font-size:1em; }
-  .land-icon i { font-size:1.5em; color:#2d6a4f; }
-  .di i { font-size:1.6em; }
-  .dw-icon i { font-size:1.5em; color:#2d6a4f; }
-  .hero h1 { font-family:'Noto Serif Bengali',serif; font-size:2.2em; font-weight:700; margin-bottom:8px; text-shadow:0 2px 8px rgba(0,0,0,0.3); position:relative; }
-  .hero .subtitle { font-size:1.1em; opacity:.85; margin-bottom:6px; position:relative; }
-  .hero .location { display:inline-block; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.3); border-radius:20px; padding:5px 18px; font-size:.95em; margin-top:10px; position:relative; }
-
-  /* ── FUND STRIP ── */
-  .fund-strip { background:linear-gradient(180deg,#162e22 0%,#1a3a2a 100%); padding:10px 20px 13px; display:flex; align-items:center; gap:14px; flex-wrap:wrap; justify-content:center; box-shadow:inset 0 1px 0 rgba(255,255,255,.06); }
-  .fund-strip-bar-wrap { flex:1; min-width:160px; max-width:260px; }
-  .fund-strip-label { font-size:.72em; color:rgba(255,255,255,.6); margin-bottom:4px; display:flex; justify-content:space-between; }
-  .fund-strip-bg { background:rgba(255,255,255,.15); border-radius:99px; height:7px; overflow:hidden; }
-  .fund-strip-fill { height:100%; border-radius:99px; background:linear-gradient(90deg,#ffd84d,#e2a93b); transition:width 1.2s cubic-bezier(.4,0,.2,1); }
-  .fund-strip-nums { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
-  .fund-strip-num { text-align:center; }
-  .fund-strip-num .val { font-size:.88em; font-weight:800; color:#ffd84d; line-height:1; }
-  .fund-strip-num .lbl { font-size:.6em; color:rgba(255,255,255,.45); margin-top:2px; letter-spacing:.02em; }
-  .fund-strip-divider { width:1px; height:20px; background:linear-gradient(180deg,transparent,rgba(255,255,255,.12),transparent); }
-  .fund-strip-btn { background:linear-gradient(135deg,rgba(255,216,77,.22),rgba(180,136,58,.18)); color:#ffd84d; border:1px solid rgba(255,216,77,.4); border-radius:8px; padding:7px 16px; font-family:'Noto Sans Bengali',sans-serif; font-size:.78em; font-weight:800; text-decoration:none; white-space:nowrap; transition:background .2s; }
-  .fund-strip-btn:hover { background:linear-gradient(135deg,rgba(255,216,77,.35),rgba(180,136,58,.28)); }
-
-  /* ── BURGER MENU ── */
-  .burger-btn { position:fixed; top:14px; right:16px; z-index:1100; background:rgba(26,58,42,.92); border:1px solid rgba(255,255,255,.15); border-radius:10px; width:42px; height:42px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; cursor:pointer; backdrop-filter:blur(8px); box-shadow:0 2px 12px rgba(0,0,0,.3); transition:background .2s; }
-  .burger-btn:hover { background:rgba(45,106,79,.95); }
-  .burger-btn span { display:block; width:20px; height:2px; background:#ffd84d; border-radius:2px; transition:transform .3s, opacity .3s; }
-  .burger-btn.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
-  .burger-btn.open span:nth-child(2) { opacity:0; }
-  .burger-btn.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
-
-  .nav-drawer { position:fixed; top:0; right:-280px; width:270px; height:100vh; background:linear-gradient(160deg,#1a3a2a,#0f2218); z-index:1050; padding:70px 0 30px; overflow-y:auto; transition:right .3s cubic-bezier(.4,0,.2,1); box-shadow:-4px 0 30px rgba(0,0,0,.4); }
-  .nav-drawer.open { right:0; }
-  .nav-drawer-overlay { position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:1040; opacity:0; pointer-events:none; transition:opacity .3s; }
-  .nav-drawer-overlay.open { opacity:1; pointer-events:all; }
-  .nav-drawer-title { padding:0 20px 14px; font-size:.72em; color:rgba(255,255,255,.4); letter-spacing:.08em; text-transform:uppercase; border-bottom:1px solid rgba(255,255,255,.08); margin-bottom:8px; }
-  .nav-drawer a { display:flex; align-items:center; gap:13px; padding:12px 20px; color:rgba(255,255,255,.85); text-decoration:none; font-size:.93em; font-family:'Noto Sans Bengali',sans-serif; transition:background .15s, color .15s; }
-  .nav-drawer a:hover { background:rgba(255,255,255,.07); color:#ffd84d; }
-  .nav-drawer a i { width:18px; text-align:center; color:#ffd84d; opacity:.8; font-size:.95em; }
-  .nav-drawer .nav-sep { height:1px; background:rgba(255,255,255,.07); margin:6px 20px; }
-  .nav-drawer .nav-ext { border-top:1px solid rgba(255,255,255,.08); margin-top:10px; padding-top:6px; }
-  .nav-drawer .nav-ext a i { color:#a8e6c4; }
-
-  /* ── QUICK NAV BAR ── */
-  .quick-nav { background:#1a3a2a; padding:14px 16px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
-  .qnav-btn { display:flex; align-items:center; gap:10px; border-radius:12px; padding:14px 22px; font-family:'Noto Sans Bengali',sans-serif; font-size:1em; font-weight:700; text-decoration:none; cursor:pointer; border:none; transition:transform .15s, box-shadow .15s; flex:1; max-width:320px; justify-content:center; }
-  .qnav-btn:active { transform:scale(.97); }
-  .qnav-btn.donate { background:linear-gradient(145deg,rgba(255,223,120,.5) 0%,rgba(212,170,60,.35) 40%,rgba(170,128,30,.3) 100%); color:#fff; border:none; border-radius:12px; backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); outline:1px solid rgba(255,220,100,.35); box-shadow:0 4px 24px rgba(180,140,30,.4), inset 0 1px 0 rgba(255,240,150,.85), inset 0 -1px 0 rgba(160,120,20,.3), inset 1px 0 0 rgba(255,230,120,.35), inset -1px 0 0 rgba(255,230,120,.2); text-shadow:0 1px 3px rgba(0,0,0,.3); }
-  .qnav-btn.donate:hover { background:linear-gradient(145deg,rgba(255,230,130,.6) 0%,rgba(220,180,70,.42) 40%,rgba(180,138,40,.36) 100%); box-shadow:0 6px 32px rgba(180,140,30,.55), inset 0 1px 0 rgba(255,245,160,.92), inset 0 -1px 0 rgba(160,120,20,.38), inset 1px 0 0 rgba(255,235,130,.42), inset -1px 0 0 rgba(255,235,130,.25); transform:translateY(-1px); }
-  .qnav-btn.progress { background:linear-gradient(145deg,rgba(255,255,255,.45) 0%,rgba(192,200,215,.3) 40%,rgba(140,155,175,.25) 100%); color:#fff; border:none; border-radius:12px; backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); outline: 1px solid rgba(255,255,255,.35); box-shadow:0 4px 24px rgba(100,120,160,.35), inset 0 1px 0 rgba(255,255,255,.8), inset 0 -1px 0 rgba(180,190,210,.25), inset 1px 0 0 rgba(255,255,255,.3), inset -1px 0 0 rgba(255,255,255,.15); text-shadow:0 1px 3px rgba(0,0,0,.3); }
-  .qnav-btn.progress:hover { background:linear-gradient(145deg,rgba(255,255,255,.55) 0%,rgba(210,218,230,.38) 40%,rgba(160,175,195,.32) 100%); box-shadow:0 6px 32px rgba(100,120,160,.5), inset 0 1px 0 rgba(255,255,255,.9), inset 0 -1px 0 rgba(180,190,210,.35), inset 1px 0 0 rgba(255,255,255,.4), inset -1px 0 0 rgba(255,255,255,.2); transform:translateY(-1px); }
-  .qnav-icon { font-size:1.4em; }
-  .qnav-text { text-align:left; }
-  .qnav-text-main { font-size:1em; font-weight:700; line-height:1.2; }
-  .qnav-text-sub { font-size:.72em; opacity:.75; font-weight:400; margin-top:2px; }
-
-  .arabic-banner { background:#2d6a4f; color:#f0e6c8; text-align:center; padding:18px 20px; font-size:1.3em; font-family:'Noto Serif Bengali',serif; }
-  .arabic-banner small { display:block; font-size:.7em; opacity:.8; margin-top:4px; }
-
-  .section { background:white; margin:25px auto; max-width:900px; border-radius:12px; overflow:hidden; box-shadow:0 3px 20px rgba(0,0,0,.08); }
-  .section-header { background:linear-gradient(135deg,#2d6a4f,#40916c); color:white; padding:15px 25px; display:flex; align-items:center; gap:12px; }
-  .section-header .icon { font-size:1.5em; }
-  .section-header .icon i { color:#ffd84d; }
-  .section-header h2 { font-family:'Noto Serif Bengali',serif; font-size:1.2em; font-weight:600; }
-  .section-body { padding:25px; }
-
-  .intro-text { font-size:1.05em; line-height:2; color:#333; border-left:4px solid #2d6a4f; background:#f8fdf9; border-radius:0 8px 8px 0; padding:15px 15px 15px 20px; }
-
-  /* LIGHTBOX */
-  .lightbox { display:none; position:fixed; top:0;left:0;right:0;bottom:0; background:rgba(0,0,0,.93); z-index:9999; justify-content:center; align-items:center; flex-direction:column; }
-  .lightbox.active { display:flex; }
-  .lightbox img { max-width:92vw; max-height:82vh; border-radius:8px; object-fit:contain; }
-  .lightbox-close { position:absolute; top:18px; right:24px; color:white; font-size:2.2em; cursor:pointer; line-height:1; z-index:10000; }
-  .lightbox-caption { color:rgba(255,255,255,.8); font-size:.9em; margin-top:12px; text-align:center; }
-
-  /* PHOTO GRIDS */
-  .photo-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:8px; }
-  .photo-grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:8px; }
-  .photo-item { border-radius:8px; overflow:hidden; position:relative; aspect-ratio:4/3; background:#e0e0e0; }
-  .photo-item img { width:100%; height:100%; object-fit:cover; display:block; cursor:pointer; transition:transform .3s; }
-  .photo-item:hover img { transform:scale(1.04); }
-  .photo-item-wide { border-radius:8px; overflow:hidden; position:relative; aspect-ratio:16/9; background:#e0e0e0; }
-  .photo-item-wide img { width:100%; height:100%; object-fit:cover; display:block; cursor:pointer; transition:transform .3s; }
-  .photo-item-wide:hover img { transform:scale(1.03); }
-  .photo-label { position:absolute; bottom:0;left:0;right:0; background:linear-gradient(transparent,rgba(0,0,0,.78)); color:white; font-size:.72em; padding:20px 8px 6px; pointer-events:none; }
-  .photo-note { background:#fff8e1; border:1px solid #ffe082; border-radius:8px; padding:12px 16px; margin-top:12px; font-size:.9em; color:#5d4037; }
-
-  /* PROBLEM TABLE */
-  .prob-table { width:100%; border-collapse:collapse; }
-  .prob-table th { background:#2d6a4f; color:white; padding:11px 14px; text-align:left; font-size:.92em; }
-  .prob-table td { padding:10px 14px; border-bottom:1px solid #eee; font-size:.9em; vertical-align:top; }
-  .prob-table tr:nth-child(even) td { background:#f9f9f9; }
-  .prob-table tr:last-child td { border-bottom:none; }
-  .badge { display:inline-block; padding:2px 10px; border-radius:12px; font-size:.8em; font-weight:600; }
-  .badge-danger { background:#ffebee; color:#c62828; }
-  .badge-warn   { background:#fff8e1; color:#f57f17; }
-
-  /* LAND */
-  .land-grid { display:grid; grid-template-columns:1fr 1fr; gap:15px; }
-  .land-card { background:#f5fdf8; border:1px solid #b7dfcb; border-radius:10px; padding:16px; display:flex; align-items:flex-start; gap:12px; }
-  .land-icon { font-size:1.8em; flex-shrink:0; }
-  .land-card h4 { font-size:.82em; color:#666; margin-bottom:4px; }
-  .land-card p  { font-size:.95em; font-weight:600; color:#1a3a2a; }
-
-  /* PLAN */
-  .plan-steps { display:flex; flex-direction:column; gap:14px; }
-  .step { display:flex; gap:15px; align-items:flex-start; }
-  .step-num { background:#2d6a4f; color:white; border-radius:50%; width:38px;height:38px; display:flex;align-items:center;justify-content:center; font-weight:700; font-size:1em; flex-shrink:0; margin-top:2px; }
-  .step-content h4 { font-size:1em; font-weight:600; color:#1a3a2a; margin-bottom:5px; }
-  .step-content ul { list-style:none; padding:0; }
-  .step-content ul li { font-size:.88em; color:#444; padding:2px 0; }
-  .step-content ul li::before { content:"✦ "; color:#2d6a4f; font-size:.8em; }
-
-  /* BUDGET */
-  .budget-table { width:100%; border-collapse:collapse; }
-  .budget-table th { background:#1a3a2a; color:white; padding:12px 16px; text-align:left; font-size:.9em; }
-  .budget-table td { padding:11px 16px; border-bottom:1px solid #eee; font-size:.9em; }
-  .budget-table tr:nth-child(even) td { background:#f5fdf8; }
-  .budget-table tr.total td { background:#e8f5e9; font-weight:700; font-size:1em; color:#1a3a2a; border-top:2px solid #2d6a4f; border-bottom:none; }
-  .blank-amount { display:inline-block; border-bottom:2px dotted #999; min-width:120px; color:#999; font-style:italic; font-size:.85em; }
-
-  /* FUNDRAISER */
-  .fund-hero { background:linear-gradient(135deg,#1a3a2a 0%,#2d6a4f 100%); color:#fff; padding:28px 24px 22px; text-align:center; }
-  .fund-hero h3 { font-family:'Noto Serif Bengali',serif; font-size:1.15em; font-weight:700; opacity:.9; margin-bottom:4px; }
-  .fund-goal-amount { font-size:2.4em; font-weight:800; color:#ffd84d; line-height:1; letter-spacing:-.5px; }
-  .fund-goal-label { font-size:.8em; opacity:.65; margin-top:2px; }
-  .fund-bar-wrap { padding:20px 24px 0; }
-  .fund-bar-bg { background:#e8ede9; border-radius:999px; height:18px; overflow:hidden; position:relative; }
-  .fund-bar-fill { height:100%; border-radius:999px; background:linear-gradient(90deg,#2d6a4f,#52b788); transition:width 1.2s cubic-bezier(.4,0,.2,1); position:relative; min-width:4px; }
-  .fund-bar-fill::after { content:''; position:absolute; right:0; top:0; bottom:0; width:18px; background:rgba(255,255,255,.3); border-radius:999px; }
-  .fund-pct { font-size:.82em; font-weight:800; color:#2d6a4f; margin-top:5px; text-align:right; }
-  .fund-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border,#e0e0e0); border-top:1px solid #eee; }
-  .fund-stat { background:#fff; padding:16px 10px; text-align:center; }
-  .fund-stat-num { font-size:1.4em; font-weight:800; color:#1a3a2a; line-height:1; }
-  .fund-stat-num.collected { color:#2d6a4f; }
-  .fund-stat-num.pending   { color:#c0392b; }
-  .fund-stat-label { font-size:.7em; color:#777; margin-top:4px; font-weight:600; text-transform:uppercase; letter-spacing:.05em; }
-  .fund-backers { display:flex; align-items:center; justify-content:center; gap:16px; padding:14px 20px; border-top:1px solid #eee; flex-wrap:wrap; }
-  .fund-backer-item { display:flex; align-items:center; gap:7px; font-size:.85em; color:#444; }
-  .fund-backer-item i { color:#2d6a4f; font-size:1em; }
-  .fund-note { padding:12px 20px; background:#f8fdf9; border-top:1px solid #e8f0ec; font-size:.78em; color:#666; text-align:center; line-height:1.7; }
-
-  /* WHY DONATE */
-  .hadith-box { background:linear-gradient(135deg,#1a3a2a,#2d6a4f); color:#f0e6c8; border-radius:10px; padding:20px 24px; text-align:center; margin-bottom:20px; }
-  .hadith-box p { font-size:1em; line-height:1.9; }
-  .hadith-box small { display:block; margin-top:8px; opacity:.7; font-size:.8em; }
-  .donate-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-  .donate-card { background:linear-gradient(135deg,#f5fdf8,#e8f5e9); border:1px solid #b7dfcb; border-radius:10px; padding:16px; text-align:center; }
-  .donate-card .di { font-size:2em; margin-bottom:8px; }
-  .donate-card p { font-size:.88em; color:#333; line-height:1.7; }
-
-  .donate-ways { display:flex; flex-direction:column; gap:12px; }
-  .dw { display:flex; gap:14px; align-items:flex-start; background:#f9f9f9; border-radius:8px; padding:14px; border-left:4px solid #2d6a4f; }
-  .dw .dw-icon { font-size:1.5em; flex-shrink:0; }
-  .dw h4 { font-size:.95em; font-weight:600; color:#1a3a2a; margin-bottom:3px; }
-  .dw p  { font-size:.85em; color:#555; }
-
-  /* ── CONSTRUCTION PROGRESS SECTION ── */
-  .phase-bar { display:flex; overflow-x:auto; padding:4px 0 8px; gap:0; }
-  .ph { flex:1; min-width:58px; text-align:center; position:relative; }
-  .ph::after { content:''; position:absolute; top:13px; left:50%; right:-50%; height:3px; background:#ddd; z-index:0; }
-  .ph:last-child::after { display:none; }
-  .ph.done::after { background:#2d6a4f; }
-  .ph.active::after { background:linear-gradient(90deg,#2d6a4f,#ddd); }
-  .ph-dot { width:26px; height:26px; border-radius:50%; background:#eee; border:3px solid #ddd; margin:0 auto 5px; font-size:.68rem; display:flex; align-items:center; justify-content:center; position:relative; z-index:1; }
-  .ph.done .ph-dot  { background:#2d6a4f; border-color:#2d6a4f; color:#fff; }
-  .ph.active .ph-dot { background:#fdf5e4; border-color:#b5883a; animation:phPulse 1.8s ease-in-out infinite; }
-  @keyframes phPulse {
-    0%,100% { box-shadow:0 0 0 0 rgba(181,136,58,.35); }
-    50%      { box-shadow:0 0 0 7px rgba(181,136,58,0); }
+:root {
+  --bg:        #f7f5f1;
+  --bg-card:   #ffffff;
+  --bg-muted:  #eeeae2;
+  --fg:        #1c1c1c;
+  --fg-muted:  #6b6b6b;
+  --fg-subtle: #9e9e9e;
+  --border:    #ddd8cf;
+  --green-deep: #1a3a2a;
+  --green-mid:  #2d6a4f;
+  --green-lite: #e6f2ec;
+  --gold:       #b5883a;
+  --gold-lite:  #fdf5e4;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 1px 4px rgba(0,0,0,.06);
+  --shadow-md: 0 3px 18px rgba(0,0,0,.09);
+  --font-body: 'Tajawal', 'Segoe UI', Arial, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111a14; --bg-card: #1b2820; --bg-muted: #1e2d24;
+    --fg: #e8ede9; --fg-muted: #8fa894; --fg-subtle: #5e7a66;
+    --border: #2a3d30; --green-deep: #0e2118; --green-mid: #3a8263;
+    --green-lite: #1b3025; --gold: #c9a84c; --gold-lite: #2b2310;
+    color-scheme: dark;
   }
-  .ph-label { font-size:.58rem; color:#999; line-height:1.3; }
-  .ph.done .ph-label { color:#2d6a4f; }
-  .ph.active .ph-label { color:#b5883a; font-weight:700; }
+}
+:root[data-theme="dark"] {
+  --bg: #111a14; --bg-card: #1b2820; --bg-muted: #1e2d24;
+  --fg: #e8ede9; --fg-muted: #8fa894; --fg-subtle: #5e7a66;
+  --border: #2a3d30; --green-deep: #0e2118; --green-mid: #3a8263;
+  --green-lite: #1b3025; --gold: #c9a84c; --gold-lite: #2b2310;
+  color-scheme: dark;
+}
 
-  .upd-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:18px; }
-  @media(max-width:560px) { .upd-grid { grid-template-columns:1fr; } }
-  .upd-card { border:1px solid #e8e8e8; border-radius:10px; overflow:hidden; background:#fafafa; transition:box-shadow .2s, transform .2s; }
-  .upd-card:hover { box-shadow:0 4px 18px rgba(0,0,0,.1); transform:translateY(-2px); }
-  .upd-video { position:relative; width:100%; padding-top:56.25%; background:#000; }
-  .upd-video iframe { position:absolute; inset:0; width:100%; height:100%; border:none; }
-  .upd-photo { width:100%; height:160px; overflow:hidden; background:#e8e8e8; cursor:zoom-in; }
-  .upd-photo img { width:100%; height:100%; object-fit:cover; transition:transform .3s; display:block; }
-  .upd-photo:hover img { transform:scale(1.05); }
-  .upd-text-banner { height:75px; background:linear-gradient(135deg,#e6f2ec,#fdf5e4); display:flex; align-items:center; justify-content:center; font-size:1.7rem; }
-  .upd-body { padding:10px 12px; }
-  .upd-meta { display:flex; align-items:center; gap:5px; margin-bottom:4px; flex-wrap:wrap; }
-  .upd-chip { font-size:.63rem; font-weight:800; padding:2px 7px; border-radius:10px; text-transform:uppercase; letter-spacing:.04em; }
-  .chip-v { background:#dbeafe; color:#1d4ed8; }
-  .chip-p { background:#e6f2ec; color:#2d6a4f; }
-  .chip-t { background:#fdf5e4; color:#b5883a; }
-  .upd-date { font-size:.68rem; color:#aaa; margin-left:auto; }
-  .upd-title { font-size:.86rem; font-weight:700; color:#1a3a2a; line-height:1.3; }
-  .upd-desc  { font-size:.76rem; color:#666; margin-top:3px; line-height:1.5; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 15px;
+  line-height: 1.6;
+}
 
-  .progress-empty { text-align:center; padding:36px 20px; color:#aaa; font-size:.9em; }
-  .progress-empty .pe-icon { font-size:2.5rem; margin-bottom:10px; display:block; }
+/* ── LOGIN OVERLAY ── */
+.login-overlay {
+  position: fixed; inset: 0;
+  background: linear-gradient(155deg, var(--green-deep) 0%, #1e4d38 60%, #0d2018 100%);
+  z-index: 99999;
+  display: flex; align-items: center; justify-content: center; padding: 20px;
+}
+.login-overlay.hidden { display: none; }
+.login-box {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 40px 36px 32px;
+  width: 100%; max-width: 400px;
+  box-shadow: 0 24px 64px rgba(0,0,0,.5);
+  text-align: center;
+}
+.login-mosque-icon { font-size: 3.5rem; margin-bottom: 8px; display: block; }
+.login-title { font-size: 1.25rem; font-weight: 800; color: var(--fg); margin-bottom: 4px; }
+.login-sub { font-size: .8rem; color: var(--fg-subtle); margin-bottom: 26px; }
+.login-divider { height: 1px; background: var(--border); margin-bottom: 22px; }
+.login-field { margin-bottom: 15px; text-align: left; }
+.login-field label {
+  display: block; font-size: .72rem; font-weight: 700;
+  color: var(--fg-muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 5px;
+}
+.login-field input {
+  width: 100%; border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  padding: 11px 14px; font-family: var(--font-body); font-size: .92rem;
+  background: var(--bg); color: var(--fg); outline: none; transition: border-color .2s;
+}
+.login-field input:focus { border-color: var(--green-mid); }
+.login-btn {
+  width: 100%; margin-top: 10px;
+  background: var(--green-mid); color: #fff; border: none;
+  border-radius: var(--radius-sm); padding: 13px;
+  font-family: var(--font-body); font-size: 1rem; font-weight: 800;
+  cursor: pointer; transition: background .2s; letter-spacing: .03em;
+}
+.login-btn:hover { background: var(--green-deep); }
+.login-error { color: #ef4444; font-size: .8rem; margin-top: 12px; min-height: 20px; font-weight: 600; }
+.login-back {
+  display: block; margin-top: 18px; font-size: .76rem;
+  color: var(--fg-subtle); text-decoration: none;
+}
+.login-back:hover { color: var(--green-mid); }
 
-  .view-all-wrap { text-align:center; margin-top:20px; }
-  .view-all-btn {
-    display:inline-block; background:linear-gradient(135deg,#2d6a4f,#40916c);
-    color:white; text-decoration:none; border-radius:25px; padding:11px 30px;
-    font-size:.92em; font-weight:600; letter-spacing:.3px;
-    box-shadow:0 3px 12px rgba(45,106,79,.3); transition:all .2s;
+/* ── ADMIN HEADER BAR ── */
+.admin-header {
+  background: var(--green-deep);
+  color: #fff;
+  padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 10px;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,.3);
+}
+.admin-header-left { display: flex; align-items: center; gap: 10px; }
+.admin-header-logo { font-size: 1.4rem; }
+.admin-header-title { font-size: .95rem; font-weight: 800; line-height: 1.2; }
+.admin-header-sub { font-size: .72rem; opacity: .65; }
+.admin-header-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.header-link {
+  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+  color: #fff; border-radius: 7px; padding: 6px 16px;
+  font-family: var(--font-body); font-size: .78rem; font-weight: 700;
+  text-decoration: none; cursor: pointer;
+  transition: background .2s;
+}
+.header-link:hover { background: rgba(255,255,255,.22); }
+.logout-btn {
+  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+  color: #fff; border-radius: 7px; padding: 6px 16px;
+  font-family: var(--font-body); font-size: .78rem; font-weight: 700;
+  cursor: pointer; transition: background .2s;
+}
+.logout-btn:hover { background: rgba(220,60,60,.5); }
+
+/* ── WRAP ── */
+.wrap { max-width: 820px; margin: 0 auto; padding: 28px 16px 60px; }
+
+/* ── SECTION CARD ── */
+.section-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 24px;
+  border: 1.5px solid var(--border);
+}
+.section-heading {
+  font-size: .85rem; font-weight: 700;
+  color: var(--fg-muted); text-transform: uppercase; letter-spacing: .08em;
+  margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
+}
+.section-heading span { font-size: 1.1rem; }
+
+/* ── PHASE SETTER ── */
+.phase-setter {
+  background: var(--green-lite);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.phase-setter label { font-size: .85rem; font-weight: 700; color: var(--green-mid); white-space: nowrap; }
+.phase-setter select {
+  flex: 1; min-width: 180px;
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 9px 11px; font-family: var(--font-body);
+  font-size: .88rem; background: var(--bg-card); color: var(--fg); outline: none;
+}
+.phase-save-btn {
+  background: var(--green-mid); color: #fff; border: none;
+  border-radius: 6px; padding: 9px 20px;
+  font-family: var(--font-body); font-size: .85rem; font-weight: 700;
+  cursor: pointer; transition: background .2s; white-space: nowrap;
+}
+.phase-save-btn:hover { background: var(--green-deep); }
+.phase-saved { font-size: .78rem; color: var(--green-mid); font-weight: 700; opacity: 0; transition: opacity .4s; }
+.phase-saved.show { opacity: 1; }
+
+/* ── TABS ── */
+.tab-bar { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+.tab-btn {
+  padding: 9px 20px; border-radius: 7px; border: 2px solid var(--border);
+  background: transparent; font-family: var(--font-body);
+  font-size: .85rem; font-weight: 700; color: var(--fg-muted); cursor: pointer; transition: all .18s;
+}
+.tab-btn:hover { border-color: var(--green-mid); color: var(--green-mid); }
+.tab-btn.active { background: var(--green-mid); color: #fff; border-color: var(--green-mid); }
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+
+/* ── FORM CONTROLS ── */
+.form-row { margin-bottom: 13px; }
+.form-row label {
+  display: block; font-size: .74rem; font-weight: 700;
+  color: var(--fg-muted); margin-bottom: 5px;
+  text-transform: uppercase; letter-spacing: .05em;
+}
+.form-row input,
+.form-row textarea,
+.form-row select {
+  width: 100%; border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  padding: 10px 13px; font-family: var(--font-body); font-size: .9rem;
+  background: var(--bg); color: var(--fg); outline: none; transition: border-color .18s;
+}
+.form-row input:focus,
+.form-row textarea:focus,
+.form-row select:focus { border-color: var(--green-mid); }
+.form-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 480px) { .form-2col { grid-template-columns: 1fr; } }
+.btn-submit {
+  width: 100%; margin-top: 8px;
+  background: var(--green-mid); color: #fff; border: none;
+  border-radius: var(--radius-sm); padding: 12px 24px;
+  font-family: var(--font-body); font-size: .95rem; font-weight: 800;
+  cursor: pointer; transition: background .2s;
+}
+.btn-submit:hover { background: var(--green-deep); }
+.form-success {
+  background: var(--green-lite); border: 1.5px solid var(--green-mid);
+  border-radius: var(--radius-sm); padding: 10px 14px;
+  font-size: .84rem; font-weight: 700; color: var(--green-mid);
+  margin-top: 10px; display: none;
+}
+.form-success.show { display: block; }
+
+/* ── UPDATES LIST (admin view) ── */
+.updates-list { display: flex; flex-direction: column; gap: 12px; }
+.update-row {
+  background: var(--bg); border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm); padding: 14px 16px;
+  display: flex; align-items: flex-start; gap: 14px;
+}
+.update-row-thumb {
+  width: 72px; height: 52px; border-radius: 6px;
+  object-fit: cover; flex-shrink: 0; background: var(--bg-muted);
+}
+.update-row-yt {
+  width: 72px; height: 52px; border-radius: 6px;
+  background: #000; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 1.4rem; color: #f00;
+}
+.update-row-icon {
+  width: 72px; height: 52px; border-radius: 6px;
+  background: var(--gold-lite); display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 1.5rem;
+}
+.update-row-info { flex: 1; min-width: 0; }
+.update-row-title { font-size: .9rem; font-weight: 800; color: var(--fg); line-height: 1.3; }
+.update-row-meta { font-size: .74rem; color: var(--fg-subtle); margin-top: 3px; }
+.update-row-desc { font-size: .8rem; color: var(--fg-muted); margin-top: 4px; white-space: pre-wrap; }
+.update-row-actions { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+.del-btn {
+  background: none; border: 1.5px solid #fca5a5;
+  color: #dc2626; font-size: .78rem; font-weight: 700;
+  cursor: pointer; padding: 4px 12px; border-radius: 5px;
+  font-family: var(--font-body); transition: all .18s;
+}
+.del-btn:hover { background: #fef2f2; border-color: #dc2626; }
+.chip {
+  font-size: .68rem; font-weight: 800;
+  padding: 2px 9px; border-radius: 10px;
+  text-transform: uppercase; letter-spacing: .05em;
+  display: inline-block;
+}
+.chip-video { background: #dbeafe; color: #1d4ed8; }
+.chip-photo { background: var(--green-lite); color: var(--green-mid); }
+.chip-text  { background: var(--gold-lite); color: var(--gold); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .chip-video { background: #1e3458; color: #93c5fd; }
+  :root:not([data-theme="light"]) .chip-photo { background: var(--green-lite); color: #6ee7b7; }
+  :root:not([data-theme="light"]) .chip-text  { background: var(--gold-lite); color: var(--gold); }
+}
+:root[data-theme="dark"] .chip-video { background: #1e3458; color: #93c5fd; }
+:root[data-theme="dark"] .chip-photo { background: var(--green-lite); color: #6ee7b7; }
+:root[data-theme="dark"] .chip-text  { background: var(--gold-lite); color: var(--gold); }
+
+.empty-msg {
+  text-align: center; padding: 40px 24px;
+  color: var(--fg-subtle); font-size: .88rem;
+}
+.empty-msg .empty-icon { font-size: 2.5rem; margin-bottom: 10px; display: block; }
+
+/* ── STATS MINI ── */
+.stats-mini {
+  display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px;
+}
+.stat-mini {
+  background: var(--bg-card); border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm); padding: 12px 18px; flex: 1; min-width: 90px;
+  text-align: center;
+}
+.stat-mini-num { font-size: 1.6rem; font-weight: 800; color: var(--green-mid); line-height: 1; }
+.stat-mini-label { font-size: .7rem; color: var(--fg-subtle); font-weight: 600; text-transform: uppercase; letter-spacing: .05em; margin-top: 3px; }
+
+/* ── DANGER ZONE ── */
+.danger-zone {
+  background: #fff5f5; border: 1.5px solid #fca5a5;
+  border-radius: var(--radius-sm); padding: 16px 18px;
+}
+:root[data-theme="dark"] .danger-zone,
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .danger-zone {
+    background: #2a1010; border-color: #7f1d1d;
   }
-  .view-all-btn:hover { background:linear-gradient(135deg,#1a3a2a,#2d6a4f); box-shadow:0 5px 18px rgba(45,106,79,.4); transform:translateY(-1px); }
+}
+.danger-title { font-size: .82rem; font-weight: 700; color: #dc2626; margin-bottom: 8px; }
+.danger-desc { font-size: .78rem; color: var(--fg-muted); margin-bottom: 12px; line-height: 1.6; }
+.danger-btn {
+  background: #dc2626; color: #fff; border: none;
+  border-radius: 6px; padding: 9px 20px;
+  font-family: var(--font-body); font-size: .82rem; font-weight: 700;
+  cursor: pointer; transition: background .2s;
+}
+.danger-btn:hover { background: #b91c1c; }
 
-  /* PAGINATION */
-  .pg-bar { display:flex; align-items:center; justify-content:center; gap:8px; margin-top:18px; flex-wrap:wrap; }
-  .pg-btn {
-    min-width:36px; height:36px; border-radius:8px; border:1.5px solid #d4e8db;
-    background:#fff; color:#2d6a4f; font-size:.85em; font-weight:700; cursor:pointer;
-    display:flex; align-items:center; justify-content:center; padding:0 10px;
-    transition:all .18s;
-  }
-  .pg-btn:hover:not(:disabled) { background:#e6f2ec; border-color:#2d6a4f; }
-  .pg-btn.active { background:#2d6a4f; color:#fff; border-color:#2d6a4f; }
-  .pg-btn:disabled { opacity:.35; cursor:default; }
-  .pg-info { font-size:.75em; color:#888; margin:0 4px; }
+.photo-preview-box { margin-top: 8px; display: none; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--bg-muted); }
+.photo-preview-box img { width: 100%; max-height: 200px; object-fit: contain; display: block; }
+.preview-err { padding: 12px; font-size: .82em; color: #c62828; background: #ffebee; }
 
-  /* BANK INFO */
-  .bank-box { background:linear-gradient(135deg,#1a3a2a,#2d6a4f); color:white; border-radius:12px; padding:30px; text-align:center; }
-  .bank-box h3 { font-family:'Noto Serif Bengali',serif; font-size:1.3em; margin-bottom:18px; }
-  .bank-line { display:inline-flex; align-items:center; gap:10px; background:rgba(255,255,255,.12); border-radius:8px; padding:11px 22px; margin:6px; font-size:.95em; }
-  .bank-line strong { color:#a8e6c4; }
+/* ── PAGE NOTICE ── */
+.page-notice {
+  background: var(--gold-lite); border: 1.5px solid var(--gold);
+  border-radius: var(--radius-sm); padding: 12px 16px;
+  font-size: .82rem; color: var(--gold); font-weight: 600;
+  margin-bottom: 20px; line-height: 1.6;
+}
 
-  .footer { background:#1a3a2a; color:rgba(255,255,255,.6); text-align:center; padding:20px; font-size:.85em; margin-top:30px; }
-
-  @media(max-width:600px) {
-    .hero h1{font-size:1.5em;}
-    .photo-grid{grid-template-columns:1fr 1fr;}
-    .photo-grid-2{grid-template-columns:1fr 1fr;}
-    .land-grid,.donate-grid{grid-template-columns:1fr;}
-    .bank-line{font-size:.8em;padding:8px 10px;margin:4px;}
-  }
+/* ── FUND SECTION ── */
+.fund-admin-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px;
+}
+@media (max-width: 480px) { .fund-admin-grid { grid-template-columns: 1fr; } }
+.fund-admin-field label {
+  display: block; font-size: .74rem; font-weight: 700;
+  color: var(--fg-muted); margin-bottom: 5px;
+  text-transform: uppercase; letter-spacing: .05em;
+}
+.fund-admin-field input {
+  width: 100%; border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  padding: 10px 13px; font-family: var(--font-body); font-size: .9rem;
+  background: var(--bg); color: var(--fg); outline: none; transition: border-color .18s;
+}
+.fund-admin-field input:focus { border-color: var(--gold); }
+.fund-admin-preview {
+  background: var(--gold-lite); border: 1.5px solid var(--gold);
+  border-radius: var(--radius-sm); padding: 12px 16px;
+  display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 14px;
+}
+.fund-admin-preview-item { text-align: center; }
+.fund-admin-preview-num { font-size: 1.4rem; font-weight: 800; color: var(--gold); line-height: 1; }
+.fund-admin-preview-label { font-size: .68rem; color: var(--fg-muted); font-weight: 600; text-transform: uppercase; letter-spacing: .05em; margin-top: 3px; }
+.fund-bar-preview-wrap { margin-bottom: 14px; }
+.fund-bar-preview-bg { background: var(--border); border-radius: 99px; height: 10px; overflow: hidden; }
+.fund-bar-preview-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--gold) 0%, #e2a93b 100%); transition: width .8s; }
+.fund-bar-preview-label { font-size: .75rem; color: var(--fg-muted); margin-top: 5px; }
 </style>
 </head>
 <body>
 
-<!-- LIGHTBOX -->
-<!-- NAV OVERLAY -->
-<div class="nav-drawer-overlay" id="navOverlay" onclick="closeNav()"></div>
-
-<!-- NAV DRAWER -->
-<nav class="nav-drawer" id="navDrawer">
-  <div class="nav-drawer-title">সেকশনসমূহ</div>
-  <a href="#top" onclick="closeNav()"><i class="fas fa-home"></i>হোম / শীর্ষ</a>
-  <a href="#intro" onclick="closeNav()"><i class="fas fa-file-alt"></i>ভূমিকা</a>
-  <a href="#photos" onclick="closeNav()"><i class="fas fa-camera"></i>বর্তমান অবস্থা</a>
-  <a href="#problems" onclick="closeNav()"><i class="fas fa-exclamation-triangle"></i>চিহ্নিত সমস্যা</a>
-  <a href="#land" onclick="closeNav()"><i class="fas fa-scroll"></i>জমির তথ্য</a>
-  <a href="#plan" onclick="closeNav()"><i class="fas fa-drafting-compass"></i>পুনর্নির্মাণ পরিকল্পনা</a>
-  <a href="#fundraiser" onclick="closeNav()"><i class="fas fa-hand-holding-heart"></i>তহবিল সংগ্রহ</a>
-  <a href="#budget" onclick="closeNav()"><i class="fas fa-coins"></i>নির্মাণ বাজেট</a>
-  <a href="#progress" onclick="closeNav()"><i class="fas fa-tools"></i>নির্মাণ অগ্রগতি</a>
-  <a href="#why" onclick="closeNav()"><i class="fas fa-heart"></i>কেন দান করবেন</a>
-  <a href="#how" onclick="closeNav()"><i class="fas fa-donate"></i>দানের পদ্ধতি</a>
-  <a href="#donate" onclick="closeNav()"><i class="fas fa-university"></i>দান পাঠানোর তথ্য</a>
-  <div class="nav-sep"></div>
-  <div class="nav-ext">
-    <a href="progress.html" onclick="closeNav()"><i class="fas fa-trowel-bricks"></i>নির্মাণ অগ্রগতি পেজ</a>
-  </div>
-</nav>
-
-<!-- BURGER BUTTON -->
-<button class="burger-btn" id="burgerBtn" onclick="toggleNav()" aria-label="মেনু">
-  <span></span><span></span><span></span>
-</button>
-
-<div class="lightbox" id="lb" onclick="closeLB()">
-  <span class="lightbox-close" onclick="closeLB()">✕</span>
-  <img id="lb-img" src="" alt="">
-  <div class="lightbox-caption" id="lb-cap"></div>
-</div>
-
-<!-- HERO -->
-<div class="hero" id="top">
-  <div class="hero-icon">
-    <img src="https://guatonmsq.github.io/web/mosque.svg" width="120" height="120" alt="মসজিদ" style="filter: brightness(0) saturate(100%) invert(72%) sepia(65%) saturate(800%) hue-rotate(5deg) brightness(88%) drop-shadow(0 4px 18px rgba(0,0,0,.5));">
-  </div>
-  <h1>উত্তর গুয়াটন জামে মসজিদ</h1>
-  <p class="subtitle">পুনর্নির্মাণ প্রস্তাবনা</p>
-  <span class="location">ঝালকাঠি জেলা, বরিশাল বিভাগ, বাংলাদেশ</span>
-</div>
-
-<!-- ARABIC -->
-<div class="arabic-banner">
-  بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
-  <small>পরম করুণাময় ও অসীম দয়ালু আল্লাহর নামে শুরু করছি</small>
-</div>
-
-<!-- ── QUICK NAV ── -->
-<div class="quick-nav">
-  <a class="qnav-btn donate" href="#donate">
-    <span class="qnav-icon"><i class="fas fa-hand-holding-heart"></i></span>
-    <span class="qnav-text">
-      <div class="qnav-text-main">দান করুন</div>
-      <div class="qnav-text-sub">ব্যাংক · বিকাশ · Zelle</div>
-    </span>
-  </a>
-  <a class="qnav-btn progress" href="progress.html">
-    <span class="qnav-icon"><i class="fas fa-trowel-bricks"></i></span>
-    <span class="qnav-text">
-      <div class="qnav-text-main">নির্মাণ অগ্রগতি</div>
-      <div class="qnav-text-sub">সর্বশেষ আপডেট দেখুন</div>
-    </span>
-  </a>
-</div>
-
-<!-- FUND STRIP -->
-<div class="fund-strip" id="fundStrip">
-  <div class="fund-strip-nums">
-    <div class="fund-strip-num"><div class="val" id="fs-collected">৳ ০</div><div class="lbl">সংগৃহীত</div></div>
-    <div class="fund-strip-divider"></div>
-    <div class="fund-strip-num"><div class="val" id="fs-goal">৳ ২৮.৯ লক্ষ</div><div class="lbl">লক্ষ্যমাত্রা</div></div>
-    <div class="fund-strip-divider"></div>
-    <div class="fund-strip-num"><div class="val" id="fs-backers">০</div><div class="lbl">দানকারী</div></div>
-  </div>
-  <div class="fund-strip-bar-wrap">
-    <div class="fund-strip-label"><span>তহবিল অগ্রগতি</span><span id="fs-pct">০%</span></div>
-    <div class="fund-strip-bg"><div class="fund-strip-fill" id="fs-bar" style="width:0%"></div></div>
+<!-- ═══ LOGIN OVERLAY ═══ -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-box">
+    <span class="login-mosque-icon">🕌</span>
+    <div class="login-title">অ্যাডমিন লগইন</div>
+    <div class="login-sub">উত্তর গুয়াটন জামে মসজিদ — নির্মাণ ব্যবস্থাপনা</div>
+    <div class="login-divider"></div>
+    <div class="login-field">
+      <label>ব্যবহারকারীর নাম</label>
+      <input type="text" id="loginUser" placeholder="username" autocomplete="username" autocapitalize="none">
+    </div>
+    <div class="login-field">
+      <label>পাসওয়ার্ড</label>
+      <input type="password" id="loginPass" placeholder="password" autocomplete="current-password"
+             onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="login-btn" onclick="doLogin()">🔐 প্রবেশ করুন</button>
+    <div class="login-error" id="loginError"></div>
+    <a class="login-back" href="progress.html">← নির্মাণ অগ্রগতি পাতায় ফিরুন</a>
   </div>
 </div>
 
-<!-- BANNER PHOTO -->
-<div style="max-width:900px;margin:25px auto;border-radius:12px;overflow:hidden;box-shadow:0 3px 20px rgba(0,0,0,.1);">
-  <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo8.jpg"
-       alt="মসজিদের সামগ্রিক দৃশ্য"
-       style="width:100%;max-height:380px;object-fit:cover;display:block;cursor:pointer;"
-       onclick="openLB(this.src,'মসজিদের সামগ্রিক বাইরের দৃশ্য')">
-</div>
-
-<!-- INTRO -->
-<div class="section" id="intro">
-  <div class="section-header"><span class="icon"><i class="fas fa-file-alt"></i></span><h2>ভূমিকা</h2></div>
-  <div class="section-body">
-    <p class="intro-text">প্রায় ১৯৩০ সালে প্রতিষ্ঠিত উত্তর গুয়াটন জামে মসজিদটি দীর্ঘদিন ধরে এলাকার মুসলিম জনগণের ইবাদতের কেন্দ্র হিসেবে সেবা প্রদান করে আসছে। দীর্ঘদিনের পুরোনো হওয়ায় মসজিদটি বর্তমানে অত্যন্ত জরাজীর্ণ অবস্থায় রয়েছে। প্রায় ১০ বছর আগে একবার মসজিদটির সংস্কার করা হয়েছিল, কিন্তু বর্তমানে পুনরায় ব্যাপক সংস্কার ও মেরামতের প্রয়োজন দেখা দিয়েছে।<br><br>
-    স্থানীয়ভাবে পর্যাপ্ত সামর্থ্যবান মানুষের অভাবে মসজিদটির সংস্কারকাজ সম্পন্ন করা কঠিন হয়ে পড়েছে। মসজিদের সামগ্রিক অবকাঠামো এতটাই দুর্বল হয়ে পড়েছে যে আংশিক সংস্কার কোনো স্থায়ী সমাধান নয় — কাঠামোগত দুর্বলতার কারণে <strong>সম্পূর্ণ পুনর্নির্মাণই একমাত্র নিরাপদ ও টেকসই সমাধান।</strong></p>
-  </div>
-</div>
-
-<!-- PHOTOS -->
-<div class="section" id="photos">
-  <div class="section-header"><span class="icon"><i class="fas fa-camera"></i></span><h2>বর্তমান অবস্থা — সরেজমিন চিত্র</h2></div>
-  <div class="section-body">
-    <!-- photo counter -->
-    <div style="display:none;" id="galCount"></div>
-    <!-- paginated grid -->
-    <div id="galGrid"></div>
-    <!-- pagination -->
-    <div class="pg-bar" id="galPg" style="margin-top:14px;"></div>
-    <div class="photo-note" style="margin-top:14px;"><i class="fas fa-exclamation-circle" style="color:#e67e22;margin-right:4px;"></i><strong>বিশেষজ্ঞ মতামত:</strong> উপরোক্ত চিত্রসমূহ সরেজমিন পরিদর্শনে গৃহীত। ছাদ, পিলার ও দেওয়ালের কাঠামোগত দুর্বলতার কারণে যেকোনো সময় দুর্ঘটনার আশঙ্কা রয়েছে। সম্পূর্ণ পুনর্নির্মাণ ছাড়া কোনো বিকল্প নেই।</div>
-  </div>
-</div>
-
-<!-- PROBLEMS TABLE -->
-<div class="section" id="problems">
-  <div class="section-header"><span class="icon"><i class="fas fa-exclamation-triangle"></i></span><h2>চিহ্নিত সমস্যাসমূহ</h2></div>
-  <div class="section-body" style="padding:0;">
-    <table class="prob-table">
-      <tr><th width="5%">#</th><th width="25%">সমস্যার ধরন</th><th>বিবরণ</th><th width="20%">অবস্থা</th></tr>
-      <tr><td>১</td><td>ছাদ ও সিলিং</td><td>প্লাস্টার খসে পড়েছে, বড় গর্ত তৈরি হয়েছে, ছাদ ধসের ঝুঁকি</td><td><span class="badge badge-danger">অত্যন্ত বিপজ্জনক</span></td></tr>
-      <tr><td>২</td><td>দেওয়াল</td><td>একাধিক স্থানে বড় ও গভীর ফাটল, ইট বেরিয়ে পড়েছে</td><td><span class="badge badge-danger">গুরুতর</span></td></tr>
-      <tr><td>৩</td><td>পিলার/কলাম</td><td>কর্নার পিলারে বহু ফাটল, কাঠামোগত দুর্বলতা স্পষ্ট</td><td><span class="badge badge-danger">গুরুতর</span></td></tr>
-      <tr><td>৪</td><td>দরজা-জানালা</td><td>জানালার গ্রিল মরিচা ধরে নষ্ট, দরজা ভাঙা ও বিচ্ছিন্ন</td><td><span class="badge badge-warn">জরুরি মেরামত</span></td></tr>
-      <tr><td>৫</td><td>বাইরের দেওয়াল</td><td>সম্পূর্ণ প্লাস্টার উঠে গেছে, শ্যাওলা ও ড্যাম্পনেস</td><td><span class="badge badge-warn">জরুরি মেরামত</span></td></tr>
-      <tr><td>৬</td><td>বাথরুম/ওযুখানা</td><td>জরাজীর্ণ ও অকার্যকর, ব্যবহার অনুপযোগী</td><td><span class="badge badge-danger">অকার্যকর</span></td></tr>
-      <tr><td>৭</td><td>পানি জমা</td><td>মসজিদের আঙিনায় জলাবদ্ধতার সমস্যা</td><td><span class="badge badge-warn">সমস্যাযুক্ত</span></td></tr>
-      <tr><td>৮</td><td>বৈদ্যুতিক ব্যবস্থা</td><td>অনিরাপদ ওয়্যারিং, সিলিং ফ্যান নষ্ট</td><td><span class="badge badge-danger">বিপজ্জনক</span></td></tr>
-    </table>
-  </div>
-</div>
-
-<!-- LAND INFO -->
-<div class="section" id="land">
-  <div class="section-header"><span class="icon"><i class="fas fa-scroll"></i></span><h2>জমির তথ্য</h2></div>
-  <div class="section-body">
-    <div class="land-grid">
-      <div class="land-card"><div class="land-icon"><i class="fas fa-mosque"></i></div><div><h4>মসজিদের নাম</h4><p>উত্তর গুয়াটন জামে মসজিদ</p></div></div>
-      <div class="land-card"><div class="land-icon"><i class="fas fa-map-marker-alt"></i></div><div><h4>অবস্থান</h4><p>ঝালকাঠি জেলা, বরিশাল বিভাগ</p></div></div>
-      <div class="land-card"><div class="land-icon"><i class="fas fa-ruler-combined"></i></div><div><h4>জমির পরিমাণ</h4><p>আনুমানিক ৩৩ শতক</p></div></div>
-      <div class="land-card"><div class="land-icon"><i class="fas fa-certificate"></i></div><div><h4>দলিলের ধরন</h4><p>রেজিস্ট্রিকৃত, সরকারি সিলযুক্ত</p></div></div>
+<!-- ═══ ADMIN HEADER ═══ -->
+<div class="admin-header" id="adminHeader" style="display:none">
+  <div class="admin-header-left">
+    <div class="admin-header-logo">🕌</div>
+    <div>
+      <div class="admin-header-title">অ্যাডমিন প্যানেল</div>
+      <div class="admin-header-sub">উত্তর গুয়াটন জামে মসজিদ পুনর্নির্মাণ</div>
     </div>
   </div>
-</div>
-
-<!-- PLAN -->
-<div class="section" id="plan">
-  <div class="section-header"><span class="icon"><i class="fas fa-drafting-compass"></i></span><h2>পুনর্নির্মাণ পরিকল্পনা</h2></div>
-  <div class="section-body">
-    <div class="plan-steps">
-      <div class="step"><div class="step-num">১</div><div class="step-content"><h4>ভাঙন ও মাটিকাজ</h4><ul><li>পুরনো কাঠামো সম্পূর্ণ অপসারণ</li><li>মাটি পরীক্ষা (Soil Test)</li><li>ভিত্তি প্রস্তুতি ও লেভেলিং</li></ul></div></div>
-      <div class="step"><div class="step-num">২</div><div class="step-content"><h4>মূল কাঠামো নির্মাণ</h4><ul><li>শক্তিশালী RCC ফাউন্ডেশন</li><li>কলাম, বিম ও ছাদ ঢালাই</li><li>উচ্চমানের ইট ও সিমেন্টে দেওয়াল নির্মাণ</li></ul></div></div>
-      <div class="step"><div class="step-num">৩</div><div class="step-content"><h4>অভ্যন্তরীণ কাজ</h4><ul><li>মেঝে টাইলস ও পলেস্তারা</li><li>দরজা-জানালা স্থাপন</li><li>বৈদ্যুতিক সংযোগ, আলো ও পাখা</li></ul></div></div>
-      <div class="step"><div class="step-num">৪</div><div class="step-content"><h4>বাইরের কাজ</h4><ul><li>ওযুখানা ও টয়লেট নির্মাণ</li><li>আঙিনা উন্নয়ন ও পানি নিষ্কাশন</li><li>সীমানা প্রাচীর</li></ul></div></div>
-      <div class="step"><div class="step-num">৫</div><div class="step-content"><h4>সৌন্দর্যবর্ধন ও ফিনিশিং</h4><ul><li>মিনার নির্মাণ</li><li>রঙ ও চূড়ান্ত ফিনিশিং</li><li>নামফলক স্থাপন</li></ul></div></div>
-    </div>
+  <div class="admin-header-right">
+    <a class="header-link" href="progress.html" target="_blank">👁️ পাবলিক পাতা দেখুন</a>
+    <a class="header-link" href="index.html">🏠 মূল সাইট</a>
+    <button class="logout-btn" onclick="doLogout()">🚪 লগআউট</button>
   </div>
 </div>
 
-<!-- FUNDRAISER -->
-<div class="section" id="fundraiserSection" data-nav-id="fundraiser">
-  <!-- Goal header -->
-  <div class="fund-hero">
-    <h3>পুনর্নির্মাণ তহবিল সংগ্রহ</h3>
-    <div class="fund-goal-amount" id="fr-goal">৳ ২৮.৯ লক্ষ</div>
-    <div class="fund-goal-label">লক্ষ্যমাত্রা</div>
+<!-- ═══ MAIN CONTENT ═══ -->
+<div class="wrap" id="mainWrap" style="display:none">
+
+  <!-- NOTICE -->
+  <div class="page-notice">
+    ⚠️ এই পাতাটি শুধুমাত্র অ্যাডমিনের জন্য। আপডেট যোগ করার পর <strong>"JSON কপি করুন"</strong> বোতামে ক্লিক করে GitHub-এ progress.json আপডেট করুন — তাহলে সব ডিভাইস ও মোবাইলে দেখা যাবে।
   </div>
 
-  <!-- Progress bar -->
-  <div class="fund-bar-wrap">
-    <div class="fund-bar-bg">
-      <div class="fund-bar-fill" id="fr-bar" style="width:0%"></div>
-    </div>
-    <div class="fund-pct" id="fr-pct">0% সম্পন্ন</div>
+  <!-- STATS -->
+  <div class="stats-mini" id="statsMini">
+    <div class="stat-mini"><div class="stat-mini-num" id="st-total">0</div><div class="stat-mini-label">মোট আপডেট</div></div>
+    <div class="stat-mini"><div class="stat-mini-num" id="st-videos">0</div><div class="stat-mini-label">ভিডিও</div></div>
+    <div class="stat-mini"><div class="stat-mini-num" id="st-photos">0</div><div class="stat-mini-label">ছবি</div></div>
+    <div class="stat-mini"><div class="stat-mini-num" id="st-texts">0</div><div class="stat-mini-label">টেক্সট</div></div>
   </div>
 
-  <!-- Stats row -->
-  <div class="fund-stats">
-    <div class="fund-stat">
-      <div class="fund-stat-num collected" id="fr-collected">৳ ০</div>
-      <div class="fund-stat-label"><i class="fas fa-circle-check" style="color:#2d6a4f;margin-right:3px;font-size:.8em;"></i>সংগ্রহ হয়েছে</div>
-    </div>
-    <div class="fund-stat">
-      <div class="fund-stat-num pending" id="fr-pending">৳ ২৮,৯০,০০০</div>
-      <div class="fund-stat-label"><i class="fas fa-circle-xmark" style="color:#c0392b;margin-right:3px;font-size:.8em;"></i>বাকি আছে</div>
-    </div>
-    <div class="fund-stat">
-      <div class="fund-stat-num" id="fr-backers" style="color:#b5883a;">০</div>
-      <div class="fund-stat-label"><i class="fas fa-users" style="color:#b5883a;margin-right:3px;font-size:.8em;"></i>দানকারী</div>
+  <!-- PHASE SETTER -->
+  <div class="section-card">
+    <div class="section-heading"><span>📍</span> বর্তমান নির্মাণ পর্যায় সেট করুন</div>
+    <div class="phase-setter">
+      <label for="phaseSelect">পর্যায়:</label>
+      <select id="phaseSelect">
+        <option value="0">— শুরু হয়নি —</option>
+        <option value="1">পর্যায় ১ — পুরনো মসজিদ ভাঙন</option>
+        <option value="2">পর্যায় ২ — ফাউন্ডেশন খনন ও নির্মাণ</option>
+        <option value="3">পর্যায় ৩ — RCC কলাম ও বিম</option>
+        <option value="4">পর্যায় ৪ — ছাদ স্ল্যাব</option>
+        <option value="5">পর্যায় ৫ — ইটের দেয়াল ও প্লাস্টার</option>
+        <option value="6">পর্যায় ৬ — বৈদ্যুতিক কাজ</option>
+        <option value="7">পর্যায় ৭ — স্যানিটারি ও ওযুখানা</option>
+        <option value="8">পর্যায় ৮ — ফিনিশিং ও রং</option>
+        <option value="9">পর্যায় ৯ — সম্পন্ন 🎉</option>
+      </select>
+      <button class="phase-save-btn" onclick="savePhase()">✔ সংরক্ষণ করুন</button>
+      <span class="phase-saved" id="phaseSaved">✅ সংরক্ষিত!</span>
     </div>
   </div>
 
+  <!-- ADD UPDATE SECTION -->
+  <div class="section-card">
+    <div class="section-heading"><span>➕</span> নতুন আপডেট যোগ করুন</div>
 
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('video',this)">▶️ YouTube ভিডিও</button>
+      <button class="tab-btn" onclick="switchTab('photo',this)">📸 ছবি</button>
+      <button class="tab-btn" onclick="switchTab('text',this)">📝 টেক্সট আপডেট</button>
+    </div>
 
-  <div class="fund-note">
-    <i class="fas fa-shield-halved" style="color:#2d6a4f;margin-right:4px;"></i>
-    সকল দান সরাসরি মসজিদ কমিটির মাধ্যমে পরিচালিত হবে। প্রতিটি টাকার হিসাব স্বচ্ছভাবে রাখা হবে।
-  </div>
-</div>
-
-<!-- BUDGET -->
-<div class="section" id="budget">
-  <div class="section-header"><span class="icon"><i class="fas fa-coins"></i></span><h2>সম্ভাব্য নির্মাণ বাজেট — ২০২৬</h2></div>
-  <div class="section-body" style="padding:0;">
-
-    <!-- Summary chips -->
-    <div style="display:flex;gap:12px;flex-wrap:wrap;padding:18px 20px 4px;justify-content:center;">
-      <div style="background:#f0faf5;border:1px solid #b7ddc9;border-radius:10px;padding:10px 20px;text-align:center;flex:1;min-width:130px;">
-        <div style="font-size:1.45em;font-weight:800;color:#1a3a2a;">১,০০০</div>
-        <div style="font-size:.75em;color:#555;margin-top:2px;">বর্গফুট আয়তন</div>
+    <!-- VIDEO TAB -->
+    <div class="tab-pane active" id="pane-video">
+      <div class="form-row">
+        <label>YouTube লিংক *</label>
+        <input type="url" id="v-url" placeholder="https://www.youtube.com/watch?v=...">
       </div>
-      <div style="background:#fff8e6;border:1px solid #e0c96a;border-radius:10px;padding:10px 20px;text-align:center;flex:1;min-width:130px;">
-        <div style="font-size:1.45em;font-weight:800;color:#8a6000;">২৮,৯০,০০০৳</div>
-        <div style="font-size:.75em;color:#555;margin-top:2px;">সম্ভাব্য মোট বাজেট</div>
+      <div class="form-2col">
+        <div class="form-row">
+          <label>শিরোনাম *</label>
+          <input type="text" id="v-title" placeholder="যেমন: ফাউন্ডেশন কাজ শুরু">
+        </div>
+        <div class="form-row">
+          <label>তারিখ</label>
+          <input type="date" id="v-date">
+        </div>
       </div>
-      <div style="background:#f0faf5;border:1px solid #b7ddc9;border-radius:10px;padding:10px 20px;text-align:center;flex:1;min-width:130px;">
-        <div style="font-size:1.45em;font-weight:800;color:#1a3a2a;">১৪টি</div>
-        <div style="font-size:.75em;color:#555;margin-top:2px;">নির্মাণ খাত</div>
+      <div class="form-row">
+        <label>বিবরণ (ঐচ্ছিক)</label>
+        <textarea id="v-desc" rows="2" placeholder="ভিডিওতে কী দেখানো হয়েছে..."></textarea>
+      </div>
+      <div class="form-row">
+        <label>নির্মাণ পর্যায়</label>
+        <select id="v-phase">
+          <option>ভাঙন কাজ</option><option>ফাউন্ডেশন</option>
+          <option>RCC কলাম ও বিম</option><option>ছাদ স্ল্যাব</option>
+          <option>দেয়াল ও প্লাস্টার</option><option>বৈদ্যুতিক কাজ</option>
+          <option>স্যানিটারি ও ওযুখানা</option><option>ফিনিশিং</option>
+          <option>সাধারণ আপডেট</option>
+        </select>
+      </div>
+      <button class="btn-submit" onclick="addUpdate('video')">➕ ভিডিও প্রকাশ করুন</button>
+      <div class="form-success" id="succ-video">✅ ভিডিও সফলভাবে যোগ হয়েছে! progress.html-এ দেখা যাবে।</div>
+    </div>
+
+    <!-- PHOTO TAB -->
+    <div class="tab-pane" id="pane-photo">
+      <div class="form-row">
+        <label>ছবির লিংক * — GitHub raw URL (raw.githubusercontent.com/...) বা Imgur direct link (.jpg/.png শেষে) দিন</label>
+        <input type="url" id="p-url" placeholder="https://raw.githubusercontent.com/guatonmsq/web/main/images/..." oninput="previewPhoto()">
+      </div>
+      <div class="photo-preview-box" id="photo-preview">
+        <img src="" alt="Preview">
+        <div class="preview-err" style="display:none;"></div>
+      </div>
+      <div class="form-2col">
+        <div class="form-row">
+          <label>ক্যাপশন *</label>
+          <input type="text" id="p-title" placeholder="যেমন: ফাউন্ডেশন সম্পন্ন">
+        </div>
+        <div class="form-row">
+          <label>তারিখ</label>
+          <input type="date" id="p-date">
+        </div>
+      </div>
+      <div class="form-row">
+        <label>বিবরণ (ঐচ্ছিক)</label>
+        <textarea id="p-desc" rows="2" placeholder="ছবিতে কী দেখা যাচ্ছে..."></textarea>
+      </div>
+      <div class="form-row">
+        <label>নির্মাণ পর্যায়</label>
+        <select id="p-phase">
+          <option>ভাঙন কাজ</option><option>ফাউন্ডেশন</option>
+          <option>RCC কলাম ও বিম</option><option>ছাদ স্ল্যাব</option>
+          <option>দেয়াল ও প্লাস্টার</option><option>বৈদ্যুতিক কাজ</option>
+          <option>স্যানিটারি ও ওযুখানা</option><option>ফিনিশিং</option>
+          <option>সাধারণ আপডেট</option>
+        </select>
+      </div>
+      <button class="btn-submit" onclick="addUpdate('photo')">➕ ছবি প্রকাশ করুন</button>
+      <div class="form-success" id="succ-photo">✅ ছবি সফলভাবে যোগ হয়েছে! progress.html-এ দেখা যাবে।</div>
+    </div>
+
+    <!-- TEXT TAB -->
+    <div class="tab-pane" id="pane-text">
+      <div class="form-2col">
+        <div class="form-row">
+          <label>শিরোনাম *</label>
+          <input type="text" id="t-title" placeholder="যেমন: সপ্তাহ ৩ আপডেট">
+        </div>
+        <div class="form-row">
+          <label>তারিখ</label>
+          <input type="date" id="t-date">
+        </div>
+      </div>
+      <div class="form-row">
+        <label>বিস্তারিত</label>
+        <textarea id="t-desc" rows="4" placeholder="এই সপ্তাহে কী কাজ হয়েছে, কোনো চ্যালেঞ্জ, পরবর্তী পদক্ষেপ..."></textarea>
+      </div>
+      <div class="form-row">
+        <label>নির্মাণ পর্যায়</label>
+        <select id="t-phase">
+          <option>ভাঙন কাজ</option><option>ফাউন্ডেশন</option>
+          <option>RCC কলাম ও বিম</option><option>ছাদ স্ল্যাব</option>
+          <option>দেয়াল ও প্লাস্টার</option><option>বৈদ্যুতিক কাজ</option>
+          <option>স্যানিটারি ও ওযুখানা</option><option>ফিনিশিং</option>
+          <option>সাধারণ আপডেট</option>
+        </select>
+      </div>
+      <button class="btn-submit" onclick="addUpdate('text')">➕ আপডেট প্রকাশ করুন</button>
+      <div class="form-success" id="succ-text">✅ আপডেট সফলভাবে যোগ হয়েছে! progress.html-এ দেখা যাবে।</div>
+    </div>
+  </div>
+
+  <!-- PUBLISH TO GITHUB SECTION -->
+  <div class="section-card" id="exportCard">
+    <div class="section-heading"><span>🌐</span> সবার জন্য প্রকাশ করুন (GitHub)</div>
+    <div style="font-size:.84rem;color:var(--fg-muted);margin-bottom:14px;line-height:1.7;">
+      আপডেট যোগ করার পর নিচের JSON টি কপি করুন এবং GitHub-এ <strong>progress.json</strong> ফাইলটি আপডেট করুন — তাহলে মোবাইলসহ সব ডিভাইসে দেখা যাবে।
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+      <button onclick="copyJSON()" style="background:var(--green-mid);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:.9rem;font-weight:700;cursor:pointer;">📋 JSON কপি করুন</button>
+      <a href="https://github.com/guatonmsq/web/blob/main/progress.json" target="_blank" style="background:var(--bg-muted);color:var(--fg);border:1.5px solid var(--border);border-radius:8px;padding:10px 20px;font-size:.9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;">✏️ GitHub-এ সম্পাদনা করুন</a>
+    </div>
+    <div id="copySuccess" style="display:none;background:#e6f4ea;border:1px solid #2d6a4f;border-radius:8px;padding:10px 14px;font-size:.84rem;color:#1a3a2a;margin-bottom:10px;">
+      ✅ JSON কপি হয়েছে! এখন GitHub-এ গিয়ে <strong>progress.json</strong> ফাইলে পেস্ট করুন এবং Commit করুন।
+    </div>
+    <details style="margin-top:8px;">
+      <summary style="cursor:pointer;font-size:.82rem;color:var(--fg-subtle);padding:6px 0;">📖 GitHub-এ কীভাবে আপলোড করবেন?</summary>
+      <ol style="font-size:.82rem;color:var(--fg-muted);line-height:2;padding-left:20px;margin-top:8px;">
+        <li>উপরের "JSON কপি করুন" বোতামে ক্লিক করুন</li>
+        <li>"GitHub-এ সম্পাদনা করুন" বোতামে ক্লিক করুন</li>
+        <li>পেনসিল আইকনে ক্লিক করুন (Edit this file)</li>
+        <li>সব মুছে কপি করা JSON পেস্ট করুন (Ctrl+A তারপর Ctrl+V)</li>
+        <li>"Commit changes" বোতামে ক্লিক করুন</li>
+        <li>১–২ মিনিট পর সাইটে দেখা যাবে ✅</li>
+      </ol>
+    </details>
+  </div>
+
+  <!-- MANAGE UPDATES SECTION -->
+  <div class="section-card">
+    <div class="section-heading"><span>📋</span> প্রকাশিত আপডেটসমূহ</div>
+    <div id="updatesList">
+      <div class="empty-msg"><span class="empty-icon">📭</span>এখনো কোনো আপডেট প্রকাশিত হয়নি।</div>
+    </div>
+  </div>
+
+  <!-- FUNDRAISER SECTION -->
+  <div class="section-card">
+    <div class="section-heading"><span>💰</span> ফান্ডরাইজিং আপডেট করুন</div>
+
+    <div class="fund-admin-preview" id="fundPreview">
+      <div class="fund-admin-preview-item">
+        <div class="fund-admin-preview-num" id="fpv-collected">৳ ০</div>
+        <div class="fund-admin-preview-label">সংগৃহীত</div>
+      </div>
+      <div class="fund-admin-preview-item">
+        <div class="fund-admin-preview-num" id="fpv-goal">৳ ২৮.৯ লক্ষ</div>
+        <div class="fund-admin-preview-label">লক্ষ্যমাত্রা</div>
+      </div>
+      <div class="fund-admin-preview-item">
+        <div class="fund-admin-preview-num" id="fpv-pending">৳ ২৮.৯ লক্ষ</div>
+        <div class="fund-admin-preview-label">বাকি</div>
+      </div>
+      <div class="fund-admin-preview-item">
+        <div class="fund-admin-preview-num" id="fpv-backers">০</div>
+        <div class="fund-admin-preview-label">দাতা</div>
+      </div>
+      <div class="fund-admin-preview-item">
+        <div class="fund-admin-preview-num" id="fpv-pct">০%</div>
+        <div class="fund-admin-preview-label">সম্পন্ন</div>
       </div>
     </div>
-
-    <table class="budget-table" style="margin-top:12px;">
-      <thead>
-        <tr>
-          <th style="width:40px;">ক্রম</th>
-          <th>খাত / বিবরণ</th>
-          <th style="font-size:.8em;opacity:.85;">পরিমাণ/ধারণা</th>
-          <th style="text-align:right;white-space:nowrap;">বরাদ্দ (৳)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>১</td><td>সাইট পরিষ্কার, মাটি ভরাট/সমতল ও লেআউট</td><td style="color:#777;font-size:.82em;">প্রয়োজন অনুযায়ী</td><td style="text-align:right;font-weight:600;">৭০,০০০</td></tr>
-        <tr><td>২</td><td>ফাউন্ডেশন + ভবিষ্যৎ দোতলার উপযোগী RCC কাঠামো</td><td style="color:#777;font-size:.82em;">ইঞ্জিনিয়ার্ড ডিজাইন অনুযায়ী</td><td style="text-align:right;font-weight:600;">৭,০০,০০০</td></tr>
-        <tr><td>৩</td><td>RCC কলাম, বিম, ছাদ ও সিঁড়ির কাঠামো</td><td style="color:#777;font-size:.82em;">প্রাথমিক ভবন</td><td style="text-align:right;font-weight:600;">৮,০০,০০০</td></tr>
-        <tr><td>৪</td><td>ইটের দেয়াল/পার্টিশন ও প্লাস্টার</td><td style="color:#777;font-size:.82em;">প্রায় ১,২০০ sq ft core</td><td style="text-align:right;font-weight:600;">২,৩০,০০০</td></tr>
-        <tr><td>৫</td><td>ফ্লোর টাইলস/সাধারণ মেঝে</td><td style="color:#777;font-size:.82em;">হল + বারান্দা + সার্ভিস</td><td style="text-align:right;font-weight:600;">১,৭০,০০০</td></tr>
-        <tr><td>৬</td><td>দরজা-জানালা/গ্রিল</td><td style="color:#777;font-size:.82em;">সাধারণ মান</td><td style="text-align:right;font-weight:600;">১,৩০,০০০</td></tr>
-        <tr><td>৭</td><td>অজুখানা + ২ WC + পানির লাইন/ড্রেনেজ</td><td style="color:#777;font-size:.82em;">উত্তর পাশে</td><td style="text-align:right;font-weight:600;">১,০০,০০০</td></tr>
-        <tr><td>৮</td><td>ইলেকট্রিক, ফ্যান, LED, DB</td><td style="color:#777;font-size:.82em;">বেসিক</td><td style="text-align:right;font-weight:600;">৮০,০০০</td></tr>
-        <tr><td>৯</td><td>পেইন্ট/চুনকাম</td><td style="color:#777;font-size:.82em;">ভিতর-বাহির</td><td style="text-align:right;font-weight:600;">১,০০,০০০</td></tr>
-        <tr><td>১০</td><td>মিহরাব, মিম্বর, সাধারণ সজ্জা</td><td style="color:#777;font-size:.82em;">বেসিক</td><td style="text-align:right;font-weight:600;">৭০,০০০</td></tr>
-        <tr><td>১১</td><td>পানি সংযোগ/পাম্প/ছোট ট্যাংক</td><td style="color:#777;font-size:.82em;">বেসিক</td><td style="text-align:right;font-weight:600;">৭০,০০০</td></tr>
-        <tr><td>১২</td><td>সেপটিক/সোকওয়ে/বর্জ্য ব্যবস্থাপনা</td><td style="color:#777;font-size:.82em;">প্রয়োজন অনুযায়ী</td><td style="text-align:right;font-weight:600;">৬০,০০০</td></tr>
-        <tr><td>১৩</td><td>সাইট পরিবহন, শ্রমিক আনুষঙ্গিক ও ছোটখাটো কাজ</td><td style="color:#777;font-size:.82em;">লাম্প সাম</td><td style="text-align:right;font-weight:600;">১,০০,০০০</td></tr>
-        <tr><td>১৪</td><td>মূল্য ওঠানামা/জরুরি রিজার্ভ</td><td style="color:#777;font-size:.82em;">অন্তত ১০% লক্ষ্য</td><td style="text-align:right;font-weight:600;">২,১০,০০০</td></tr>
-      </tbody>
-      <tfoot>
-        <tr class="total">
-          <td colspan="3" style="text-align:right;">সম্ভাব্য মোট</td>
-          <td style="text-align:right;font-size:1.1em;color:#1a3a2a;">৳ ২৮,৯০,০০০</td>
-        </tr>
-      </tfoot>
-    </table>
-    <p style="padding:14px 20px;font-size:.82em;color:#666;border-top:1px solid #eee;line-height:1.8;">
-      <i class="fas fa-info-circle" style="color:#2d6a4f;margin-right:6px;"></i>
-      মালামালের দামের তারতম্য হলে খরচ কিছু বাড়তে/কমতে পারে — সেই অনুযায়ী লক্ষ্যমাত্রাও পরিবর্তন হতে পারে। মসজিদের জমির পরিমাণ ১,৭০০ বর্গফুট।
-    </p>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════
-     CONSTRUCTION PROGRESS SECTION
-     Reads from localStorage (mosque_progress_v2)
-     shared with admin.html & progress.html
-     ══════════════════════════════════════════ -->
-<div class="section" id="progressSection" data-nav-id="progress">
-  <div class="section-header"><span class="icon"><i class="fas fa-tools"></i></span><h2>নির্মাণ অগ্রগতি</h2></div>
-  <div class="section-body" id="progressBody">
-    <div class="progress-empty">
-      <span class="pe-icon"><i class="fas fa-hard-hat" style="color:#aaa;"></i></span>
-      নির্মাণ কাজ শুরু হলেই এখানে সর্বশেষ আপডেট দেখা যাবে।
-    </div>
-  </div>
-</div>
-
-<!-- WHY DONATE -->
-<div class="section" id="why">
-  <div class="section-header"><span class="icon"><i class="fas fa-hand-holding-heart"></i></span><h2>কেন এই মসজিদে দান করবেন?</h2></div>
-  <div class="section-body">
-    <div class="hadith-box">
-      <p>যে ব্যক্তি আল্লাহর সন্তুষ্টির জন্য মসজিদ নির্মাণ করে,<br>আল্লাহ তার জন্য জান্নাতে একটি ঘর নির্মাণ করেন।</p>
-      <small>— সহিহ বুখারি ও মুসলিম</small>
-    </div>
-    <div class="donate-grid">
-      <div class="donate-card"><div class="di"><i class="fas fa-mosque"></i></div><p>প্রতিদিন পাঁচ ওয়াক্ত নামাজ ও সাপ্তাহিক জুমার নামাজের কেন্দ্র</p></div>
-      <div class="donate-card"><div class="di"><i class="fas fa-book-open"></i></div><p>ধর্মীয় শিক্ষা ও এলাকার সামাজিক কার্যক্রমের প্রাণকেন্দ্র</p></div>
-      <div class="donate-card"><div class="di"><i class="fas fa-infinity"></i></div><p>সদকায়ে জারিয়া — মৃত্যুর পরেও কেয়ামত পর্যন্ত নেকি জারি থাকবে</p></div>
-      <div class="donate-card"><div class="di"><i class="fas fa-users"></i></div><p>শত শত মুসল্লি পরিবারের আধ্যাত্মিক আশ্রয়স্থল রক্ষার সুযোগ</p></div>
-    </div>
-  </div>
-</div>
-
-<!-- HOW TO DONATE -->
-<div class="section" id="how">
-  <div class="section-header"><span class="icon"><i class="fas fa-donate"></i></span><h2>দানের পদ্ধতি</h2></div>
-  <div class="section-body">
-    <div class="donate-ways">
-      <div class="dw"><div class="dw-icon"><i class="fas fa-award"></i></div><div><h4>সম্পূর্ণ স্পনসর</h4><p>পুরো মসজিদ বা একটি নির্দিষ্ট অংশ (ছাদ, মিনার, ওযুখানা) স্পনসর করুন</p></div></div>
-      <div class="dw"><div class="dw-icon"><i class="fas fa-hand-holding-usd"></i></div><div><h4>আংশিক দান</h4><p>যেকোনো পরিমাণ অবদান সাদরে গৃহীত হবে — ছোট বা বড় সব দানই সমান মূল্যবান</p></div></div>
-      <div class="dw"><div class="dw-icon"><i class="fas fa-cubes"></i></div><div><h4>নির্মাণ সামগ্রী</h4><p>ইট, সিমেন্ট, রড, বালি বা অন্য যেকোনো নির্মাণ উপকরণ সরাসরি দান করুন</p></div></div>
-      <div class="dw"><div class="dw-icon"><i class="fas fa-hands-helping"></i></div><div><h4>শ্রম সহায়তা</h4><p>দক্ষ মিস্ত্রি বা শ্রমিকের ব্যবস্থা করে সহায়তা করতে পারেন</p></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- BANK INFO -->
-<div id="donate" style="max-width:900px;margin:0 auto 30px;padding:0 20px;">
-  <div class="bank-box">
-    <h3><i class="fas fa-university" style="margin-right:8px;"></i>দান পাঠানোর তথ্য</h3>
-    <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:18px;margin-bottom:16px;">
-      <div style="font-size:1em;font-weight:600;color:#a8e6c4;margin-bottom:12px;letter-spacing:.5px;">🇧🇩 বাংলাদেশ — বিকাশ (লোকাল ট্রান্সফার)</div>
-      <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;">
-        <div style="background:#E2136E;border-radius:8px;padding:8px 20px;font-size:1.1em;font-weight:700;color:white;letter-spacing:1px;">bKash</div>
-        <div><div style="font-size:.82em;opacity:.7;margin-bottom:4px;">অ্যাকাউন্টের নাম</div><div style="font-size:1em;font-weight:700;">Md. Khalilur Rahman (Nasir)</div>
-        <div style="font-size:.78em;opacity:.75;">Advocate, Supreme Court of Bangladesh</div></div>
-        <div><div style="font-size:.82em;opacity:.7;margin-bottom:4px;">বিকাশ নম্বর</div><div style="font-size:1.2em;font-weight:700;letter-spacing:1px;">+880 1712252033</div></div>
+    <div class="fund-bar-preview-wrap">
+      <div class="fund-bar-preview-bg">
+        <div class="fund-bar-preview-fill" id="fpv-bar" style="width:0%"></div>
       </div>
-      <div style="font-size:.8em;opacity:.7;margin-top:10px;">* Send Money অপশন ব্যবহার করুন</div>
+      <div class="fund-bar-preview-label" id="fpv-bar-label">লক্ষ্যমাত্রার ০% সম্পন্ন</div>
     </div>
-    <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:18px;margin-bottom:16px;">
-      <div style="font-size:1em;font-weight:600;color:#a8e6c4;margin-bottom:12px;letter-spacing:.5px;">🇧🇩 বাংলাদেশ — ব্যাংক ট্রান্সফার</div>
-      <div class="bank-line"><i class="fas fa-mosque" style="width:18px;margin-right:6px;color:#a8e6c4;"></i>একাউন্টের নাম: <strong>Uttar Guatan Jame Masjid</strong></div>
-      <div class="bank-line"><i class="fas fa-university" style="width:18px;margin-right:6px;color:#a8e6c4;"></i>ব্যাংক: <strong>Bangladesh Krishi Bank PLC</strong></div>
-      <div class="bank-line"><i class="fas fa-building" style="width:18px;margin-right:6px;color:#a8e6c4;"></i>শাখা: <strong>Jhalokath Branch, Jhalokath Sadar, Bangladesh</strong></div>
-      <div class="bank-line"><i class="fas fa-credit-card" style="width:18px;margin-right:6px;color:#a8e6c4;"></i>একাউন্ট নং: <strong>04010394001690</strong></div>
-      <div class="bank-line"><i class="fas fa-exchange-alt" style="width:18px;margin-right:6px;color:#a8e6c4;"></i>রাউটিং নং: <strong>035420318</strong></div>
-    </div>
-    <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:18px;">
-      <div style="font-size:1em;font-weight:600;color:#a8e6c4;margin-bottom:12px;letter-spacing:.5px;">🇺🇸 যুক্তরাষ্ট্র (USA) — Zelle</div>
-      <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;">
-        <div style="background:#6D1ED4;border-radius:8px;padding:8px 20px;font-size:1.1em;font-weight:700;color:white;letter-spacing:1px;">Zelle</div>
-        <div><div style="font-size:.82em;opacity:.7;margin-bottom:4px;">Zelle নম্বর</div><div style="font-size:1.2em;font-weight:700;letter-spacing:1px;">+1 480-703-5453</div></div>
+
+    <div class="fund-admin-grid">
+      <div class="fund-admin-field">
+        <label>সংগৃহীত পরিমাণ (টাকায়) *</label>
+        <input type="number" id="f-collected" placeholder="যেমন: 150000" min="0" oninput="updateFundPreview()">
       </div>
-      <div style="font-size:.8em;opacity:.7;margin-top:10px;">* Zelle অ্যাপ থেকে Send Money অপশন ব্যবহার করুন</div>
+      <div class="fund-admin-field">
+        <label>মোট দাতা সংখ্যা *</label>
+        <input type="number" id="f-backers" placeholder="যেমন: 12" min="0" oninput="updateFundPreview()">
+      </div>
+    </div>
+    <div class="fund-admin-field" style="margin-bottom:16px;">
+      <label>লক্ষ্যমাত্রা (টাকায়) *</label>
+      <input type="number" id="f-goal" placeholder="যেমন: 2890000" min="1" oninput="updateFundPreview()">
+    </div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
+      <button onclick="saveFund()" style="background:var(--gold);color:#fff;border:none;border-radius:8px;padding:10px 22px;font-size:.9rem;font-weight:800;cursor:pointer;font-family:var(--font-body);">💾 সংরক্ষণ করুন</button>
+      <button onclick="copyFundJSON()" style="background:var(--green-mid);color:#fff;border:none;border-radius:8px;padding:10px 22px;font-size:.9rem;font-weight:700;cursor:pointer;font-family:var(--font-body);">📋 fund.json কপি করুন</button>
+      <a href="https://github.com/guatonmsq/web/blob/main/fund.json" target="_blank" style="background:var(--bg-muted);color:var(--fg);border:1.5px solid var(--border);border-radius:8px;padding:10px 18px;font-size:.9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;">✏️ GitHub-এ সম্পাদনা করুন</a>
+    </div>
+    <div id="fundSaveSuccess" style="display:none;background:#e6f4ea;border:1px solid #2d6a4f;border-radius:8px;padding:10px 14px;font-size:.84rem;color:#1a3a2a;margin-bottom:8px;">
+      ✅ সংরক্ষিত! এখন "fund.json কপি করুন" → GitHub-এ পেস্ট করুন।
+    </div>
+    <div id="fundCopySuccess" style="display:none;background:#e6f4ea;border:1px solid #2d6a4f;border-radius:8px;padding:10px 14px;font-size:.84rem;color:#1a3a2a;">
+      ✅ fund.json কপি হয়েছে! GitHub-এ <strong>fund.json</strong> ফাইলে পেস্ট করে Commit করুন।
+    </div>
+    <details style="margin-top:8px;">
+      <summary style="cursor:pointer;font-size:.82rem;color:var(--fg-subtle);padding:6px 0;">📖 GitHub-এ কীভাবে আপলোড করবেন?</summary>
+      <ol style="font-size:.82rem;color:var(--fg-muted);line-height:2;padding-left:20px;margin-top:8px;">
+        <li>"fund.json কপি করুন" বোতামে ক্লিক করুন</li>
+        <li>"GitHub-এ সম্পাদনা করুন" বোতামে ক্লিক করুন</li>
+        <li>পেনসিল আইকনে ক্লিক করুন (Edit this file)</li>
+        <li>সব মুছে কপি করা JSON পেস্ট করুন (Ctrl+A তারপর Ctrl+V)</li>
+        <li>"Commit changes" বোতামে ক্লিক করুন</li>
+        <li>১–২ মিনিট পর সাইটে ফান্ডরাইজিং সেকশনে আপডেট দেখা যাবে ✅</li>
+      </ol>
+    </details>
+  </div>
+
+  <!-- DANGER ZONE -->
+  <div class="section-card">
+    <div class="section-heading"><span>⚠️</span> বিপজ্জনক অঞ্চল</div>
+    <div class="danger-zone">
+      <div class="danger-title">⛔ সকল আপডেট মুছে ফেলুন</div>
+      <div class="danger-desc">এই বোতামে ক্লিক করলে progress.html থেকে সকল আপডেট, ভিডিও, ছবি মুছে যাবে এবং ফেজ রিসেট হবে। এই কাজ পূর্বাবস্থায় ফেরানো যাবে না।</div>
+      <button class="danger-btn" onclick="clearAll()">🗑 সব মুছে ফেলুন</button>
     </div>
   </div>
-</div>
 
-<div class="footer">
-  আল্লাহ আপনাদের দানকে কবুল করুন এবং উত্তম প্রতিদান দিন। আমিন। <i class="fas fa-hands" style="margin-left:4px;"></i><br>
-  <span style="font-size:.85em;">উত্তর গুয়াটন জামে মসজিদ পুনর্নির্মাণ কমিটি | ঝালকাঠি, বরিশাল</span>
-</div>
+</div><!-- /wrap -->
 
 <script>
-  /* ── CONDITION PHOTO GALLERY (paginated) ── */
-  (function() {
-    var BASE = 'https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/';
-    var photos = [
-      { src: BASE+'photo1.jpg',  cap: 'ছাদে বড় গর্ত ও খসে পড়া প্লাস্টার' },
-      { src: BASE+'photo2.jpg',  cap: 'ভাঙা ও বিচ্ছিন্ন দরজা' },
-      { src: BASE+'photo3.jpg',  cap: 'ভেতর থেকে ছাদের গুরুতর অবস্থা' },
-      { src: BASE+'photo4.jpg',  cap: 'বাইরের দেওয়ালে ক্ষয় ও ফাটল' },
-      { src: BASE+'photo5.jpg',  cap: 'মরিচাধরা জানালা ও ক্ষতিগ্রস্ত দেওয়াল' },
-      { src: BASE+'photo6.jpg',  cap: 'ভেতর থেকে জানালার অবস্থা' },
-      { src: BASE+'photo8.jpg',  cap: 'মসজিদের বাইরের অবস্থা' },
-      { src: BASE+'photo9.jpg',  cap: 'মসজিদের কোণের ক্ষতিগ্রস্ত অবস্থা' },
-      { src: BASE+'photo10.jpg', cap: 'পিলারে গভীর ও উদ্বেগজনক ফাটল' },
-      { src: BASE+'photo11.jpg', cap: 'আঙিনায় জলাবদ্ধতা' },
-      { src: BASE+'photo12.jpg', cap: 'মসজিদের পুরো কাঠামোর অবস্থা' },
-      { src: BASE+'photo13.jpg', cap: 'সামনের দেওয়ালে ফাটল' },
-      { src: BASE+'photo14.jpg', cap: 'পাশের দেওয়ালের গুরুতর অবস্থা' },
-      { src: BASE+'photo15.jpg', cap: 'ওযুখানা ও বাথরুমের অবস্থা' },
-      { src: BASE+'photo16.jpg', cap: 'কর্নার পিলারে গুরুতর ফাটল' },
-      { src: BASE+'photo17.jpg', cap: 'দেওয়ালে একাধিক গভীর ফাটল' },
-      { src: BASE+'photo18.jpg', cap: 'অনিরাপদ বৈদ্যুতিক ব্যবস্থা' }
-    ];
-    var PER = 6; // 6 photos per page (2 rows of 3)
-    var total = photos.length;
-    var pages = Math.ceil(total / PER);
+// ── CREDENTIALS (SHA-256 hashes — plain text never stored) ──
+const _C = {
+  u: '68c5e71c401fe87cde00bc68780b57eea069d4f87d6358bc9a3c8ca29ba29e49',
+  p: '0a6b7fdcd50c900026f2e0cb1ba9263909c95f8cc513b9fff7a88b927edb1429'
+};
 
-    document.getElementById('galCount').textContent = 'মোট ' + total + 'টি ছবি';
+// ── SHA-256 via Web Crypto API ──
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
 
-    function renderGal(page) {
-      var start = (page - 1) * PER;
-      var slice = photos.slice(start, start + PER);
-      var grid = '';
-      // Always render as 3-column grid
-      grid += '<div class="photo-grid" style="margin-bottom:8px;">';
-      slice.forEach(function(ph, i) {
-        var safeSrc = ph.src.replace(/'/g,'%27');
-        var safeCap = ph.cap.replace(/'/g,'&#39;');
-        grid += '<div class="photo-item">' +
-          '<img src="' + ph.src + '" alt="' + ph.cap + '" loading="lazy" ' +
-          'onclick="openLB(\'' + safeSrc + '\',\'' + safeCap + '\')">' +
-          '<div class="photo-label"><i class="fas fa-image"></i> ' + ph.cap + '</div></div>';
-      });
-      // pad last row if needed
-      while (slice.length % 3 !== 0) { grid += '<div class="photo-item" style="visibility:hidden;"></div>'; slice.push({}); }
-      grid += '</div>';
-      document.getElementById('galGrid').innerHTML = grid;
+// ── SESSION ──
+function isLoggedIn() {
+  try { return sessionStorage.getItem('msq_admin_auth') === '1'; } catch(e) { return false; }
+}
+function setLogin(v) {
+  try { sessionStorage.setItem('msq_admin_auth', v ? '1' : ''); } catch(e) {}
+}
 
-      // Pagination bar
-      var pg = '';
-      pg += '<button class="pg-btn" onclick="galPage(' + (page-1) + ')" ' + (page===1?'disabled':'') + '>&#8592; আগে</button>';
-      for (var i = 1; i <= pages; i++) {
-        pg += '<button class="pg-btn' + (i===page?' active':'') + '" onclick="galPage(' + i + ')">' + i + '</button>';
-      }
-      pg += '<button class="pg-btn" onclick="galPage(' + (page+1) + ')" ' + (page===pages?'disabled':'') + '>পরে &#8594;</button>';
-      pg += '<span class="pg-info">(' + page + '/' + pages + ' · ছবি ' + (start+1) + '–' + Math.min(start+PER,total) + ')</span>';
-      document.getElementById('galPg').innerHTML = pg;
-    }
-
-    window.galPage = function(p) {
-      if (p < 1 || p > pages) return;
-      renderGal(p);
-    };
-
-    renderGal(1);
-  })();
-
-  /* ── LIGHTBOX ── */
-  function openLB(src, cap) {
-    document.getElementById('lb-img').src = src;
-    document.getElementById('lb-cap').textContent = cap || '';
-    document.getElementById('lb').classList.add('active');
+// ── LOGIN / LOGOUT ──
+async function doLogin() {
+  const u = (document.getElementById('loginUser').value || '').trim();
+  const p = (document.getElementById('loginPass').value || '');
+  const [uh, ph] = await Promise.all([sha256(u), sha256(p)]);
+  if (uh === _C.u && ph === _C.p) {
+    setLogin(true);
+    document.getElementById('loginOverlay').classList.add('hidden');
+    document.getElementById('adminHeader').style.display = 'flex';
+    document.getElementById('mainWrap').style.display = 'block';
+    document.getElementById('loginError').textContent = '';
+    loadState();
+    loadFundState();
+  } else {
+    document.getElementById('loginError').textContent = '❌ ভুল নাম বা পাসওয়ার্ড। আবার চেষ্টা করুন।';
+    document.getElementById('loginPass').value = '';
+    document.getElementById('loginPass').focus();
   }
-  function closeLB() {
-    document.getElementById('lb').classList.remove('active');
-    document.getElementById('lb-img').src = '';
+}
+
+function doLogout() {
+  setLogin(false);
+  document.getElementById('adminHeader').style.display = 'none';
+  document.getElementById('mainWrap').style.display = 'none';
+  document.getElementById('loginOverlay').classList.remove('hidden');
+  document.getElementById('loginUser').value = '';
+  document.getElementById('loginPass').value = '';
+}
+
+// ── STATE (shared localStorage key with progress.html) ──
+const STORE_KEY = 'mosque_progress_v2';
+const TODAY = new Date().toISOString().split('T')[0];
+let state = { phase: 0, updates: [] };
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (raw) state = JSON.parse(raw);
+  } catch(e) {}
+  // init date inputs
+  ['v-date','p-date','t-date'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = TODAY;
+  });
+  document.getElementById('phaseSelect').value = state.phase || 0;
+  renderStats();
+  renderList();
+}
+
+function saveState() {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e) {}
+  renderStats();
+  renderList();
+}
+
+// ── PHASE ──
+function savePhase() {
+  state.phase = parseInt(document.getElementById('phaseSelect').value) || 0;
+  saveState();
+  const savedEl = document.getElementById('phaseSaved');
+  savedEl.classList.add('show');
+  setTimeout(() => savedEl.classList.remove('show'), 2000);
+}
+
+// ── TABS ──
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.getElementById('pane-' + name).classList.add('active');
+}
+
+// ── YOUTUBE ID ──
+function ytID(url) {
+  const m = url.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([^&?\n#]{11})/);
+  return m ? m[1] : null;
+}
+
+// ── ADD UPDATE ──
+function addUpdate(type) {
+  const item = { id: Date.now().toString(), type };
+
+  if (type === 'video') {
+    const url = document.getElementById('v-url').value.trim();
+    const id  = ytID(url);
+    if (!id) { alert('সঠিক YouTube লিংক দিন।'); return; }
+    item.ytid  = id;
+    item.title = document.getElementById('v-title').value.trim();
+    if (!item.title) { alert('শিরোনাম দিন।'); return; }
+    item.desc  = document.getElementById('v-desc').value.trim();
+    item.phase = document.getElementById('v-phase').value;
+    item.date  = document.getElementById('v-date').value || TODAY;
+    ['v-url','v-title','v-desc'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('v-date').value = TODAY;
+    showSuccess('succ-video');
   }
-  document.addEventListener('keydown', e => { if(e.key==='Escape') closeLB(); });
-
-  /* ── CONSTRUCTION PROGRESS WITH PAGINATION ── */
-  /* Fetches from progress.json (cross-device), falls back to localStorage */
-  (function() {
-    var JSON_URL = 'https://raw.githubusercontent.com/guatonmsq/web/main/progress.json';
-    var STORE_KEY = 'mosque_progress_v2';
-    var PER_PAGE  = 4;
-    var curPage   = 1;
-    var all = [], p = 0;
-
-    var phaseNames = ['','ভাঙন কাজ','ফাউন্ডেশন','RCC কলাম','ছাদ স্ল্যাব','দেয়াল','বৈদ্যুতিক','স্যানিটারি','ফিনিশিং','সম্পন্ন ✅'];
-    var phaseIcons = ['','<i class="fas fa-hammer"></i>','<i class="fas fa-hard-hat"></i>','<i class="fas fa-columns"></i>','<i class="fas fa-layer-group"></i>','<i class="fas fa-th-large"></i>','<i class="fas fa-bolt"></i>','<i class="fas fa-faucet"></i>','<i class="fas fa-paint-roller"></i>','<i class="fas fa-check-circle"></i>'];
-
-    /* ── render one card ── */
-    function cardHTML(u) {
-      var media = '';
-      if (u.type === 'video') {
-        media = '<div class="upd-video"><iframe src="https://www.youtube.com/embed/' + u.ytid +
-                '" title="' + (u.title||'').replace(/"/g,'&quot;') + '" allowfullscreen loading="lazy"></iframe></div>';
-      } else if (u.type === 'photo') {
-        var safe = (u.url||'').replace(/"/g,'%22');
-        var ts   = (u.title||'').replace(/'/g,'&#39;');
-        media = '<div class="upd-photo" onclick="openLB(\'' + safe + '\',\'' + ts +
-                '\')"><img src="' + safe + '" alt="' + ts + '" loading="lazy" onerror="this.parentElement.style.background=\'#f0f0f0\';this.style.display=\'none\'"></div>';
-      } else {
-        media = '<div class="upd-text-banner"><i class="fas fa-align-left"></i></div>';
-      }
-      var chipCls = u.type==='video' ? 'chip-v' : u.type==='photo' ? 'chip-p' : 'chip-t';
-      var chipLbl = u.type==='video' ? '<i class="fas fa-play-circle"></i> ভিডিও' : u.type==='photo' ? '<i class="fas fa-image"></i> ছবি' : '<i class="fas fa-align-left"></i> আপডেট';
-      var dateStr = '';
-      if (u.date) {
-        try { dateStr = new Date(u.date+'T00:00:00').toLocaleDateString('bn-BD',{day:'numeric',month:'short'}); }
-        catch(e) { dateStr = u.date; }
-      }
-      return '<div class="upd-card">' + media +
-        '<div class="upd-body">' +
-        '<div class="upd-meta"><span class="upd-chip ' + chipCls + '">' + chipLbl + '</span>' +
-        '<span class="upd-date">' + dateStr + '</span></div>' +
-        '<div class="upd-title">' + (u.title||'') + '</div>' +
-        (u.desc ? '<div class="upd-desc">' + u.desc + '</div>' : '') +
-        '</div></div>';
-    }
-
-    /* ── render pagination bar ── */
-    function pgHTML(total, cur) {
-      var pages = Math.ceil(total / PER_PAGE);
-      if (pages <= 1) return '';
-      var h = '<div class="pg-bar" id="pgBar">';
-      h += '<button class="pg-btn" id="pgPrev" onclick="progPage(' + (cur-1) + ')" ' +
-           (cur===1 ? 'disabled' : '') + '>&#8592; আগে</button>';
-      for (var i = 1; i <= pages; i++) {
-        h += '<button class="pg-btn' + (i===cur ? ' active' : '') + '" onclick="progPage(' + i + ')">' + i + '</button>';
-      }
-      h += '<button class="pg-btn" id="pgNext" onclick="progPage(' + (cur+1) + ')" ' +
-           (cur===pages ? 'disabled' : '') + '>পরে &#8594;</button>';
-      h += '<span class="pg-info">(' + cur + '/' + pages + ')</span>';
-      h += '</div>';
-      return h;
-    }
-
-    /* ── main render ── */
-    function render(page) {
-      curPage = page;
-      if (!all.length && !p) return; // keep empty placeholder visible
-      var html = '';
-
-      // Phase bar
-      if (p > 0) {
-        html += '<div style="margin-bottom:16px;">';
-        html += '<div style="font-size:.78em;font-weight:700;color:#2d6a4f;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;"><i class=\'fas fa-map-pin\' style=\'margin-right:5px;\'></i>বর্তমান নির্মাণ পর্যায়</div>';
-        html += '<div class="phase-bar">';
-        for (var i = 1; i <= 9; i++) {
-          var cls = i < p ? 'ph done' : i === p ? 'ph active' : 'ph';
-          html += '<div class="' + cls + '"><div class="ph-dot">' + (i < p ? '✓' : phaseIcons[i]) +
-                  '</div><div class="ph-label">' + phaseNames[i] + '</div></div>';
-        }
-        html += '</div></div>';
-      }
-
-      // Update grid for current page
-      if (all.length) {
-        var start  = (page - 1) * PER_PAGE;
-        var slice  = all.slice(start, start + PER_PAGE);
-        html += '<div style="font-size:.78em;font-weight:700;color:#2d6a4f;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px;">🗂️ নির্মাণ আপডেট</div>';
-        html += '<div class="upd-grid">';
-        slice.forEach(function(u) { html += cardHTML(u); });
-        html += '</div>';
-        html += pgHTML(all.length, page);
-      }
-
-      // View all link
-      html += '<div class="view-all-wrap"><a class="view-all-btn" href="progress.html">🏗️ সম্পূর্ণ অগ্রগতি দেখুন →</a></div>';
-
-      document.getElementById('progressBody').innerHTML = html;
-    }
-
-    // expose for onclick handlers
-    window.progPage = function(pg) {
-      var pages = Math.ceil(all.length / PER_PAGE);
-      if (pg < 1 || pg > pages) return;
-      render(pg);
-    };
-
-    // ── Load: fetch progress.json first, fallback to localStorage ──
-    fetch(JSON_URL + '?t=' + Date.now())
-      .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
-      .then(function(data) {
-        all = (data && data.updates) ? data.updates : [];
-        p   = (data && data.phase)   ? data.phase   : 0;
-        render(1);
-      })
-      .catch(function() {
-        // fallback: try localStorage (for admin on same device)
-        try {
-          var raw = localStorage.getItem(STORE_KEY);
-          if (raw) { var s = JSON.parse(raw); all = s.updates||[]; p = s.phase||0; }
-        } catch(e) {}
-        render(1);
-      });
-  })();
-</script>
-
-<script>
-/* ── FUNDRAISER WIDGET ── */
-(function(){
-  const GOAL_DEFAULT = 2890000;
-  const FUND_KEY = 'mosque_fund_v1';
-  const FUND_URL = 'https://raw.githubusercontent.com/guatonmsq/web/main/fund.json';
-
-  function toBn(n) {
-    return String(n).replace(/[0-9]/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+  else if (type === 'photo') {
+    const url = document.getElementById('p-url').value.trim();
+    if (!url) { alert('ছবির লিংক দিন।'); return; }
+    item.url   = url;
+    item.title = document.getElementById('p-title').value.trim();
+    if (!item.title) { alert('ক্যাপশন দিন।'); return; }
+    item.desc  = document.getElementById('p-desc').value.trim();
+    item.phase = document.getElementById('p-phase').value;
+    item.date  = document.getElementById('p-date').value || TODAY;
+    ['p-url','p-title','p-desc'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('p-date').value = TODAY;
+    showSuccess('succ-photo');
   }
-  function fmtTaka(n) {
-    if (n >= 100000) return '৳ ' + toBn((n/100000).toFixed(n%100000===0?0:1)) + ' লক্ষ';
-    return '৳ ' + toBn(n.toLocaleString('en'));
+  else {
+    item.title = document.getElementById('t-title').value.trim();
+    if (!item.title) { alert('শিরোনাম দিন।'); return; }
+    item.desc  = document.getElementById('t-desc').value.trim();
+    item.phase = document.getElementById('t-phase').value;
+    item.date  = document.getElementById('t-date').value || TODAY;
+    ['t-title','t-desc'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('t-date').value = TODAY;
+    showSuccess('succ-text');
   }
 
-  function renderFund(collected, backers, goal) {
-    goal      = Math.max(goal || GOAL_DEFAULT, 1);
-    collected = Math.min(collected || 0, goal);
-    backers   = backers || 0;
-    const pct = Math.round((collected / goal) * 100);
-    const pending = goal - collected;
+  state.updates.unshift(item);
+  saveState();
+}
 
-    // update goal displays — full number in fundraiser section
-    function fmtTakaFull(n) { return '৳ ' + toBn(n.toLocaleString('en')); }
-    var goalEl = document.getElementById('fr-goal');
-    if (goalEl) goalEl.textContent = fmtTakaFull(goal);
-    var pendEl = document.getElementById('fr-pending');
-    if (pendEl) pendEl.textContent = fmtTakaFull(pending);
-    // fund strip goal
-    var fsGoal = document.getElementById('fs-goal');
-    if (fsGoal) fsGoal.textContent = fmtTaka(goal);
+function showSuccess(id) {
+  const el = document.getElementById(id);
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 3500);
+}
 
-    document.getElementById('fr-collected').textContent = fmtTaka(collected);
-    document.getElementById('fr-backers').textContent   = toBn(backers);
-    document.getElementById('fr-pct').textContent       = toBn(pct) + '% সম্পন্ন';
+// ── DELETE ──
+function delUpdate(id) {
+  if (!confirm('এই আপডেটটি মুছে ফেলবেন?')) return;
+  state.updates = state.updates.filter(u => u.id !== id);
+  saveState();
+}
 
-    // fund strip (top bar)
-    var fsC = document.getElementById('fs-collected');
-    var fsB = document.getElementById('fs-backers');
-    var fsP = document.getElementById('fs-pct');
-    var fsBar = document.getElementById('fs-bar');
-    if (fsC) fsC.textContent = fmtTaka(collected);
-    if (fsB) fsB.textContent = toBn(backers);
-    if (fsP) fsP.textContent = toBn(pct) + '%';
+// ── CLEAR ALL ──
+function clearAll() {
+  if (!confirm('সত্যিই সব আপডেট মুছে ফেলবেন? এই কাজ ফেরানো যাবে না।')) return;
+  if (!confirm('আপনি কি নিশ্চিত? progress.html খালি হয়ে যাবে।')) return;
+  state = { phase: 0, updates: [] };
+  document.getElementById('phaseSelect').value = 0;
+  saveState();
+}
 
-    // animate bars
-    setTimeout(function(){
-      document.getElementById('fr-bar').style.width = pct + '%';
-      if (fsBar) fsBar.style.width = pct + '%';
-    }, 200);
-  }
-
-  // Try fund.json first, fallback to localStorage
-  fetch(FUND_URL + '?t=' + Date.now())
-    .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
-    .then(function(d){ renderFund(d.collected, d.backers, d.goal); })
-    .catch(function(){
-      try {
-        var raw = localStorage.getItem(FUND_KEY);
-        if (raw) { var d = JSON.parse(raw); renderFund(d.collected, d.backers, d.goal); }
-        else renderFund(0, 0, GOAL_DEFAULT);
-      } catch(e){ renderFund(0, 0, GOAL_DEFAULT); }
+// ── FORMAT DATE ──
+function fmtDate(d) {
+  if (!d) return '—';
+  try {
+    return new Date(d + 'T00:00:00').toLocaleDateString('bn-BD', {
+      day:'numeric', month:'short', year:'numeric'
     });
-})();
-</script>
+  } catch(e) { return d; }
+}
 
-<script>
-/* ── BURGER MENU ── */
-function toggleNav() {
-  var btn = document.getElementById('burgerBtn');
-  var drawer = document.getElementById('navDrawer');
-  var overlay = document.getElementById('navOverlay');
-  var open = drawer.classList.toggle('open');
-  overlay.classList.toggle('open', open);
-  btn.classList.toggle('open', open);
-  document.body.style.overflow = open ? 'hidden' : '';
+// ── RENDER STATS ──
+function renderStats() {
+  const all = state.updates;
+  document.getElementById('st-total').textContent  = all.length;
+  document.getElementById('st-videos').textContent = all.filter(u => u.type==='video').length;
+  document.getElementById('st-photos').textContent = all.filter(u => u.type==='photo').length;
+  document.getElementById('st-texts').textContent  = all.filter(u => u.type==='text').length;
 }
-function closeNav() {
-  document.getElementById('navDrawer').classList.remove('open');
-  document.getElementById('navOverlay').classList.remove('open');
-  document.getElementById('burgerBtn').classList.remove('open');
-  document.body.style.overflow = '';
+
+// ── RENDER LIST ──
+function renderList() {
+  const list = document.getElementById('updatesList');
+  if (!state.updates.length) {
+    list.innerHTML = '<div class="empty-msg"><span class="empty-icon">📭</span>এখনো কোনো আপডেট প্রকাশিত হয়নি।</div>';
+    return;
+  }
+
+  list.innerHTML = '<div class="updates-list">' + state.updates.map(u => {
+    let thumb = '';
+    if (u.type === 'video') {
+      thumb = `<div class="update-row-yt">▶</div>`;
+    } else if (u.type === 'photo') {
+      const safe = (u.url||'').replace(/"/g,'%22');
+      thumb = `<img class="update-row-thumb" src="${safe}" alt="" loading="lazy" onerror="this.style.display='none'">`;
+    } else {
+      thumb = `<div class="update-row-icon">📝</div>`;
+    }
+    const chipClass = u.type==='video' ? 'chip-video' : u.type==='photo' ? 'chip-photo' : 'chip-text';
+    const chipLabel = u.type==='video' ? '▶️ ভিডিও' : u.type==='photo' ? '📸 ছবি' : '📝 আপডেট';
+
+    return `<div class="update-row">
+      ${thumb}
+      <div class="update-row-info">
+        <div class="update-row-title">${u.title||''}</div>
+        <div class="update-row-meta">
+          <span class="chip ${chipClass}">${chipLabel}</span>
+          &nbsp; ${fmtDate(u.date)}
+          ${u.phase ? ` &nbsp; 📍 ${u.phase}` : ''}
+        </div>
+        ${u.desc ? `<div class="update-row-desc">${u.desc}</div>` : ''}
+        <div class="update-row-actions">
+          <button class="del-btn" onclick="delUpdate('${u.id}')">🗑 মুছুন</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('') + '</div>';
 }
-/* close on Escape */
-document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeNav(); });
-/* fundraiser anchor: map #fundraiser → #fundraiserSection */
-document.querySelectorAll('a[href="#fundraiser"]').forEach(function(a){
-  a.addEventListener('click', function(e){
-    e.preventDefault();
-    document.getElementById('fundraiserSection').scrollIntoView({behavior:'smooth'});
-  });
-});
-/* progress anchor */
-document.querySelectorAll('a[href="#progress"]').forEach(function(a){
-  a.addEventListener('click', function(e){
-    e.preventDefault();
-    document.getElementById('progressSection').scrollIntoView({behavior:'smooth'});
-  });
-});
+
+// ── COPY JSON FOR GITHUB ──
+function copyJSON() {
+  const json = JSON.stringify(state, null, 2);
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(json).then(function() {
+      showCopySuccess();
+    }).catch(function() { fallbackCopy(json); });
+  } else {
+    fallbackCopy(json);
+  }
+}
+function fallbackCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.focus(); ta.select();
+  try { document.execCommand('copy'); showCopySuccess(); }
+  catch(e) { alert('কপি করতে পারেনি। নিচের JSON ম্যানুয়ালি কপি করুন:\n\n' + text); }
+  document.body.removeChild(ta);
+}
+function showCopySuccess() {
+  const el = document.getElementById('copySuccess');
+  if (!el) return;
+  el.style.display = 'block';
+  setTimeout(function() { el.style.display = 'none'; }, 5000);
+}
+
+// ── PHOTO PREVIEW ──
+function previewPhoto() {
+  const url = document.getElementById('p-url').value.trim();
+  let prev = document.getElementById('photo-preview');
+  if (!prev) return;
+  if (!url) { prev.style.display = 'none'; return; }
+  prev.style.display = 'block';
+  const img = prev.querySelector('img');
+  const err = prev.querySelector('.preview-err');
+  img.src = url;
+  img.style.display = 'block';
+  err.style.display = 'none';
+  img.onerror = function() {
+    img.style.display = 'none';
+    err.style.display = 'block';
+    err.textContent = '❌ এই লিংক থেকে ছবি লোড হচ্ছে না। GitHub raw URL বা Imgur/Google Photos direct link ব্যবহার করুন।';
+  };
+  img.onload = function() {
+    img.style.display = 'block';
+    err.style.display = 'none';
+  };
+}
+
+// ── FUNDRAISER ──
+const FUND_KEY       = 'mosque_fund_v1';
+const FUND_GOAL_DEFAULT = 2890000;
+let fundState = { collected: 0, backers: 0, goal: FUND_GOAL_DEFAULT };
+
+function toBnF(n) { return String(n).replace(/[0-9]/g, d => '০১২৩৪৫৬৭৮৯'[d]); }
+function fmtTakaF(n) {
+  if (n >= 100000) return '৳ ' + toBnF((n/100000).toFixed(n%100000===0?0:1)) + ' লক্ষ';
+  return '৳ ' + toBnF(n.toLocaleString('en'));
+}
+
+function loadFundState() {
+  try {
+    const raw = localStorage.getItem(FUND_KEY);
+    if (raw) fundState = { ...fundState, ...JSON.parse(raw) };
+  } catch(e) {}
+  document.getElementById('f-collected').value = fundState.collected || 0;
+  document.getElementById('f-backers').value   = fundState.backers   || 0;
+  document.getElementById('f-goal').value      = fundState.goal      || FUND_GOAL_DEFAULT;
+  updateFundPreview();
+}
+
+function updateFundPreview() {
+  const goal      = Math.max(parseInt(document.getElementById('f-goal').value)||FUND_GOAL_DEFAULT, 1);
+  const collected = Math.min(Math.max(parseInt(document.getElementById('f-collected').value)||0, 0), goal);
+  const backers   = Math.max(parseInt(document.getElementById('f-backers').value)||0, 0);
+  const pct       = Math.round((collected / goal) * 100);
+  const pending   = goal - collected;
+  document.getElementById('fpv-collected').textContent = fmtTakaF(collected);
+  document.getElementById('fpv-goal').textContent      = fmtTakaF(goal);
+  document.getElementById('fpv-pending').textContent   = fmtTakaF(pending);
+  document.getElementById('fpv-backers').textContent   = toBnF(backers);
+  document.getElementById('fpv-pct').textContent       = toBnF(pct) + '%';
+  document.getElementById('fpv-bar').style.width       = pct + '%';
+  document.getElementById('fpv-bar-label').textContent = 'লক্ষ্যমাত্রার ' + toBnF(pct) + '% সম্পন্ন';
+}
+
+function saveFund() {
+  const goal      = Math.max(parseInt(document.getElementById('f-goal').value)||FUND_GOAL_DEFAULT, 1);
+  const collected = Math.min(Math.max(parseInt(document.getElementById('f-collected').value)||0, 0), goal);
+  const backers   = Math.max(parseInt(document.getElementById('f-backers').value)||0, 0);
+  fundState = { collected, backers, goal };
+  try { localStorage.setItem(FUND_KEY, JSON.stringify(fundState)); } catch(e) {}
+  updateFundPreview();
+  const el = document.getElementById('fundSaveSuccess');
+  el.style.display = 'block';
+  setTimeout(function(){ el.style.display = 'none'; }, 4000);
+}
+
+function copyFundJSON() {
+  const goal      = Math.max(parseInt(document.getElementById('f-goal').value)||FUND_GOAL_DEFAULT, 1);
+  const collected = Math.min(Math.max(parseInt(document.getElementById('f-collected').value)||0, 0), goal);
+  const backers   = Math.max(parseInt(document.getElementById('f-backers').value)||0, 0);
+  const json = JSON.stringify({ collected, backers, goal }, null, 2);
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(json).then(showFundCopySuccess).catch(function(){ fallbackCopyFund(json); });
+  } else {
+    fallbackCopyFund(json);
+  }
+}
+function fallbackCopyFund(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  try { document.execCommand('copy'); showFundCopySuccess(); }
+  catch(e) { alert('কপি করতে পারেনি।\n\n' + text); }
+  document.body.removeChild(ta);
+}
+function showFundCopySuccess() {
+  const el = document.getElementById('fundCopySuccess');
+  el.style.display = 'block';
+  setTimeout(function(){ el.style.display = 'none'; }, 5000);
+}
+
+// ── BOOT ──
+(function init() {
+  if (isLoggedIn()) {
+    document.getElementById('loginOverlay').classList.add('hidden');
+    document.getElementById('adminHeader').style.display = 'flex';
+    document.getElementById('mainWrap').style.display = 'block';
+    loadState();
+    loadFundState();
+  }
+})();
 </script>
 </body>
 </html>
