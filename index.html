@@ -243,6 +243,12 @@
 
   .footer { background:#1a3a2a; color:rgba(255,255,255,.6); text-align:center; padding:20px; font-size:.85em; margin-top:30px; }
 
+  /* ── LANGUAGE TOGGLE ── */
+  .lang-btn { position:fixed; top:14px; right:66px; z-index:1100; background:rgba(26,58,42,.92); border:1px solid rgba(255,255,255,.2); border-radius:10px; height:42px; padding:0 12px; display:flex; align-items:center; gap:6px; cursor:pointer; backdrop-filter:blur(8px); box-shadow:0 2px 12px rgba(0,0,0,.3); transition:background .2s; font-family:'Noto Sans Bengali',sans-serif; font-size:.78em; font-weight:700; color:#ffd84d; white-space:nowrap; }
+  .lang-btn:hover { background:rgba(45,106,79,.95); }
+  .lang-btn .lang-icon { font-size:.85em; opacity:.8; }
+  .lang-btn .lang-cur { letter-spacing:.04em; }
+
   @media(max-width:600px) {
     .hero h1{font-size:1.5em;}
     .photo-grid{grid-template-columns:1fr 1fr;}
@@ -260,24 +266,30 @@
 
 <!-- NAV DRAWER -->
 <nav class="nav-drawer" id="navDrawer">
-  <div class="nav-drawer-title">সেকশনসমূহ</div>
-  <a href="#top" onclick="closeNav()"><i class="fas fa-home"></i>হোম / শীর্ষ</a>
-  <a href="#intro" onclick="closeNav()"><i class="fas fa-file-alt"></i>ভূমিকা</a>
-  <a href="#photos" onclick="closeNav()"><i class="fas fa-camera"></i>বর্তমান অবস্থা</a>
-  <a href="#problems" onclick="closeNav()"><i class="fas fa-exclamation-triangle"></i>চিহ্নিত সমস্যা</a>
-  <a href="#land" onclick="closeNav()"><i class="fas fa-scroll"></i>জমির তথ্য</a>
-  <a href="#plan" onclick="closeNav()"><i class="fas fa-drafting-compass"></i>পুনর্নির্মাণ পরিকল্পনা</a>
-  <a href="#fundraiser" onclick="closeNav()"><i class="fas fa-hand-holding-heart"></i>তহবিল সংগ্রহ</a>
-  <a href="#budget" onclick="closeNav()"><i class="fas fa-coins"></i>নির্মাণ বাজেট</a>
-  <a href="#progress" onclick="closeNav()"><i class="fas fa-tools"></i>নির্মাণ অগ্রগতি</a>
-  <a href="#why" onclick="closeNav()"><i class="fas fa-heart"></i>কেন দান করবেন</a>
-  <a href="#how" onclick="closeNav()"><i class="fas fa-donate"></i>দানের পদ্ধতি</a>
-  <a href="#donate" onclick="closeNav()"><i class="fas fa-university"></i>দান পাঠানোর তথ্য</a>
+  <div class="nav-drawer-title" data-bn="সেকশনসমূহ" data-en="Sections">সেকশনসমূহ</div>
+  <a href="#top" onclick="closeNav()"><i class="fas fa-home"></i><span data-bn="হোম / শীর্ষ" data-en="Home / Top">হোম / শীর্ষ</span></a>
+  <a href="#intro" onclick="closeNav()"><i class="fas fa-file-alt"></i><span data-bn="ভূমিকা" data-en="Introduction">ভূমিকা</span></a>
+  <a href="#photos" onclick="closeNav()"><i class="fas fa-camera"></i><span data-bn="বর্তমান অবস্থা" data-en="Current Condition">বর্তমান অবস্থা</span></a>
+  <a href="#problems" onclick="closeNav()"><i class="fas fa-exclamation-triangle"></i><span data-bn="চিহ্নিত সমস্যা" data-en="Identified Problems">চিহ্নিত সমস্যা</span></a>
+  <a href="#land" onclick="closeNav()"><i class="fas fa-scroll"></i><span data-bn="জমির তথ্য" data-en="Land Information">জমির তথ্য</span></a>
+  <a href="#plan" onclick="closeNav()"><i class="fas fa-drafting-compass"></i><span data-bn="পুনর্নির্মাণ পরিকল্পনা" data-en="Reconstruction Plan">পুনর্নির্মাণ পরিকল্পনা</span></a>
+  <a href="#fundraiser" onclick="closeNav()"><i class="fas fa-hand-holding-heart"></i><span data-bn="তহবিল সংগ্রহ" data-en="Fundraiser">তহবিল সংগ্রহ</span></a>
+  <a href="#budget" onclick="closeNav()"><i class="fas fa-coins"></i><span data-bn="নির্মাণ বাজেট" data-en="Construction Budget">নির্মাণ বাজেট</span></a>
+  <a href="#progress" onclick="closeNav()"><i class="fas fa-tools"></i><span data-bn="নির্মাণ অগ্রগতি" data-en="Construction Progress">নির্মাণ অগ্রগতি</span></a>
+  <a href="#why" onclick="closeNav()"><i class="fas fa-heart"></i><span data-bn="কেন দান করবেন" data-en="Why Donate">কেন দান করবেন</span></a>
+  <a href="#how" onclick="closeNav()"><i class="fas fa-donate"></i><span data-bn="দানের পদ্ধতি" data-en="Ways to Donate">দানের পদ্ধতি</span></a>
+  <a href="#donate" onclick="closeNav()"><i class="fas fa-university"></i><span data-bn="দান পাঠানোর তথ্য" data-en="Donation Details">দান পাঠানোর তথ্য</span></a>
   <div class="nav-sep"></div>
   <div class="nav-ext">
-    <a href="progress.html" onclick="closeNav()"><i class="fas fa-trowel-bricks"></i>নির্মাণ অগ্রগতি পেজ</a>
+    <a href="progress.html" onclick="closeNav()"><i class="fas fa-trowel-bricks"></i><span data-bn="নির্মাণ অগ্রগতি পেজ" data-en="Construction Progress Page">নির্মাণ অগ্রগতি পেজ</span></a>
   </div>
 </nav>
+
+<!-- LANGUAGE TOGGLE BUTTON -->
+<button class="lang-btn" id="langBtn" onclick="toggleLang()" aria-label="Language toggle">
+  <span class="lang-icon">🌐</span>
+  <span class="lang-cur" id="langCur">EN</span>
+</button>
 
 <!-- BURGER BUTTON -->
 <button class="burger-btn" id="burgerBtn" onclick="toggleNav()" aria-label="মেনু">
@@ -295,15 +307,15 @@
   <div class="hero-icon">
     <img src="https://guatonmsq.github.io/web/mosque.svg" width="120" height="120" alt="মসজিদ" style="filter: brightness(0) saturate(100%) invert(72%) sepia(65%) saturate(800%) hue-rotate(5deg) brightness(88%) drop-shadow(0 4px 18px rgba(0,0,0,.5));">
   </div>
-  <h1>উত্তর গুয়াটন জামে মসজিদ</h1>
-  <p class="subtitle">পুনর্নির্মাণ প্রস্তাবনা</p>
-  <span class="location">ঝালকাঠি জেলা, বরিশাল বিভাগ, বাংলাদেশ</span>
+  <h1 data-bn="উত্তর গুয়াটন জামে মসজিদ" data-en="Uttar Guatan Jame Mosque">উত্তর গুয়াটন জামে মসজিদ</h1>
+  <p class="subtitle" data-bn="পুনর্নির্মাণ প্রস্তাবনা" data-en="Reconstruction Proposal">পুনর্নির্মাণ প্রস্তাবনা</p>
+  <span class="location" data-bn="ঝালকাঠি জেলা, বরিশাল বিভাগ, বাংলাদেশ" data-en="Jhalokathi District, Barisal Division, Bangladesh">ঝালকাঠি জেলা, বরিশাল বিভাগ, বাংলাদেশ</span>
 </div>
 
 <!-- ARABIC -->
 <div class="arabic-banner">
   بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
-  <small>পরম করুণাময় ও অসীম দয়ালু আল্লাহর নামে শুরু করছি</small>
+  <small data-bn="পরম করুণাময় ও অসীম দয়ালু আল্লাহর নামে শুরু করছি" data-en="In the name of Allah, the Most Gracious, the Most Merciful">পরম করুণাময় ও অসীম দয়ালু আল্লাহর নামে শুরু করছি</small>
 </div>
 
 <!-- ── QUICK NAV ── -->
@@ -311,15 +323,15 @@
   <a class="qnav-btn donate" href="#donate">
     <span class="qnav-icon"><i class="fas fa-hand-holding-heart"></i></span>
     <span class="qnav-text">
-      <div class="qnav-text-main">দান করুন</div>
-      <div class="qnav-text-sub">ব্যাংক · বিকাশ · Zelle</div>
+      <div class="qnav-text-main" data-bn="দান করুন" data-en="Donate Now">দান করুন</div>
+      <div class="qnav-text-sub" data-bn="ব্যাংক · বিকাশ · Zelle" data-en="Bank · bKash · Zelle">ব্যাংক · বিকাশ · Zelle</div>
     </span>
   </a>
   <a class="qnav-btn progress" href="progress.html">
     <span class="qnav-icon"><i class="fas fa-trowel-bricks"></i></span>
     <span class="qnav-text">
-      <div class="qnav-text-main">নির্মাণ অগ্রগতি</div>
-      <div class="qnav-text-sub">সর্বশেষ আপডেট দেখুন</div>
+      <div class="qnav-text-main" data-bn="নির্মাণ অগ্রগতি" data-en="Construction Progress">নির্মাণ অগ্রগতি</div>
+      <div class="qnav-text-sub" data-bn="সর্বশেষ আপডেট দেখুন" data-en="View Latest Updates">সর্বশেষ আপডেট দেখুন</div>
     </span>
   </a>
 </div>
@@ -327,14 +339,14 @@
 <!-- FUND STRIP -->
 <div class="fund-strip" id="fundStrip">
   <div class="fund-strip-nums">
-    <div class="fund-strip-num"><div class="val" id="fs-collected">৳ ০</div><div class="lbl">সংগৃহীত</div></div>
+    <div class="fund-strip-num"><div class="val" id="fs-collected">৳ ০</div><div class="lbl" data-bn="সংগৃহীত" data-en="Collected">সংগৃহীত</div></div>
     <div class="fund-strip-divider"></div>
-    <div class="fund-strip-num"><div class="val" id="fs-goal">৳ ২৮.৯ লক্ষ</div><div class="lbl">লক্ষ্যমাত্রা</div></div>
+    <div class="fund-strip-num"><div class="val" id="fs-goal">৳ ২৮.৯ লক্ষ</div><div class="lbl" data-bn="লক্ষ্যমাত্রা" data-en="Goal">লক্ষ্যমাত্রা</div></div>
     <div class="fund-strip-divider"></div>
-    <div class="fund-strip-num"><div class="val" id="fs-backers">০</div><div class="lbl">দানকারী</div></div>
+    <div class="fund-strip-num"><div class="val" id="fs-backers">০</div><div class="lbl" data-bn="দানকারী" data-en="Donors">দানকারী</div></div>
   </div>
   <div class="fund-strip-bar-wrap">
-    <div class="fund-strip-label"><span>তহবিল অগ্রগতি</span><span id="fs-pct">০%</span></div>
+    <div class="fund-strip-label"><span data-bn="তহবিল অগ্রগতি" data-en="Fund Progress">তহবিল অগ্রগতি</span><span id="fs-pct">০%</span></div>
     <div class="fund-strip-bg"><div class="fund-strip-fill" id="fs-bar" style="width:0%"></div></div>
   </div>
 </div>
@@ -349,16 +361,16 @@
 
 <!-- INTRO -->
 <div class="section" id="intro">
-  <div class="section-header"><span class="icon"><i class="fas fa-file-alt"></i></span><h2>ভূমিকা</h2></div>
+  <div class="section-header"><span class="icon"><i class="fas fa-file-alt"></i></span><h2 data-bn="ভূমিকা" data-en="Introduction">ভূমিকা</h2></div>
   <div class="section-body">
-    <p class="intro-text">প্রায় ১৯৩০ সালে প্রতিষ্ঠিত উত্তর গুয়াটন জামে মসজিদটি দীর্ঘদিন ধরে এলাকার মুসলিম জনগণের ইবাদতের কেন্দ্র হিসেবে সেবা প্রদান করে আসছে। দীর্ঘদিনের পুরোনো হওয়ায় মসজিদটি বর্তমানে অত্যন্ত জরাজীর্ণ অবস্থায় রয়েছে। প্রায় ১০ বছর আগে একবার মসজিদটির সংস্কার করা হয়েছিল, কিন্তু বর্তমানে পুনরায় ব্যাপক সংস্কার ও মেরামতের প্রয়োজন দেখা দিয়েছে।<br><br>
+    <p class="intro-text" data-bn="প্রায় ১৯৩০ সালে প্রতিষ্ঠিত উত্তর গুয়াটন জামে মসজিদটি দীর্ঘদিন ধরে এলাকার মুসলিম জনগণের ইবাদতের কেন্দ্র হিসেবে সেবা প্রদান করে আসছে। দীর্ঘদিনের পুরোনো হওয়ায় মসজিদটি বর্তমানে অত্যন্ত জরাজীর্ণ অবস্থায় রয়েছে। প্রায় ১০ বছর আগে একবার মসজিদটির সংস্কার করা হয়েছিল, কিন্তু বর্তমানে পুনরায় ব্যাপক সংস্কার ও মেরামতের প্রয়োজন দেখা দিয়েছে।&lt;br&gt;&lt;br&gt;স্থানীয়ভাবে পর্যাপ্ত সামর্থ্যবান মানুষের অভাবে মসজিদটির সংস্কারকাজ সম্পন্ন করা কঠিন হয়ে পড়েছে। মসজিদের সামগ্রিক অবকাঠামো এতটাই দুর্বল হয়ে পড়েছে যে আংশিক সংস্কার কোনো স্থায়ী সমাধান নয় — কাঠামোগত দুর্বলতার কারণে &lt;strong&gt;সম্পূর্ণ পুনর্নির্মাণই একমাত্র নিরাপদ ও টেকসই সমাধান।&lt;/strong&gt;" data-en="Established around 1930, Uttar Guatan Jame Mosque has long served as the center of worship for the Muslim community of this area. Due to its age, the mosque is currently in a severely dilapidated condition. A partial renovation was carried out about 10 years ago, but the structure now requires extensive repair once again.&lt;br&gt;&lt;br&gt;Due to a lack of sufficient local resources, completing the renovation has become difficult. The overall infrastructure has deteriorated so severely that partial repairs are no longer a viable solution — &lt;strong&gt;complete reconstruction is the only safe and sustainable option.&lt;/strong&gt;">প্রায় ১৯৩০ সালে প্রতিষ্ঠিত উত্তর গুয়াটন জামে মসজিদটি দীর্ঘদিন ধরে এলাকার মুসলিম জনগণের ইবাদতের কেন্দ্র হিসেবে সেবা প্রদান করে আসছে। দীর্ঘদিনের পুরোনো হওয়ায় মসজিদটি বর্তমানে অত্যন্ত জরাজীর্ণ অবস্থায় রয়েছে। প্রায় ১০ বছর আগে একবার মসজিদটির সংস্কার করা হয়েছিল, কিন্তু বর্তমানে পুনরায় ব্যাপক সংস্কার ও মেরামতের প্রয়োজন দেখা দিয়েছে।<br><br>
     স্থানীয়ভাবে পর্যাপ্ত সামর্থ্যবান মানুষের অভাবে মসজিদটির সংস্কারকাজ সম্পন্ন করা কঠিন হয়ে পড়েছে। মসজিদের সামগ্রিক অবকাঠামো এতটাই দুর্বল হয়ে পড়েছে যে আংশিক সংস্কার কোনো স্থায়ী সমাধান নয় — কাঠামোগত দুর্বলতার কারণে <strong>সম্পূর্ণ পুনর্নির্মাণই একমাত্র নিরাপদ ও টেকসই সমাধান।</strong></p>
   </div>
 </div>
 
 <!-- PHOTOS -->
 <div class="section" id="photos">
-  <div class="section-header"><span class="icon"><i class="fas fa-camera"></i></span><h2>বর্তমান অবস্থা — সরেজমিন চিত্র</h2></div>
+  <div class="section-header"><span class="icon"><i class="fas fa-camera"></i></span><h2 data-bn="বর্তমান অবস্থা — সরেজমিন চিত্র" data-en="Current Condition — On-Site Photos">বর্তমান অবস্থা — সরেজমিন চিত্র</h2></div>
   <div class="section-body">
     <!-- photo counter -->
     <div style="display:none;" id="galCount"></div>
@@ -366,51 +378,51 @@
     <div id="galGrid"></div>
     <!-- pagination -->
     <div class="pg-bar" id="galPg" style="margin-top:14px;"></div>
-    <div class="photo-note" style="margin-top:14px;"><i class="fas fa-exclamation-circle" style="color:#e67e22;margin-right:4px;"></i><strong>বিশেষজ্ঞ মতামত:</strong> উপরোক্ত চিত্রসমূহ সরেজমিন পরিদর্শনে গৃহীত। ছাদ, পিলার ও দেওয়ালের কাঠামোগত দুর্বলতার কারণে যেকোনো সময় দুর্ঘটনার আশঙ্কা রয়েছে। সম্পূর্ণ পুনর্নির্মাণ ছাড়া কোনো বিকল্প নেই।</div>
+    <div class="photo-note" style="margin-top:14px;"><i class="fas fa-exclamation-circle" style="color:#e67e22;margin-right:4px;"></i><strong data-bn="বিশেষজ্ঞ মতামত:" data-en="Expert Opinion:">বিশেষজ্ঞ মতামত:</strong> <span data-bn="উপরোক্ত চিত্রসমূহ সরেজমিন পরিদর্শনে গৃহীত। ছাদ, পিলার ও দেওয়ালের কাঠামোগত দুর্বলতার কারণে যেকোনো সময় দুর্ঘটনার আশঙ্কা রয়েছে। সম্পূর্ণ পুনর্নির্মাণ ছাড়া কোনো বিকল্প নেই।" data-en="The above photos were taken during an on-site inspection. Due to structural weaknesses in the roof, pillars and walls, there is a risk of accident at any time. There is no alternative to complete reconstruction.">উপরোক্ত চিত্রসমূহ সরেজমিন পরিদর্শনে গৃহীত। ছাদ, পিলার ও দেওয়ালের কাঠামোগত দুর্বলতার কারণে যেকোনো সময় দুর্ঘটনার আশঙ্কা রয়েছে। সম্পূর্ণ পুনর্নির্মাণ ছাড়া কোনো বিকল্প নেই।</span></div>
   </div>
 </div>
 
 <!-- PROBLEMS TABLE -->
 <div class="section" id="problems">
-  <div class="section-header"><span class="icon"><i class="fas fa-exclamation-triangle"></i></span><h2>চিহ্নিত সমস্যাসমূহ</h2></div>
+  <div class="section-header"><span class="icon"><i class="fas fa-exclamation-triangle"></i></span><h2 data-bn="চিহ্নিত সমস্যাসমূহ" data-en="Identified Problems">চিহ্নিত সমস্যাসমূহ</h2></div>
   <div class="section-body" style="padding:0;">
     <table class="prob-table">
-      <tr><th width="5%">#</th><th width="25%">সমস্যার ধরন</th><th>বিবরণ</th><th width="20%">অবস্থা</th></tr>
-      <tr><td>১</td><td>ছাদ ও সিলিং</td><td>প্লাস্টার খসে পড়েছে, বড় গর্ত তৈরি হয়েছে, ছাদ ধসের ঝুঁকি</td><td><span class="badge badge-danger">অত্যন্ত বিপজ্জনক</span></td></tr>
-      <tr><td>২</td><td>দেওয়াল</td><td>একাধিক স্থানে বড় ও গভীর ফাটল, ইট বেরিয়ে পড়েছে</td><td><span class="badge badge-danger">গুরুতর</span></td></tr>
-      <tr><td>৩</td><td>পিলার/কলাম</td><td>কর্নার পিলারে বহু ফাটল, কাঠামোগত দুর্বলতা স্পষ্ট</td><td><span class="badge badge-danger">গুরুতর</span></td></tr>
-      <tr><td>৪</td><td>দরজা-জানালা</td><td>জানালার গ্রিল মরিচা ধরে নষ্ট, দরজা ভাঙা ও বিচ্ছিন্ন</td><td><span class="badge badge-warn">জরুরি মেরামত</span></td></tr>
-      <tr><td>৫</td><td>বাইরের দেওয়াল</td><td>সম্পূর্ণ প্লাস্টার উঠে গেছে, শ্যাওলা ও ড্যাম্পনেস</td><td><span class="badge badge-warn">জরুরি মেরামত</span></td></tr>
-      <tr><td>৬</td><td>বাথরুম/ওযুখানা</td><td>জরাজীর্ণ ও অকার্যকর, ব্যবহার অনুপযোগী</td><td><span class="badge badge-danger">অকার্যকর</span></td></tr>
-      <tr><td>৭</td><td>পানি জমা</td><td>মসজিদের আঙিনায় জলাবদ্ধতার সমস্যা</td><td><span class="badge badge-warn">সমস্যাযুক্ত</span></td></tr>
-      <tr><td>৮</td><td>বৈদ্যুতিক ব্যবস্থা</td><td>অনিরাপদ ওয়্যারিং, সিলিং ফ্যান নষ্ট</td><td><span class="badge badge-danger">বিপজ্জনক</span></td></tr>
+      <tr><th width="5%">#</th><th width="25%" data-bn="সমস্যার ধরন" data-en="Issue Type">সমস্যার ধরন</th><th data-bn="বিবরণ" data-en="Description">বিবরণ</th><th width="20%" data-bn="অবস্থা" data-en="Status">অবস্থা</th></tr>
+      <tr><td>১</td><td data-bn="ছাদ ও সিলিং" data-en="Roof & Ceiling">ছাদ ও সিলিং</td><td data-bn="প্লাস্টার খসে পড়েছে, বড় গর্ত তৈরি হয়েছে, ছাদ ধসের ঝুঁকি" data-en="Plaster has fallen off, large holes formed, risk of roof collapse">প্লাস্টার খসে পড়েছে, বড় গর্ত তৈরি হয়েছে, ছাদ ধসের ঝুঁকি</td><td><span class="badge badge-danger" data-bn="অত্যন্ত বিপজ্জনক" data-en="Extremely Dangerous">অত্যন্ত বিপজ্জনক</span></td></tr>
+      <tr><td>২</td><td data-bn="দেওয়াল" data-en="Walls">দেওয়াল</td><td data-bn="একাধিক স্থানে বড় ও গভীর ফাটল, ইট বেরিয়ে পড়েছে" data-en="Large and deep cracks in multiple places, bricks exposed">একাধিক স্থানে বড় ও গভীর ফাটল, ইট বেরিয়ে পড়েছে</td><td><span class="badge badge-danger" data-bn="গুরুতর" data-en="Serious">গুরুতর</span></td></tr>
+      <tr><td>৩</td><td data-bn="পিলার/কলাম" data-en="Pillars/Columns">পিলার/কলাম</td><td data-bn="কর্নার পিলারে বহু ফাটল, কাঠামোগত দুর্বলতা স্পষ্ট" data-en="Multiple cracks in corner pillars, structural weakness evident">কর্নার পিলারে বহু ফাটল, কাঠামোগত দুর্বলতা স্পষ্ট</td><td><span class="badge badge-danger" data-bn="গুরুতর" data-en="Serious">গুরুতর</span></td></tr>
+      <tr><td>৪</td><td data-bn="দরজা-জানালা" data-en="Doors & Windows">দরজা-জানালা</td><td data-bn="জানালার গ্রিল মরিচা ধরে নষ্ট, দরজা ভাঙা ও বিচ্ছিন্ন" data-en="Window grills rusted and damaged, doors broken and disconnected">জানালার গ্রিল মরিচা ধরে নষ্ট, দরজা ভাঙা ও বিচ্ছিন্ন</td><td><span class="badge badge-warn" data-bn="জরুরি মেরামত" data-en="Urgent Repair">জরুরি মেরামত</span></td></tr>
+      <tr><td>৫</td><td data-bn="বাইরের দেওয়াল" data-en="Exterior Walls">বাইরের দেওয়াল</td><td data-bn="সম্পূর্ণ প্লাস্টার উঠে গেছে, শ্যাওলা ও ড্যাম্পনেস" data-en="All plaster peeled off, moss and dampness throughout">সম্পূর্ণ প্লাস্টার উঠে গেছে, শ্যাওলা ও ড্যাম্পনেস</td><td><span class="badge badge-warn" data-bn="জরুরি মেরামত" data-en="Urgent Repair">জরুরি মেরামত</span></td></tr>
+      <tr><td>৬</td><td data-bn="বাথরুম/ওযুখানা" data-en="Bathroom/Ablution Area">বাথরুম/ওযুখানা</td><td data-bn="জরাজীর্ণ ও অকার্যকর, ব্যবহার অনুপযোগী" data-en="Dilapidated and non-functional, unfit for use">জরাজীর্ণ ও অকার্যকর, ব্যবহার অনুপযোগী</td><td><span class="badge badge-danger" data-bn="অকার্যকর" data-en="Non-functional">অকার্যকর</span></td></tr>
+      <tr><td>৭</td><td data-bn="পানি জমা" data-en="Waterlogging">পানি জমা</td><td data-bn="মসজিদের আঙিনায় জলাবদ্ধতার সমস্যা" data-en="Waterlogging problem in the mosque courtyard">মসজিদের আঙিনায় জলাবদ্ধতার সমস্যা</td><td><span class="badge badge-warn" data-bn="সমস্যাযুক্ত" data-en="Problematic">সমস্যাযুক্ত</span></td></tr>
+      <tr><td>৮</td><td data-bn="বৈদ্যুতিক ব্যবস্থা" data-en="Electrical System">বৈদ্যুতিক ব্যবস্থা</td><td data-bn="অনিরাপদ ওয়্যারিং, সিলিং ফ্যান নষ্ট" data-en="Unsafe wiring, ceiling fans damaged">অনিরাপদ ওয়্যারিং, সিলিং ফ্যান নষ্ট</td><td><span class="badge badge-danger" data-bn="বিপজ্জনক" data-en="Dangerous">বিপজ্জনক</span></td></tr>
     </table>
   </div>
 </div>
 
 <!-- LAND INFO -->
 <div class="section" id="land">
-  <div class="section-header"><span class="icon"><i class="fas fa-scroll"></i></span><h2>জমির তথ্য</h2></div>
+  <div class="section-header"><span class="icon"><i class="fas fa-scroll"></i></span><h2 data-bn="জমির তথ্য" data-en="Land Information">জমির তথ্য</h2></div>
   <div class="section-body">
     <div class="land-grid">
-      <div class="land-card"><div class="land-icon"><i class="fas fa-mosque"></i></div><div><h4>মসজিদের নাম</h4><p>উত্তর গুয়াটন জামে মসজিদ</p></div></div>
-      <div class="land-card"><div class="land-icon"><i class="fas fa-map-marker-alt"></i></div><div><h4>অবস্থান</h4><p>ঝালকাঠি জেলা, বরিশাল বিভাগ</p></div></div>
-      <div class="land-card"><div class="land-icon"><i class="fas fa-ruler-combined"></i></div><div><h4>জমির পরিমাণ</h4><p>আনুমানিক ৩৩ শতক</p></div></div>
-      <div class="land-card"><div class="land-icon"><i class="fas fa-certificate"></i></div><div><h4>দলিলের ধরন</h4><p>রেজিস্ট্রিকৃত, সরকারি সিলযুক্ত</p></div></div>
+      <div class="land-card"><div class="land-icon"><i class="fas fa-mosque"></i></div><div><h4 data-bn="মসজিদের নাম" data-en="Mosque Name">মসজিদের নাম</h4><p data-bn="উত্তর গুয়াটন জামে মসজিদ" data-en="Uttar Guatan Jame Mosque">উত্তর গুয়াটন জামে মসজিদ</p></div></div>
+      <div class="land-card"><div class="land-icon"><i class="fas fa-map-marker-alt"></i></div><div><h4 data-bn="অবস্থান" data-en="Location">অবস্থান</h4><p data-bn="ঝালকাঠি জেলা, বরিশাল বিভাগ" data-en="Jhalokathi District, Barisal Division">ঝালকাঠি জেলা, বরিশাল বিভাগ</p></div></div>
+      <div class="land-card"><div class="land-icon"><i class="fas fa-ruler-combined"></i></div><div><h4 data-bn="জমির পরিমাণ" data-en="Land Area">জমির পরিমাণ</h4><p data-bn="আনুমানিক ৩৩ শতক" data-en="Approximately 33 decimals">আনুমানিক ৩৩ শতক</p></div></div>
+      <div class="land-card"><div class="land-icon"><i class="fas fa-certificate"></i></div><div><h4 data-bn="দলিলের ধরন" data-en="Document Type">দলিলের ধরন</h4><p data-bn="রেজিস্ট্রিকৃত, সরকারি সিলযুক্ত" data-en="Registered, with official government seal">রেজিস্ট্রিকৃত, সরকারি সিলযুক্ত</p></div></div>
     </div>
   </div>
 </div>
 
 <!-- PLAN -->
 <div class="section" id="plan">
-  <div class="section-header"><span class="icon"><i class="fas fa-drafting-compass"></i></span><h2>পুনর্নির্মাণ পরিকল্পনা</h2></div>
+  <div class="section-header"><span class="icon"><i class="fas fa-drafting-compass"></i></span><h2 data-bn="পুনর্নির্মাণ পরিকল্পনা" data-en="Reconstruction Plan">পুনর্নির্মাণ পরিকল্পনা</h2></div>
   <div class="section-body">
     <div class="plan-steps">
-      <div class="step"><div class="step-num">১</div><div class="step-content"><h4>ভাঙন ও মাটিকাজ</h4><ul><li>পুরনো কাঠামো সম্পূর্ণ অপসারণ</li><li>মাটি পরীক্ষা (Soil Test)</li><li>ভিত্তি প্রস্তুতি ও লেভেলিং</li></ul></div></div>
-      <div class="step"><div class="step-num">২</div><div class="step-content"><h4>মূল কাঠামো নির্মাণ</h4><ul><li>শক্তিশালী RCC ফাউন্ডেশন</li><li>কলাম, বিম ও ছাদ ঢালাই</li><li>উচ্চমানের ইট ও সিমেন্টে দেওয়াল নির্মাণ</li></ul></div></div>
-      <div class="step"><div class="step-num">৩</div><div class="step-content"><h4>অভ্যন্তরীণ কাজ</h4><ul><li>মেঝে টাইলস ও পলেস্তারা</li><li>দরজা-জানালা স্থাপন</li><li>বৈদ্যুতিক সংযোগ, আলো ও পাখা</li></ul></div></div>
-      <div class="step"><div class="step-num">৪</div><div class="step-content"><h4>বাইরের কাজ</h4><ul><li>ওযুখানা ও টয়লেট নির্মাণ</li><li>আঙিনা উন্নয়ন ও পানি নিষ্কাশন</li><li>সীমানা প্রাচীর</li></ul></div></div>
-      <div class="step"><div class="step-num">৫</div><div class="step-content"><h4>সৌন্দর্যবর্ধন ও ফিনিশিং</h4><ul><li>মিনার নির্মাণ</li><li>রঙ ও চূড়ান্ত ফিনিশিং</li><li>নামফলক স্থাপন</li></ul></div></div>
+      <div class="step"><div class="step-num">১</div><div class="step-content"><h4 data-bn="ভাঙন ও মাটিকাজ" data-en="Demolition & Earthwork">ভাঙন ও মাটিকাজ</h4><ul><li data-bn="পুরনো কাঠামো সম্পূর্ণ অপসারণ" data-en="Complete removal of old structure">পুরনো কাঠামো সম্পূর্ণ অপসারণ</li><li data-bn="মাটি পরীক্ষা (Soil Test)" data-en="Soil testing">মাটি পরীক্ষা (Soil Test)</li><li data-bn="ভিত্তি প্রস্তুতি ও লেভেলিং" data-en="Foundation preparation and leveling">ভিত্তি প্রস্তুতি ও লেভেলিং</li></ul></div></div>
+      <div class="step"><div class="step-num">২</div><div class="step-content"><h4 data-bn="মূল কাঠামো নির্মাণ" data-en="Main Structure Construction">মূল কাঠামো নির্মাণ</h4><ul><li data-bn="শক্তিশালী RCC ফাউন্ডেশন" data-en="Strong RCC foundation">শক্তিশালী RCC ফাউন্ডেশন</li><li data-bn="কলাম, বিম ও ছাদ ঢালাই" data-en="Columns, beams and roof casting">কলাম, বিম ও ছাদ ঢালাই</li><li data-bn="উচ্চমানের ইট ও সিমেন্টে দেওয়াল নির্মাণ" data-en="Walls with high-quality bricks and cement">উচ্চমানের ইট ও সিমেন্টে দেওয়াল নির্মাণ</li></ul></div></div>
+      <div class="step"><div class="step-num">৩</div><div class="step-content"><h4 data-bn="অভ্যন্তরীণ কাজ" data-en="Interior Work">অভ্যন্তরীণ কাজ</h4><ul><li data-bn="মেঝে টাইলস ও পলেস্তারা" data-en="Floor tiles and plastering">মেঝে টাইলস ও পলেস্তারা</li><li data-bn="দরজা-জানালা স্থাপন" data-en="Door and window installation">দরজা-জানালা স্থাপন</li><li data-bn="বৈদ্যুতিক সংযোগ, আলো ও পাখা" data-en="Electrical connections, lighting and fans">বৈদ্যুতিক সংযোগ, আলো ও পাখা</li></ul></div></div>
+      <div class="step"><div class="step-num">৪</div><div class="step-content"><h4 data-bn="বাইরের কাজ" data-en="Exterior Work">বাইরের কাজ</h4><ul><li data-bn="ওযুখানা ও টয়লেট নির্মাণ" data-en="Ablution area and toilet construction">ওযুখানা ও টয়লেট নির্মাণ</li><li data-bn="আঙিনা উন্নয়ন ও পানি নিষ্কাশন" data-en="Courtyard development and drainage">আঙিনা উন্নয়ন ও পানি নিষ্কাশন</li><li data-bn="সীমানা প্রাচীর" data-en="Boundary wall">সীমানা প্রাচীর</li></ul></div></div>
+      <div class="step"><div class="step-num">৫</div><div class="step-content"><h4 data-bn="সৌন্দর্যবর্ধন ও ফিনিশিং" data-en="Beautification & Finishing">সৌন্দর্যবর্ধন ও ফিনিশিং</h4><ul><li data-bn="মিনার নির্মাণ" data-en="Minaret construction">মিনার নির্মাণ</li><li data-bn="রঙ ও চূড়ান্ত ফিনিশিং" data-en="Paint and final finishing">রঙ ও চূড়ান্ত ফিনিশিং</li><li data-bn="নামফলক স্থাপন" data-en="Nameplate installation">নামফলক স্থাপন</li></ul></div></div>
     </div>
   </div>
 </div>
@@ -419,9 +431,9 @@
 <div class="section" id="fundraiserSection" data-nav-id="fundraiser">
   <!-- Goal header -->
   <div class="fund-hero">
-    <h3>পুনর্নির্মাণ তহবিল সংগ্রহ</h3>
+    <h3 data-bn="পুনর্নির্মাণ তহবিল সংগ্রহ" data-en="Reconstruction Fundraiser">পুনর্নির্মাণ তহবিল সংগ্রহ</h3>
     <div class="fund-goal-amount" id="fr-goal">৳ ২৮.৯ লক্ষ</div>
-    <div class="fund-goal-label">লক্ষ্যমাত্রা</div>
+    <div class="fund-goal-label" data-bn="লক্ষ্যমাত্রা" data-en="Goal">লক্ষ্যমাত্রা</div>
   </div>
 
   <!-- Progress bar -->
@@ -436,82 +448,80 @@
   <div class="fund-stats">
     <div class="fund-stat">
       <div class="fund-stat-num collected" id="fr-collected">৳ ০</div>
-      <div class="fund-stat-label"><i class="fas fa-circle-check" style="color:#2d6a4f;margin-right:3px;font-size:.8em;"></i>সংগ্রহ হয়েছে</div>
+      <div class="fund-stat-label"><i class="fas fa-circle-check" style="color:#2d6a4f;margin-right:3px;font-size:.8em;"></i><span data-bn="সংগ্রহ হয়েছে" data-en="Collected">সংগ্রহ হয়েছে</span></div>
     </div>
     <div class="fund-stat">
       <div class="fund-stat-num pending" id="fr-pending">৳ ২৮,৯০,০০০</div>
-      <div class="fund-stat-label"><i class="fas fa-circle-xmark" style="color:#c0392b;margin-right:3px;font-size:.8em;"></i>বাকি আছে</div>
+      <div class="fund-stat-label"><i class="fas fa-circle-xmark" style="color:#c0392b;margin-right:3px;font-size:.8em;"></i><span data-bn="বাকি আছে" data-en="Remaining">বাকি আছে</span></div>
     </div>
     <div class="fund-stat">
       <div class="fund-stat-num" id="fr-backers" style="color:#b5883a;">০</div>
-      <div class="fund-stat-label"><i class="fas fa-users" style="color:#b5883a;margin-right:3px;font-size:.8em;"></i>দানকারী</div>
+      <div class="fund-stat-label"><i class="fas fa-users" style="color:#b5883a;margin-right:3px;font-size:.8em;"></i><span data-bn="দানকারী" data-en="Donors">দানকারী</span></div>
     </div>
   </div>
 
-
-
   <div class="fund-note">
     <i class="fas fa-shield-halved" style="color:#2d6a4f;margin-right:4px;"></i>
-    সকল দান সরাসরি মসজিদ কমিটির মাধ্যমে পরিচালিত হবে। প্রতিটি টাকার হিসাব স্বচ্ছভাবে রাখা হবে।
+    <span data-bn="সকল দান সরাসরি মসজিদ কমিটির মাধ্যমে পরিচালিত হবে। প্রতিটি টাকার হিসাব স্বচ্ছভাবে রাখা হবে।" data-en="All donations will be managed directly through the mosque committee. Full transparency and accounting will be maintained for every contribution.">সকল দান সরাসরি মসজিদ কমিটির মাধ্যমে পরিচালিত হবে। প্রতিটি টাকার হিসাব স্বচ্ছভাবে রাখা হবে।</span>
   </div>
 </div>
 
 <!-- BUDGET -->
 <div class="section" id="budget">
-  <div class="section-header"><span class="icon"><i class="fas fa-coins"></i></span><h2>সম্ভাব্য নির্মাণ বাজেট — ২০২৬</h2></div>
+  <div class="section-header"><span class="icon"><i class="fas fa-coins"></i></span><h2 data-bn="সম্ভাব্য নির্মাণ বাজেট — ২০২৬" data-en="Estimated Construction Budget — 2026">সম্ভাব্য নির্মাণ বাজেট — ২০২৬</h2></div>
   <div class="section-body" style="padding:0;">
 
     <!-- Summary chips -->
     <div style="display:flex;gap:12px;flex-wrap:wrap;padding:18px 20px 4px;justify-content:center;">
       <div style="background:#f0faf5;border:1px solid #b7ddc9;border-radius:10px;padding:10px 20px;text-align:center;flex:1;min-width:130px;">
-        <div style="font-size:1.45em;font-weight:800;color:#1a3a2a;">১,০০০</div>
-        <div style="font-size:.75em;color:#555;margin-top:2px;">বর্গফুট আয়তন</div>
+        <div style="font-size:1.45em;font-weight:800;color:#1a3a2a;" data-bn="১,০০০" data-en="1,000">১,০০০</div>
+        <div style="font-size:.75em;color:#555;margin-top:2px;" data-bn="বর্গফুট আয়তন" data-en="sq ft area">বর্গফুট আয়তন</div>
       </div>
       <div style="background:#fff8e6;border:1px solid #e0c96a;border-radius:10px;padding:10px 20px;text-align:center;flex:1;min-width:130px;">
-        <div style="font-size:1.45em;font-weight:800;color:#8a6000;">২৮,৯০,০০০৳</div>
-        <div style="font-size:.75em;color:#555;margin-top:2px;">সম্ভাব্য মোট বাজেট</div>
+        <div style="font-size:1.45em;font-weight:800;color:#8a6000;" data-bn="২৮,৯০,০০০৳" data-en="৳2,890,000">২৮,৯০,০০০৳</div>
+        <div style="font-size:.75em;color:#555;margin-top:2px;" data-bn="সম্ভাব্য মোট বাজেট" data-en="Estimated Total Budget">সম্ভাব্য মোট বাজেট</div>
       </div>
       <div style="background:#f0faf5;border:1px solid #b7ddc9;border-radius:10px;padding:10px 20px;text-align:center;flex:1;min-width:130px;">
-        <div style="font-size:1.45em;font-weight:800;color:#1a3a2a;">১৪টি</div>
-        <div style="font-size:.75em;color:#555;margin-top:2px;">নির্মাণ খাত</div>
+        <div style="font-size:1.45em;font-weight:800;color:#1a3a2a;" data-bn="১৪টি" data-en="14">১৪টি</div>
+        <div style="font-size:.75em;color:#555;margin-top:2px;" data-bn="নির্মাণ খাত" data-en="construction categories">নির্মাণ খাত</div>
       </div>
     </div>
 
     <table class="budget-table" style="margin-top:12px;">
       <thead>
         <tr>
-          <th style="width:40px;">ক্রম</th>
-          <th>খাত / বিবরণ</th>
-          <th style="font-size:.8em;opacity:.85;">পরিমাণ/ধারণা</th>
-          <th style="text-align:right;white-space:nowrap;">বরাদ্দ (৳)</th>
+          <th style="width:40px;" data-bn="ক্রম" data-en="#">ক্রম</th>
+          <th data-bn="খাত / বিবরণ" data-en="Category / Description">খাত / বিবরণ</th>
+          <th style="font-size:.8em;opacity:.85;" data-bn="পরিমাণ/ধারণা" data-en="Quantity/Estimate">পরিমাণ/ধারণা</th>
+          <th style="text-align:right;white-space:nowrap;" data-bn="বরাদ্দ (৳)" data-en="Allocation (৳)">বরাদ্দ (৳)</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>১</td><td>সাইট পরিষ্কার, মাটি ভরাট/সমতল ও লেআউট</td><td style="color:#777;font-size:.82em;">প্রয়োজন অনুযায়ী</td><td style="text-align:right;font-weight:600;">৭০,০০০</td></tr>
-        <tr><td>২</td><td>ফাউন্ডেশন + ভবিষ্যৎ দোতলার উপযোগী RCC কাঠামো</td><td style="color:#777;font-size:.82em;">ইঞ্জিনিয়ার্ড ডিজাইন অনুযায়ী</td><td style="text-align:right;font-weight:600;">৭,০০,০০০</td></tr>
-        <tr><td>৩</td><td>RCC কলাম, বিম, ছাদ ও সিঁড়ির কাঠামো</td><td style="color:#777;font-size:.82em;">প্রাথমিক ভবন</td><td style="text-align:right;font-weight:600;">৮,০০,০০০</td></tr>
-        <tr><td>৪</td><td>ইটের দেয়াল/পার্টিশন ও প্লাস্টার</td><td style="color:#777;font-size:.82em;">প্রায় ১,২০০ sq ft core</td><td style="text-align:right;font-weight:600;">২,৩০,০০০</td></tr>
-        <tr><td>৫</td><td>ফ্লোর টাইলস/সাধারণ মেঝে</td><td style="color:#777;font-size:.82em;">হল + বারান্দা + সার্ভিস</td><td style="text-align:right;font-weight:600;">১,৭০,০০০</td></tr>
-        <tr><td>৬</td><td>দরজা-জানালা/গ্রিল</td><td style="color:#777;font-size:.82em;">সাধারণ মান</td><td style="text-align:right;font-weight:600;">১,৩০,০০০</td></tr>
-        <tr><td>৭</td><td>অজুখানা + ২ WC + পানির লাইন/ড্রেনেজ</td><td style="color:#777;font-size:.82em;">উত্তর পাশে</td><td style="text-align:right;font-weight:600;">১,০০,০০০</td></tr>
-        <tr><td>৮</td><td>ইলেকট্রিক, ফ্যান, LED, DB</td><td style="color:#777;font-size:.82em;">বেসিক</td><td style="text-align:right;font-weight:600;">৮০,০০০</td></tr>
-        <tr><td>৯</td><td>পেইন্ট/চুনকাম</td><td style="color:#777;font-size:.82em;">ভিতর-বাহির</td><td style="text-align:right;font-weight:600;">১,০০,০০০</td></tr>
-        <tr><td>১০</td><td>মিহরাব, মিম্বর, সাধারণ সজ্জা</td><td style="color:#777;font-size:.82em;">বেসিক</td><td style="text-align:right;font-weight:600;">৭০,০০০</td></tr>
-        <tr><td>১১</td><td>পানি সংযোগ/পাম্প/ছোট ট্যাংক</td><td style="color:#777;font-size:.82em;">বেসিক</td><td style="text-align:right;font-weight:600;">৭০,০০০</td></tr>
-        <tr><td>১২</td><td>সেপটিক/সোকওয়ে/বর্জ্য ব্যবস্থাপনা</td><td style="color:#777;font-size:.82em;">প্রয়োজন অনুযায়ী</td><td style="text-align:right;font-weight:600;">৬০,০০০</td></tr>
-        <tr><td>১৩</td><td>সাইট পরিবহন, শ্রমিক আনুষঙ্গিক ও ছোটখাটো কাজ</td><td style="color:#777;font-size:.82em;">লাম্প সাম</td><td style="text-align:right;font-weight:600;">১,০০,০০০</td></tr>
-        <tr><td>১৪</td><td>মূল্য ওঠানামা/জরুরি রিজার্ভ</td><td style="color:#777;font-size:.82em;">অন্তত ১০% লক্ষ্য</td><td style="text-align:right;font-weight:600;">২,১০,০০০</td></tr>
+        <tr><td data-bn="১" data-en="1">১</td><td data-bn="সাইট পরিষ্কার, মাটি ভরাট/সমতল ও লেআউট" data-en="Site clearing, earth filling/leveling &amp; layout">সাইট পরিষ্কার, মাটি ভরাট/সমতল ও লেআউট</td><td style="color:#777;font-size:.82em;" data-bn="প্রয়োজন অনুযায়ী" data-en="As required">প্রয়োজন অনুযায়ী</td><td style="text-align:right;font-weight:600;" data-bn="৭০,০০০" data-en="70,000">৭০,০০০</td></tr>
+        <tr><td data-bn="২" data-en="2">২</td><td data-bn="ফাউন্ডেশন + ভবিষ্যৎ দোতলার উপযোগী RCC কাঠামো" data-en="Foundation + RCC framework suitable for future 2nd floor">ফাউন্ডেশন + ভবিষ্যৎ দোতলার উপযোগী RCC কাঠামো</td><td style="color:#777;font-size:.82em;" data-bn="ইঞ্জিনিয়ার্ড ডিজাইন অনুযায়ী" data-en="Per engineered design">ইঞ্জিনিয়ার্ড ডিজাইন অনুযায়ী</td><td style="text-align:right;font-weight:600;" data-bn="৭,০০,০০০" data-en="700,000">৭,০০,০০০</td></tr>
+        <tr><td data-bn="৩" data-en="3">৩</td><td data-bn="RCC কলাম, বিম, ছাদ ও সিঁড়ির কাঠামো" data-en="RCC columns, beams, roof &amp; staircase structure">RCC কলাম, বিম, ছাদ ও সিঁড়ির কাঠামো</td><td style="color:#777;font-size:.82em;" data-bn="প্রাথমিক ভবন" data-en="Primary building">প্রাথমিক ভবন</td><td style="text-align:right;font-weight:600;" data-bn="৮,০০,০০০" data-en="800,000">৮,০০,০০০</td></tr>
+        <tr><td data-bn="৪" data-en="4">৪</td><td data-bn="ইটের দেয়াল/পার্টিশন ও প্লাস্টার" data-en="Brick wall/partition &amp; plastering">ইটের দেয়াল/পার্টিশন ও প্লাস্টার</td><td style="color:#777;font-size:.82em;" data-bn="প্রায় ১,২০০ sq ft core" data-en="~1,200 sq ft core">প্রায় ১,২০০ sq ft core</td><td style="text-align:right;font-weight:600;" data-bn="২,৩০,০০০" data-en="230,000">২,৩০,০০০</td></tr>
+        <tr><td data-bn="৫" data-en="5">৫</td><td data-bn="ফ্লোর টাইলস/সাধারণ মেঝে" data-en="Floor tiles / general flooring">ফ্লোর টাইলস/সাধারণ মেঝে</td><td style="color:#777;font-size:.82em;" data-bn="হল + বারান্দা + সার্ভিস" data-en="Hall + veranda + service">হল + বারান্দা + সার্ভিস</td><td style="text-align:right;font-weight:600;" data-bn="১,৭০,০০০" data-en="170,000">১,৭০,০০০</td></tr>
+        <tr><td data-bn="৬" data-en="6">৬</td><td data-bn="দরজা-জানালা/গ্রিল" data-en="Doors, windows &amp; grills">দরজা-জানালা/গ্রিল</td><td style="color:#777;font-size:.82em;" data-bn="সাধারণ মান" data-en="Standard quality">সাধারণ মান</td><td style="text-align:right;font-weight:600;" data-bn="১,৩০,০০০" data-en="130,000">১,৩০,০০০</td></tr>
+        <tr><td data-bn="৭" data-en="7">৭</td><td data-bn="অজুখানা + ২ WC + পানির লাইন/ড্রেনেজ" data-en="Ablution area + 2 WC + water line/drainage">অজুখানা + ২ WC + পানির লাইন/ড্রেনেজ</td><td style="color:#777;font-size:.82em;" data-bn="উত্তর পাশে" data-en="North side">উত্তর পাশে</td><td style="text-align:right;font-weight:600;" data-bn="১,০০,০০০" data-en="100,000">১,০০,০০০</td></tr>
+        <tr><td data-bn="৮" data-en="8">৮</td><td data-bn="ইলেকট্রিক, ফ্যান, LED, DB" data-en="Electrical, fans, LED, DB">ইলেকট্রিক, ফ্যান, LED, DB</td><td style="color:#777;font-size:.82em;" data-bn="বেসিক" data-en="Basic">বেসিক</td><td style="text-align:right;font-weight:600;" data-bn="৮০,০০০" data-en="80,000">৮০,০০০</td></tr>
+        <tr><td data-bn="৯" data-en="9">৯</td><td data-bn="পেইন্ট/চুনকাম" data-en="Paint / whitewash">পেইন্ট/চুনকাম</td><td style="color:#777;font-size:.82em;" data-bn="ভিতর-বাহির" data-en="Interior &amp; exterior">ভিতর-বাহির</td><td style="text-align:right;font-weight:600;" data-bn="১,০০,০০০" data-en="100,000">১,০০,০০০</td></tr>
+        <tr><td data-bn="১০" data-en="10">১০</td><td data-bn="মিহরাব, মিম্বর, সাধারণ সজ্জা" data-en="Mihrab, minbar &amp; basic decoration">মিহরাব, মিম্বর, সাধারণ সজ্জা</td><td style="color:#777;font-size:.82em;" data-bn="বেসিক" data-en="Basic">বেসিক</td><td style="text-align:right;font-weight:600;" data-bn="৭০,০০০" data-en="70,000">৭০,০০০</td></tr>
+        <tr><td data-bn="১১" data-en="11">১১</td><td data-bn="পানি সংযোগ/পাম্প/ছোট ট্যাংক" data-en="Water connection / pump / small tank">পানি সংযোগ/পাম্প/ছোট ট্যাংক</td><td style="color:#777;font-size:.82em;" data-bn="বেসিক" data-en="Basic">বেসিক</td><td style="text-align:right;font-weight:600;" data-bn="৭০,০০০" data-en="70,000">৭০,০০০</td></tr>
+        <tr><td data-bn="১২" data-en="12">১২</td><td data-bn="সেপটিক/সোকওয়ে/বর্জ্য ব্যবস্থাপনা" data-en="Septic / soakway / waste management">সেপটিক/সোকওয়ে/বর্জ্য ব্যবস্থাপনা</td><td style="color:#777;font-size:.82em;" data-bn="প্রয়োজন অনুযায়ী" data-en="As required">প্রয়োজন অনুযায়ী</td><td style="text-align:right;font-weight:600;" data-bn="৬০,০০০" data-en="60,000">৬০,০০০</td></tr>
+        <tr><td data-bn="১৩" data-en="13">১৩</td><td data-bn="সাইট পরিবহন, শ্রমিক আনুষঙ্গিক ও ছোটখাটো কাজ" data-en="Site transport, labor accessories &amp; miscellaneous work">সাইট পরিবহন, শ্রমিক আনুষঙ্গিক ও ছোটখাটো কাজ</td><td style="color:#777;font-size:.82em;" data-bn="লাম্প সাম" data-en="Lump sum">লাম্প সাম</td><td style="text-align:right;font-weight:600;" data-bn="১,০০,০০০" data-en="100,000">১,০০,০০০</td></tr>
+        <tr><td data-bn="১৪" data-en="14">১৪</td><td data-bn="মূল্য ওঠানামা/জরুরি রিজার্ভ" data-en="Price fluctuation / contingency reserve">মূল্য ওঠানামা/জরুরি রিজার্ভ</td><td style="color:#777;font-size:.82em;" data-bn="অন্তত ১০% লক্ষ্য" data-en="Target min. 10%">অন্তত ১০% লক্ষ্য</td><td style="text-align:right;font-weight:600;" data-bn="২,১০,০০০" data-en="210,000">২,১০,০০০</td></tr>
       </tbody>
       <tfoot>
         <tr class="total">
-          <td colspan="3" style="text-align:right;">সম্ভাব্য মোট</td>
-          <td style="text-align:right;font-size:1.1em;color:#1a3a2a;">৳ ২৮,৯০,০০০</td>
+          <td colspan="3" style="text-align:right;" data-bn="সম্ভাব্য মোট" data-en="Estimated Total">সম্ভাব্য মোট</td>
+          <td style="text-align:right;font-size:1.1em;color:#1a3a2a;" data-bn="৳ ২৮,৯০,০০০" data-en="৳ 2,890,000">৳ ২৮,৯০,০০০</td>
         </tr>
       </tfoot>
     </table>
     <p style="padding:14px 20px;font-size:.82em;color:#666;border-top:1px solid #eee;line-height:1.8;">
       <i class="fas fa-info-circle" style="color:#2d6a4f;margin-right:6px;"></i>
-      মালামালের দামের তারতম্য হলে খরচ কিছু বাড়তে/কমতে পারে — সেই অনুযায়ী লক্ষ্যমাত্রাও পরিবর্তন হতে পারে। মসজিদের জমির পরিমাণ ১,৭০০ বর্গফুট।
+      <span data-bn="মালামালের দামের তারতম্য হলে খরচ কিছু বাড়তে/কমতে পারে — সেই অনুযায়ী লক্ষ্যমাত্রাও পরিবর্তন হতে পারে। মসজিদের জমির পরিমাণ ১,৭০০ বর্গফুট।" data-en="Costs may increase or decrease depending on material price fluctuations — the fundraising goal may be adjusted accordingly. The mosque's total land area is 1,700 sq ft.">মালামালের দামের তারতম্য হলে খরচ কিছু বাড়তে/কমতে পারে — সেই অনুযায়ী লক্ষ্যমাত্রাও পরিবর্তন হতে পারে। মসজিদের জমির পরিমাণ ১,৭০০ বর্গফুট।</span>
     </p>
   </div>
 </div>
@@ -522,7 +532,7 @@
      shared with admin.html & progress.html
      ══════════════════════════════════════════ -->
 <div class="section" id="progressSection" data-nav-id="progress">
-  <div class="section-header"><span class="icon"><i class="fas fa-tools"></i></span><h2>নির্মাণ অগ্রগতি</h2></div>
+  <div class="section-header"><span class="icon"><i class="fas fa-tools"></i></span><h2 data-bn="নির্মাণ অগ্রগতি" data-en="Construction Progress">নির্মাণ অগ্রগতি</h2></div>
   <div class="section-body" id="progressBody">
     <div class="progress-empty">
       <span class="pe-icon"><i class="fas fa-hard-hat" style="color:#aaa;"></i></span>
@@ -533,30 +543,30 @@
 
 <!-- WHY DONATE -->
 <div class="section" id="why">
-  <div class="section-header"><span class="icon"><i class="fas fa-hand-holding-heart"></i></span><h2>কেন এই মসজিদে দান করবেন?</h2></div>
+  <div class="section-header"><span class="icon"><i class="fas fa-hand-holding-heart"></i></span><h2 data-bn="কেন এই মসজিদে দান করবেন?" data-en="Why Donate to This Mosque?">কেন এই মসজিদে দান করবেন?</h2></div>
   <div class="section-body">
     <div class="hadith-box">
-      <p>যে ব্যক্তি আল্লাহর সন্তুষ্টির জন্য মসজিদ নির্মাণ করে,<br>আল্লাহ তার জন্য জান্নাতে একটি ঘর নির্মাণ করেন।</p>
-      <small>— সহিহ বুখারি ও মুসলিম</small>
+      <p data-bn="যে ব্যক্তি আল্লাহর সন্তুষ্টির জন্য মসজিদ নির্মাণ করে,&lt;br&gt;আল্লাহ তার জন্য জান্নাতে একটি ঘর নির্মাণ করেন।" data-en="Whoever builds a mosque for the sake of Allah,&lt;br&gt;Allah will build for him a house in Paradise.">যে ব্যক্তি আল্লাহর সন্তুষ্টির জন্য মসজিদ নির্মাণ করে,<br>আল্লাহ তার জন্য জান্নাতে একটি ঘর নির্মাণ করেন।</p>
+      <small data-bn="— সহিহ বুখারি ও মুসলিম" data-en="— Sahih Bukhari & Muslim">— সহিহ বুখারি ও মুসলিম</small>
     </div>
     <div class="donate-grid">
-      <div class="donate-card"><div class="di"><i class="fas fa-mosque"></i></div><p>প্রতিদিন পাঁচ ওয়াক্ত নামাজ ও সাপ্তাহিক জুমার নামাজের কেন্দ্র</p></div>
-      <div class="donate-card"><div class="di"><i class="fas fa-book-open"></i></div><p>ধর্মীয় শিক্ষা ও এলাকার সামাজিক কার্যক্রমের প্রাণকেন্দ্র</p></div>
-      <div class="donate-card"><div class="di"><i class="fas fa-infinity"></i></div><p>সদকায়ে জারিয়া — মৃত্যুর পরেও কেয়ামত পর্যন্ত নেকি জারি থাকবে</p></div>
-      <div class="donate-card"><div class="di"><i class="fas fa-users"></i></div><p>শত শত মুসল্লি পরিবারের আধ্যাত্মিক আশ্রয়স্থল রক্ষার সুযোগ</p></div>
+      <div class="donate-card"><div class="di"><i class="fas fa-mosque"></i></div><p data-bn="প্রতিদিন পাঁচ ওয়াক্ত নামাজ ও সাপ্তাহিক জুমার নামাজের কেন্দ্র" data-en="Center for five daily prayers and weekly Friday prayers">প্রতিদিন পাঁচ ওয়াক্ত নামাজ ও সাপ্তাহিক জুমার নামাজের কেন্দ্র</p></div>
+      <div class="donate-card"><div class="di"><i class="fas fa-book-open"></i></div><p data-bn="ধর্মীয় শিক্ষা ও এলাকার সামাজিক কার্যক্রমের প্রাণকেন্দ্র" data-en="Hub for religious education and community social activities">ধর্মীয় শিক্ষা ও এলাকার সামাজিক কার্যক্রমের প্রাণকেন্দ্র</p></div>
+      <div class="donate-card"><div class="di"><i class="fas fa-infinity"></i></div><p data-bn="সদকায়ে জারিয়া — মৃত্যুর পরেও কেয়ামত পর্যন্ত নেকি জারি থাকবে" data-en="Sadaqah Jariyah — continuous reward flowing even after death until the Day of Judgment">সদকায়ে জারিয়া — মৃত্যুর পরেও কেয়ামত পর্যন্ত নেকি জারি থাকবে</p></div>
+      <div class="donate-card"><div class="di"><i class="fas fa-users"></i></div><p data-bn="শত শত মুসল্লি পরিবারের আধ্যাত্মিক আশ্রয়স্থল রক্ষার সুযোগ" data-en="An opportunity to protect the spiritual sanctuary of hundreds of worshipping families">শত শত মুসল্লি পরিবারের আধ্যাত্মিক আশ্রয়স্থল রক্ষার সুযোগ</p></div>
     </div>
   </div>
 </div>
 
 <!-- HOW TO DONATE -->
 <div class="section" id="how">
-  <div class="section-header"><span class="icon"><i class="fas fa-donate"></i></span><h2>দানের পদ্ধতি</h2></div>
+  <div class="section-header"><span class="icon"><i class="fas fa-donate"></i></span><h2 data-bn="দানের পদ্ধতি" data-en="Ways to Donate">দানের পদ্ধতি</h2></div>
   <div class="section-body">
     <div class="donate-ways">
-      <div class="dw"><div class="dw-icon"><i class="fas fa-award"></i></div><div><h4>সম্পূর্ণ স্পনসর</h4><p>পুরো মসজিদ বা একটি নির্দিষ্ট অংশ (ছাদ, মিনার, ওযুখানা) স্পনসর করুন</p></div></div>
-      <div class="dw"><div class="dw-icon"><i class="fas fa-hand-holding-usd"></i></div><div><h4>আংশিক দান</h4><p>যেকোনো পরিমাণ অবদান সাদরে গৃহীত হবে — ছোট বা বড় সব দানই সমান মূল্যবান</p></div></div>
-      <div class="dw"><div class="dw-icon"><i class="fas fa-cubes"></i></div><div><h4>নির্মাণ সামগ্রী</h4><p>ইট, সিমেন্ট, রড, বালি বা অন্য যেকোনো নির্মাণ উপকরণ সরাসরি দান করুন</p></div></div>
-      <div class="dw"><div class="dw-icon"><i class="fas fa-hands-helping"></i></div><div><h4>শ্রম সহায়তা</h4><p>দক্ষ মিস্ত্রি বা শ্রমিকের ব্যবস্থা করে সহায়তা করতে পারেন</p></div></div>
+      <div class="dw"><div class="dw-icon"><i class="fas fa-award"></i></div><div><h4 data-bn="সম্পূর্ণ স্পনসর" data-en="Full Sponsorship">সম্পূর্ণ স্পনসর</h4><p data-bn="পুরো মসজিদ বা একটি নির্দিষ্ট অংশ (ছাদ, মিনার, ওযুখানা) স্পনসর করুন" data-en="Sponsor the entire mosque or a specific section (roof, minaret, ablution area)">পুরো মসজিদ বা একটি নির্দিষ্ট অংশ (ছাদ, মিনার, ওযুখানা) স্পনসর করুন</p></div></div>
+      <div class="dw"><div class="dw-icon"><i class="fas fa-hand-holding-usd"></i></div><div><h4 data-bn="আংশিক দান" data-en="Partial Donation">আংশিক দান</h4><p data-bn="যেকোনো পরিমাণ অবদান সাদরে গৃহীত হবে — ছোট বা বড় সব দানই সমান মূল্যবান" data-en="Any amount of contribution is warmly accepted — every donation, big or small, is equally valuable">যেকোনো পরিমাণ অবদান সাদরে গৃহীত হবে — ছোট বা বড় সব দানই সমান মূল্যবান</p></div></div>
+      <div class="dw"><div class="dw-icon"><i class="fas fa-cubes"></i></div><div><h4 data-bn="নির্মাণ সামগ্রী" data-en="Construction Materials">নির্মাণ সামগ্রী</h4><p data-bn="ইট, সিমেন্ট, রড, বালি বা অন্য যেকোনো নির্মাণ উপকরণ সরাসরি দান করুন" data-en="Directly donate bricks, cement, rods, sand or any other building materials">ইট, সিমেন্ট, রড, বালি বা অন্য যেকোনো নির্মাণ উপকরণ সরাসরি দান করুন</p></div></div>
+      <div class="dw"><div class="dw-icon"><i class="fas fa-hands-helping"></i></div><div><h4 data-bn="শ্রম সহায়তা" data-en="Labor Support">শ্রম সহায়তা</h4><p data-bn="দক্ষ মিস্ত্রি বা শ্রমিকের ব্যবস্থা করে সহায়তা করতে পারেন" data-en="You can help by arranging skilled craftsmen or laborers">দক্ষ মিস্ত্রি বা শ্রমিকের ব্যবস্থা করে সহায়তা করতে পারেন</p></div></div>
     </div>
   </div>
 </div>
@@ -564,39 +574,39 @@
 <!-- BANK INFO -->
 <div id="donate" style="max-width:900px;margin:0 auto 30px;padding:0 20px;">
   <div class="bank-box">
-    <h3><i class="fas fa-university" style="margin-right:8px;"></i>দান পাঠানোর তথ্য</h3>
+    <h3><i class="fas fa-university" style="margin-right:8px;"></i><span data-bn="দান পাঠানোর তথ্য" data-en="Donation Information">দান পাঠানোর তথ্য</span></h3>
     <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:18px;margin-bottom:16px;">
-      <div style="font-size:1em;font-weight:600;color:#a8e6c4;margin-bottom:12px;letter-spacing:.5px;">🇧🇩 বাংলাদেশ — বিকাশ (লোকাল ট্রান্সফার)</div>
+      <div style="font-size:1em;font-weight:600;color:#a8e6c4;margin-bottom:12px;letter-spacing:.5px;" data-bn="🇧🇩 বাংলাদেশ — বিকাশ (লোকাল ট্রান্সফার)" data-en="🇧🇩 Bangladesh — bKash (Local Transfer)">🇧🇩 বাংলাদেশ — বিকাশ (লোকাল ট্রান্সফার)</div>
       <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;">
         <div style="background:#E2136E;border-radius:8px;padding:8px 20px;font-size:1.1em;font-weight:700;color:white;letter-spacing:1px;">bKash</div>
-        <div><div style="font-size:.82em;opacity:.7;margin-bottom:4px;">অ্যাকাউন্টের নাম</div><div style="font-size:1em;font-weight:700;">Md. Khalilur Rahman (Nasir)</div>
+        <div><div style="font-size:.82em;opacity:.7;margin-bottom:4px;" data-bn="অ্যাকাউন্টের নাম" data-en="Account Name">অ্যাকাউন্টের নাম</div><div style="font-size:1em;font-weight:700;">Md. Khalilur Rahman (Nasir)</div>
         <div style="font-size:.78em;opacity:.75;">Advocate, Supreme Court of Bangladesh</div></div>
-        <div><div style="font-size:.82em;opacity:.7;margin-bottom:4px;">বিকাশ নম্বর</div><div style="font-size:1.2em;font-weight:700;letter-spacing:1px;">+880 1712252033</div></div>
+        <div><div style="font-size:.82em;opacity:.7;margin-bottom:4px;" data-bn="বিকাশ নম্বর" data-en="bKash Number">বিকাশ নম্বর</div><div style="font-size:1.2em;font-weight:700;letter-spacing:1px;">+880 1712252033</div></div>
       </div>
-      <div style="font-size:.8em;opacity:.7;margin-top:10px;">* Send Money অপশন ব্যবহার করুন</div>
+      <div style="font-size:.8em;opacity:.7;margin-top:10px;" data-bn="* Send Money অপশন ব্যবহার করুন" data-en="* Use the Send Money option">* Send Money অপশন ব্যবহার করুন</div>
     </div>
     <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:18px;margin-bottom:16px;">
-      <div style="font-size:1em;font-weight:600;color:#a8e6c4;margin-bottom:12px;letter-spacing:.5px;">🇧🇩 বাংলাদেশ — ব্যাংক ট্রান্সফার</div>
-      <div class="bank-line"><i class="fas fa-mosque" style="width:18px;margin-right:6px;color:#a8e6c4;"></i>একাউন্টের নাম: <strong>Uttar Guatan Jame Masjid</strong></div>
-      <div class="bank-line"><i class="fas fa-university" style="width:18px;margin-right:6px;color:#a8e6c4;"></i>ব্যাংক: <strong>Bangladesh Krishi Bank PLC</strong></div>
-      <div class="bank-line"><i class="fas fa-building" style="width:18px;margin-right:6px;color:#a8e6c4;"></i>শাখা: <strong>Jhalokath Branch, Jhalokath Sadar, Bangladesh</strong></div>
-      <div class="bank-line"><i class="fas fa-credit-card" style="width:18px;margin-right:6px;color:#a8e6c4;"></i>একাউন্ট নং: <strong>04010394001690</strong></div>
-      <div class="bank-line"><i class="fas fa-exchange-alt" style="width:18px;margin-right:6px;color:#a8e6c4;"></i>রাউটিং নং: <strong>035420318</strong></div>
+      <div style="font-size:1em;font-weight:600;color:#a8e6c4;margin-bottom:12px;letter-spacing:.5px;" data-bn="🇧🇩 বাংলাদেশ — ব্যাংক ট্রান্সফার" data-en="🇧🇩 Bangladesh — Bank Transfer">🇧🇩 বাংলাদেশ — ব্যাংক ট্রান্সফার</div>
+      <div class="bank-line"><i class="fas fa-mosque" style="width:18px;margin-right:6px;color:#a8e6c4;"></i><span data-bn="একাউন্টের নাম:" data-en="Account Name:">একাউন্টের নাম:</span> <strong>Uttar Guatan Jame Masjid</strong></div>
+      <div class="bank-line"><i class="fas fa-university" style="width:18px;margin-right:6px;color:#a8e6c4;"></i><span data-bn="ব্যাংক:" data-en="Bank:">ব্যাংক:</span> <strong>Bangladesh Krishi Bank PLC</strong></div>
+      <div class="bank-line"><i class="fas fa-building" style="width:18px;margin-right:6px;color:#a8e6c4;"></i><span data-bn="শাখা:" data-en="Branch:">শাখা:</span> <strong>Jhalokath Branch, Jhalokath Sadar, Bangladesh</strong></div>
+      <div class="bank-line"><i class="fas fa-credit-card" style="width:18px;margin-right:6px;color:#a8e6c4;"></i><span data-bn="একাউন্ট নং:" data-en="Account No:">একাউন্ট নং:</span> <strong>04010394001690</strong></div>
+      <div class="bank-line"><i class="fas fa-exchange-alt" style="width:18px;margin-right:6px;color:#a8e6c4;"></i><span data-bn="রাউটিং নং:" data-en="Routing No:">রাউটিং নং:</span> <strong>035420318</strong></div>
     </div>
     <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:18px;">
-      <div style="font-size:1em;font-weight:600;color:#a8e6c4;margin-bottom:12px;letter-spacing:.5px;">🇺🇸 যুক্তরাষ্ট্র (USA) — Zelle</div>
+      <div style="font-size:1em;font-weight:600;color:#a8e6c4;margin-bottom:12px;letter-spacing:.5px;" data-bn="🇺🇸 যুক্তরাষ্ট্র (USA) — Zelle" data-en="🇺🇸 United States (USA) — Zelle">🇺🇸 যুক্তরাষ্ট্র (USA) — Zelle</div>
       <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;">
         <div style="background:#6D1ED4;border-radius:8px;padding:8px 20px;font-size:1.1em;font-weight:700;color:white;letter-spacing:1px;">Zelle</div>
-        <div><div style="font-size:.82em;opacity:.7;margin-bottom:4px;">Zelle নম্বর</div><div style="font-size:1.2em;font-weight:700;letter-spacing:1px;">+1 480-703-5453</div></div>
+        <div><div style="font-size:.82em;opacity:.7;margin-bottom:4px;" data-bn="Zelle নম্বর" data-en="Zelle Number">Zelle নম্বর</div><div style="font-size:1.2em;font-weight:700;letter-spacing:1px;">+1 480-703-5453</div></div>
       </div>
-      <div style="font-size:.8em;opacity:.7;margin-top:10px;">* Zelle অ্যাপ থেকে Send Money অপশন ব্যবহার করুন</div>
+      <div style="font-size:.8em;opacity:.7;margin-top:10px;" data-bn="* Zelle অ্যাপ থেকে Send Money অপশন ব্যবহার করুন" data-en="* Use the Send Money option from the Zelle app">* Zelle অ্যাপ থেকে Send Money অপশন ব্যবহার করুন</div>
     </div>
   </div>
 </div>
 
 <div class="footer">
-  আল্লাহ আপনাদের দানকে কবুল করুন এবং উত্তম প্রতিদান দিন। আমিন। <i class="fas fa-hands" style="margin-left:4px;"></i><br>
-  <span style="font-size:.85em;">উত্তর গুয়াটন জামে মসজিদ পুনর্নির্মাণ কমিটি | ঝালকাঠি, বরিশাল</span>
+  <span data-bn="আল্লাহ আপনাদের দানকে কবুল করুন এবং উত্তম প্রতিদান দিন। আমিন।" data-en="May Allah accept your donations and grant the best reward. Ameen.">আল্লাহ আপনাদের দানকে কবুল করুন এবং উত্তম প্রতিদান দিন। আমিন।</span> <i class="fas fa-hands" style="margin-left:4px;"></i><br>
+  <span style="font-size:.85em;" data-bn="উত্তর গুয়াটন জামে মসজিদ পুনর্নির্মাণ কমিটি | ঝালকাঠি, বরিশাল" data-en="Uttar Guatan Jame Mosque Reconstruction Committee | Jhalokathi, Barisal">উত্তর গুয়াটন জামে মসজিদ পুনর্নির্মাণ কমিটি | ঝালকাঠি, বরিশাল</span>
 </div>
 
 <script>
@@ -820,29 +830,38 @@
     backers   = backers || 0;
     const pct = Math.round((collected / goal) * 100);
     const pending = goal - collected;
+    var lang = (typeof _mosque_lang !== 'undefined') ? _mosque_lang : 'bn';
 
-    // update goal displays — full number in fundraiser section
-    function fmtTakaFull(n) { return '৳ ' + toBn(n.toLocaleString('en')); }
+    // number formatters — bn uses Bengali digits, en uses Arabic digits
+    function numFmt(n, useBn) { return useBn ? toBn(n.toLocaleString('en')) : n.toLocaleString('en'); }
+    function fmtTakaFull(n) { return '৳ ' + numFmt(n, lang === 'bn'); }
+    function fmtTakaStrip(n) {
+      // lakh format for strip in bn, comma format in en
+      if (lang === 'bn') return fmtTaka(n);
+      var lakh = n / 100000;
+      return lakh % 1 === 0 ? '৳ ' + lakh + 'L' : '৳ ' + lakh.toFixed(1) + 'L';
+    }
+
     var goalEl = document.getElementById('fr-goal');
     if (goalEl) goalEl.textContent = fmtTakaFull(goal);
     var pendEl = document.getElementById('fr-pending');
     if (pendEl) pendEl.textContent = fmtTakaFull(pending);
     // fund strip goal
     var fsGoal = document.getElementById('fs-goal');
-    if (fsGoal) fsGoal.textContent = fmtTaka(goal);
+    if (fsGoal) fsGoal.textContent = fmtTakaStrip(goal);
 
-    document.getElementById('fr-collected').textContent = fmtTaka(collected);
-    document.getElementById('fr-backers').textContent   = toBn(backers);
-    document.getElementById('fr-pct').textContent       = toBn(pct) + '% সম্পন্ন';
+    document.getElementById('fr-collected').textContent = lang === 'bn' ? fmtTaka(collected) : ('৳ ' + collected.toLocaleString('en'));
+    document.getElementById('fr-backers').textContent   = numFmt(backers, lang === 'bn');
+    document.getElementById('fr-pct').textContent       = numFmt(pct, lang === 'bn') + (lang === 'en' ? '% Complete' : '% সম্পন্ন');
 
     // fund strip (top bar)
     var fsC = document.getElementById('fs-collected');
     var fsB = document.getElementById('fs-backers');
     var fsP = document.getElementById('fs-pct');
     var fsBar = document.getElementById('fs-bar');
-    if (fsC) fsC.textContent = fmtTaka(collected);
-    if (fsB) fsB.textContent = toBn(backers);
-    if (fsP) fsP.textContent = toBn(pct) + '%';
+    if (fsC) fsC.textContent = lang === 'bn' ? fmtTaka(collected) : ('৳ ' + collected.toLocaleString('en'));
+    if (fsB) fsB.textContent = numFmt(backers, lang === 'bn');
+    if (fsP) fsP.textContent = numFmt(pct, lang === 'bn') + '%';
 
     // animate bars
     setTimeout(function(){
@@ -850,6 +869,15 @@
       if (fsBar) fsBar.style.width = pct + '%';
     }, 200);
   }
+
+  // Expose renderFund globally so language toggle can re-render with correct digits
+  window._renderFund = function() {
+    try {
+      var raw = localStorage.getItem(FUND_KEY);
+      if (raw) { var d = JSON.parse(raw); renderFund(d.collected, d.backers, d.goal); }
+      else renderFund(0, 0, GOAL_DEFAULT);
+    } catch(e){ renderFund(0, 0, GOAL_DEFAULT); }
+  };
 
   // Try fund.json first, fallback to localStorage
   fetch(FUND_URL + '?t=' + Date.now())
@@ -862,6 +890,46 @@
         else renderFund(0, 0, GOAL_DEFAULT);
       } catch(e){ renderFund(0, 0, GOAL_DEFAULT); }
     });
+})();
+
+/* ── LANGUAGE TOGGLE ── */
+(function(){
+  var curLang = 'bn';
+  try { curLang = localStorage.getItem('mosque_lang') || 'bn'; } catch(e){}
+  window._mosque_lang = curLang;
+
+  function applyLang(lang) {
+    curLang = lang;
+    window._mosque_lang = lang;
+    var btn = document.getElementById('langCur');
+    if (btn) btn.textContent = lang === 'bn' ? 'EN' : 'বাং';
+    document.documentElement.lang = lang === 'bn' ? 'bn' : 'en';
+    document.querySelectorAll('[data-bn]').forEach(function(el){
+      var val = lang === 'bn' ? el.getAttribute('data-bn') : el.getAttribute('data-en');
+      if (!val) return;
+      // Use innerHTML for elements that contain HTML markup (encoded as &lt; &gt; in attr)
+      if (val.indexOf('&lt;') !== -1 || val.indexOf('&gt;') !== -1) {
+        el.innerHTML = val.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');
+      } else {
+        el.textContent = val;
+      }
+    });
+    // Re-render fund numbers in the correct language/digit format
+    if (typeof window._renderFund === 'function') window._renderFund();
+    try { localStorage.setItem('mosque_lang', lang); } catch(e){}
+  }
+
+  window.toggleLang = function() {
+    applyLang(curLang === 'bn' ? 'en' : 'bn');
+  };
+
+  // Apply on load
+  if (curLang !== 'bn') {
+    applyLang(curLang);
+  } else {
+    var btn = document.getElementById('langCur');
+    if (btn) btn.textContent = 'EN';
+  }
 })();
 </script>
 
