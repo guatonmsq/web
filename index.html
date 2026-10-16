@@ -24,6 +24,40 @@
   .hero .subtitle { font-size:1.1em; opacity:.85; margin-bottom:6px; position:relative; }
   .hero .location { display:inline-block; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.3); border-radius:20px; padding:5px 18px; font-size:.95em; margin-top:10px; position:relative; }
 
+  /* ── FUND STRIP ── */
+  .fund-strip { background:linear-gradient(180deg,#162e22 0%,#1a3a2a 100%); padding:10px 20px 13px; display:flex; align-items:center; gap:14px; flex-wrap:wrap; justify-content:center; box-shadow:inset 0 1px 0 rgba(255,255,255,.06); }
+  .fund-strip-bar-wrap { flex:1; min-width:160px; max-width:260px; }
+  .fund-strip-label { font-size:.72em; color:rgba(255,255,255,.6); margin-bottom:4px; display:flex; justify-content:space-between; }
+  .fund-strip-bg { background:rgba(255,255,255,.15); border-radius:99px; height:7px; overflow:hidden; }
+  .fund-strip-fill { height:100%; border-radius:99px; background:linear-gradient(90deg,#ffd84d,#e2a93b); transition:width 1.2s cubic-bezier(.4,0,.2,1); }
+  .fund-strip-nums { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .fund-strip-num { text-align:center; }
+  .fund-strip-num .val { font-size:.88em; font-weight:800; color:#ffd84d; line-height:1; }
+  .fund-strip-num .lbl { font-size:.6em; color:rgba(255,255,255,.45); margin-top:2px; letter-spacing:.02em; }
+  .fund-strip-divider { width:1px; height:20px; background:linear-gradient(180deg,transparent,rgba(255,255,255,.12),transparent); }
+  .fund-strip-btn { background:linear-gradient(135deg,rgba(255,216,77,.22),rgba(180,136,58,.18)); color:#ffd84d; border:1px solid rgba(255,216,77,.4); border-radius:8px; padding:7px 16px; font-family:'Noto Sans Bengali',sans-serif; font-size:.78em; font-weight:800; text-decoration:none; white-space:nowrap; transition:background .2s; }
+  .fund-strip-btn:hover { background:linear-gradient(135deg,rgba(255,216,77,.35),rgba(180,136,58,.28)); }
+
+  /* ── BURGER MENU ── */
+  .burger-btn { position:fixed; top:14px; right:16px; z-index:1100; background:rgba(26,58,42,.92); border:1px solid rgba(255,255,255,.15); border-radius:10px; width:42px; height:42px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; cursor:pointer; backdrop-filter:blur(8px); box-shadow:0 2px 12px rgba(0,0,0,.3); transition:background .2s; }
+  .burger-btn:hover { background:rgba(45,106,79,.95); }
+  .burger-btn span { display:block; width:20px; height:2px; background:#ffd84d; border-radius:2px; transition:transform .3s, opacity .3s; }
+  .burger-btn.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+  .burger-btn.open span:nth-child(2) { opacity:0; }
+  .burger-btn.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+  .nav-drawer { position:fixed; top:0; right:-280px; width:270px; height:100vh; background:linear-gradient(160deg,#1a3a2a,#0f2218); z-index:1050; padding:70px 0 30px; overflow-y:auto; transition:right .3s cubic-bezier(.4,0,.2,1); box-shadow:-4px 0 30px rgba(0,0,0,.4); }
+  .nav-drawer.open { right:0; }
+  .nav-drawer-overlay { position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:1040; opacity:0; pointer-events:none; transition:opacity .3s; }
+  .nav-drawer-overlay.open { opacity:1; pointer-events:all; }
+  .nav-drawer-title { padding:0 20px 14px; font-size:.72em; color:rgba(255,255,255,.4); letter-spacing:.08em; text-transform:uppercase; border-bottom:1px solid rgba(255,255,255,.08); margin-bottom:8px; }
+  .nav-drawer a { display:flex; align-items:center; gap:13px; padding:12px 20px; color:rgba(255,255,255,.85); text-decoration:none; font-size:.93em; font-family:'Noto Sans Bengali',sans-serif; transition:background .15s, color .15s; }
+  .nav-drawer a:hover { background:rgba(255,255,255,.07); color:#ffd84d; }
+  .nav-drawer a i { width:18px; text-align:center; color:#ffd84d; opacity:.8; font-size:.95em; }
+  .nav-drawer .nav-sep { height:1px; background:rgba(255,255,255,.07); margin:6px 20px; }
+  .nav-drawer .nav-ext { border-top:1px solid rgba(255,255,255,.08); margin-top:10px; padding-top:6px; }
+  .nav-drawer .nav-ext a i { color:#a8e6c4; }
+
   /* ── QUICK NAV BAR ── */
   .quick-nav { background:#1a3a2a; padding:14px 16px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
   .qnav-btn { display:flex; align-items:center; gap:10px; border-radius:12px; padding:14px 22px; font-family:'Noto Sans Bengali',sans-serif; font-size:1em; font-weight:700; text-decoration:none; cursor:pointer; border:none; transition:transform .15s, box-shadow .15s; flex:1; max-width:320px; justify-content:center; }
@@ -101,6 +135,27 @@
   .budget-table tr:nth-child(even) td { background:#f5fdf8; }
   .budget-table tr.total td { background:#e8f5e9; font-weight:700; font-size:1em; color:#1a3a2a; border-top:2px solid #2d6a4f; border-bottom:none; }
   .blank-amount { display:inline-block; border-bottom:2px dotted #999; min-width:120px; color:#999; font-style:italic; font-size:.85em; }
+
+  /* FUNDRAISER */
+  .fund-hero { background:linear-gradient(135deg,#1a3a2a 0%,#2d6a4f 100%); color:#fff; padding:28px 24px 22px; text-align:center; }
+  .fund-hero h3 { font-family:'Noto Serif Bengali',serif; font-size:1.15em; font-weight:700; opacity:.9; margin-bottom:4px; }
+  .fund-goal-amount { font-size:2.4em; font-weight:800; color:#ffd84d; line-height:1; letter-spacing:-.5px; }
+  .fund-goal-label { font-size:.8em; opacity:.65; margin-top:2px; }
+  .fund-bar-wrap { padding:20px 24px 0; }
+  .fund-bar-bg { background:#e8ede9; border-radius:999px; height:18px; overflow:hidden; position:relative; }
+  .fund-bar-fill { height:100%; border-radius:999px; background:linear-gradient(90deg,#2d6a4f,#52b788); transition:width 1.2s cubic-bezier(.4,0,.2,1); position:relative; min-width:4px; }
+  .fund-bar-fill::after { content:''; position:absolute; right:0; top:0; bottom:0; width:18px; background:rgba(255,255,255,.3); border-radius:999px; }
+  .fund-pct { font-size:.82em; font-weight:800; color:#2d6a4f; margin-top:5px; text-align:right; }
+  .fund-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border,#e0e0e0); border-top:1px solid #eee; }
+  .fund-stat { background:#fff; padding:16px 10px; text-align:center; }
+  .fund-stat-num { font-size:1.4em; font-weight:800; color:#1a3a2a; line-height:1; }
+  .fund-stat-num.collected { color:#2d6a4f; }
+  .fund-stat-num.pending   { color:#c0392b; }
+  .fund-stat-label { font-size:.7em; color:#777; margin-top:4px; font-weight:600; text-transform:uppercase; letter-spacing:.05em; }
+  .fund-backers { display:flex; align-items:center; justify-content:center; gap:16px; padding:14px 20px; border-top:1px solid #eee; flex-wrap:wrap; }
+  .fund-backer-item { display:flex; align-items:center; gap:7px; font-size:.85em; color:#444; }
+  .fund-backer-item i { color:#2d6a4f; font-size:1em; }
+  .fund-note { padding:12px 20px; background:#f8fdf9; border-top:1px solid #e8f0ec; font-size:.78em; color:#666; text-align:center; line-height:1.7; }
 
   /* WHY DONATE */
   .hadith-box { background:linear-gradient(135deg,#1a3a2a,#2d6a4f); color:#f0e6c8; border-radius:10px; padding:20px 24px; text-align:center; margin-bottom:20px; }
@@ -200,6 +255,35 @@
 <body>
 
 <!-- LIGHTBOX -->
+<!-- NAV OVERLAY -->
+<div class="nav-drawer-overlay" id="navOverlay" onclick="closeNav()"></div>
+
+<!-- NAV DRAWER -->
+<nav class="nav-drawer" id="navDrawer">
+  <div class="nav-drawer-title">সেকশনসমূহ</div>
+  <a href="#top" onclick="closeNav()"><i class="fas fa-home"></i>হোম / শীর্ষ</a>
+  <a href="#intro" onclick="closeNav()"><i class="fas fa-file-alt"></i>ভূমিকা</a>
+  <a href="#photos" onclick="closeNav()"><i class="fas fa-camera"></i>বর্তমান অবস্থা</a>
+  <a href="#problems" onclick="closeNav()"><i class="fas fa-exclamation-triangle"></i>চিহ্নিত সমস্যা</a>
+  <a href="#land" onclick="closeNav()"><i class="fas fa-scroll"></i>জমির তথ্য</a>
+  <a href="#plan" onclick="closeNav()"><i class="fas fa-drafting-compass"></i>পুনর্নির্মাণ পরিকল্পনা</a>
+  <a href="#fundraiser" onclick="closeNav()"><i class="fas fa-hand-holding-heart"></i>তহবিল সংগ্রহ</a>
+  <a href="#budget" onclick="closeNav()"><i class="fas fa-coins"></i>নির্মাণ বাজেট</a>
+  <a href="#progress" onclick="closeNav()"><i class="fas fa-tools"></i>নির্মাণ অগ্রগতি</a>
+  <a href="#why" onclick="closeNav()"><i class="fas fa-heart"></i>কেন দান করবেন</a>
+  <a href="#how" onclick="closeNav()"><i class="fas fa-donate"></i>দানের পদ্ধতি</a>
+  <a href="#donate" onclick="closeNav()"><i class="fas fa-university"></i>দান পাঠানোর তথ্য</a>
+  <div class="nav-sep"></div>
+  <div class="nav-ext">
+    <a href="progress.html" onclick="closeNav()"><i class="fas fa-trowel-bricks"></i>নির্মাণ অগ্রগতি পেজ</a>
+  </div>
+</nav>
+
+<!-- BURGER BUTTON -->
+<button class="burger-btn" id="burgerBtn" onclick="toggleNav()" aria-label="মেনু">
+  <span></span><span></span><span></span>
+</button>
+
 <div class="lightbox" id="lb" onclick="closeLB()">
   <span class="lightbox-close" onclick="closeLB()">✕</span>
   <img id="lb-img" src="" alt="">
@@ -207,7 +291,7 @@
 </div>
 
 <!-- HERO -->
-<div class="hero">
+<div class="hero" id="top">
   <div class="hero-icon">
     <img src="https://guatonmsq.github.io/web/mosque.svg" width="120" height="120" alt="মসজিদ" style="filter: brightness(0) saturate(100%) invert(72%) sepia(65%) saturate(800%) hue-rotate(5deg) brightness(88%) drop-shadow(0 4px 18px rgba(0,0,0,.5));">
   </div>
@@ -240,6 +324,21 @@
   </a>
 </div>
 
+<!-- FUND STRIP -->
+<div class="fund-strip" id="fundStrip">
+  <div class="fund-strip-nums">
+    <div class="fund-strip-num"><div class="val" id="fs-collected">৳ ০</div><div class="lbl">সংগৃহীত</div></div>
+    <div class="fund-strip-divider"></div>
+    <div class="fund-strip-num"><div class="val" id="fs-goal">৳ ২৮.৯ লক্ষ</div><div class="lbl">লক্ষ্যমাত্রা</div></div>
+    <div class="fund-strip-divider"></div>
+    <div class="fund-strip-num"><div class="val" id="fs-backers">০</div><div class="lbl">দানকারী</div></div>
+  </div>
+  <div class="fund-strip-bar-wrap">
+    <div class="fund-strip-label"><span>তহবিল অগ্রগতি</span><span id="fs-pct">০%</span></div>
+    <div class="fund-strip-bg"><div class="fund-strip-fill" id="fs-bar" style="width:0%"></div></div>
+  </div>
+</div>
+
 <!-- BANNER PHOTO -->
 <div style="max-width:900px;margin:25px auto;border-radius:12px;overflow:hidden;box-shadow:0 3px 20px rgba(0,0,0,.1);">
   <img src="https://raw.githubusercontent.com/maizekernels/guaton-masjid/main/images/photo8.jpg"
@@ -249,7 +348,7 @@
 </div>
 
 <!-- INTRO -->
-<div class="section">
+<div class="section" id="intro">
   <div class="section-header"><span class="icon"><i class="fas fa-file-alt"></i></span><h2>ভূমিকা</h2></div>
   <div class="section-body">
     <p class="intro-text">প্রায় ১৯৩০ সালে প্রতিষ্ঠিত উত্তর গুয়াটন জামে মসজিদটি দীর্ঘদিন ধরে এলাকার মুসলিম জনগণের ইবাদতের কেন্দ্র হিসেবে সেবা প্রদান করে আসছে। দীর্ঘদিনের পুরোনো হওয়ায় মসজিদটি বর্তমানে অত্যন্ত জরাজীর্ণ অবস্থায় রয়েছে। প্রায় ১০ বছর আগে একবার মসজিদটির সংস্কার করা হয়েছিল, কিন্তু বর্তমানে পুনরায় ব্যাপক সংস্কার ও মেরামতের প্রয়োজন দেখা দিয়েছে।<br><br>
@@ -258,7 +357,7 @@
 </div>
 
 <!-- PHOTOS -->
-<div class="section">
+<div class="section" id="photos">
   <div class="section-header"><span class="icon"><i class="fas fa-camera"></i></span><h2>বর্তমান অবস্থা — সরেজমিন চিত্র</h2></div>
   <div class="section-body">
     <!-- photo counter -->
@@ -272,7 +371,7 @@
 </div>
 
 <!-- PROBLEMS TABLE -->
-<div class="section">
+<div class="section" id="problems">
   <div class="section-header"><span class="icon"><i class="fas fa-exclamation-triangle"></i></span><h2>চিহ্নিত সমস্যাসমূহ</h2></div>
   <div class="section-body" style="padding:0;">
     <table class="prob-table">
@@ -290,7 +389,7 @@
 </div>
 
 <!-- LAND INFO -->
-<div class="section">
+<div class="section" id="land">
   <div class="section-header"><span class="icon"><i class="fas fa-scroll"></i></span><h2>জমির তথ্য</h2></div>
   <div class="section-body">
     <div class="land-grid">
@@ -303,7 +402,7 @@
 </div>
 
 <!-- PLAN -->
-<div class="section">
+<div class="section" id="plan">
   <div class="section-header"><span class="icon"><i class="fas fa-drafting-compass"></i></span><h2>পুনর্নির্মাণ পরিকল্পনা</h2></div>
   <div class="section-body">
     <div class="plan-steps">
@@ -316,21 +415,104 @@
   </div>
 </div>
 
+<!-- FUNDRAISER -->
+<div class="section" id="fundraiserSection" data-nav-id="fundraiser">
+  <!-- Goal header -->
+  <div class="fund-hero">
+    <h3><i class="fas fa-hand-holding-heart" style="margin-right:8px;opacity:.85;"></i>পুনর্নির্মাণ তহবিল সংগ্রহ</h3>
+    <div class="fund-goal-amount" id="fr-goal">৳ ২৮,৯০,০০০</div>
+    <div class="fund-goal-label">লক্ষ্যমাত্রা</div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="fund-bar-wrap">
+    <div class="fund-bar-bg">
+      <div class="fund-bar-fill" id="fr-bar" style="width:0%"></div>
+    </div>
+    <div class="fund-pct" id="fr-pct">0% সম্পন্ন</div>
+  </div>
+
+  <!-- Stats row -->
+  <div class="fund-stats">
+    <div class="fund-stat">
+      <div class="fund-stat-num collected" id="fr-collected">৳ ০</div>
+      <div class="fund-stat-label"><i class="fas fa-circle-check" style="color:#2d6a4f;margin-right:3px;font-size:.8em;"></i>সংগ্রহ হয়েছে</div>
+    </div>
+    <div class="fund-stat">
+      <div class="fund-stat-num pending" id="fr-pending">৳ ২৮,৯০,০০০</div>
+      <div class="fund-stat-label"><i class="fas fa-circle-xmark" style="color:#c0392b;margin-right:3px;font-size:.8em;"></i>বাকি আছে</div>
+    </div>
+    <div class="fund-stat">
+      <div class="fund-stat-num" id="fr-backers" style="color:#b5883a;">০</div>
+      <div class="fund-stat-label"><i class="fas fa-users" style="color:#b5883a;margin-right:3px;font-size:.8em;"></i>দানকারী</div>
+    </div>
+  </div>
+
+
+
+  <div class="fund-note">
+    <i class="fas fa-shield-halved" style="color:#2d6a4f;margin-right:4px;"></i>
+    সকল দান সরাসরি মসজিদ কমিটির মাধ্যমে পরিচালিত হবে। প্রতিটি টাকার হিসাব স্বচ্ছভাবে রাখা হবে।
+  </div>
+</div>
+
 <!-- BUDGET -->
-<div class="section">
-  <div class="section-header"><span class="icon"><i class="fas fa-coins"></i></span><h2>আনুমানিক বাজেট</h2></div>
+<div class="section" id="budget">
+  <div class="section-header"><span class="icon"><i class="fas fa-coins"></i></span><h2>সম্ভাব্য নির্মাণ বাজেট — ২০২৬</h2></div>
   <div class="section-body" style="padding:0;">
-    <table class="budget-table">
-      <tr><th>ক্রম</th><th>বিভাগ</th><th>আনুমানিক ব্যয় (টাকা)</th></tr>
-      <tr><td>১</td><td>ভাঙন ও মাটিকাজ</td><td><span class="blank-amount">পূরণ করুন</span></td></tr>
-      <tr><td>২</td><td>মূল কাঠামো নির্মাণ</td><td><span class="blank-amount">পূরণ করুন</span></td></tr>
-      <tr><td>৩</td><td>অভ্যন্তরীণ কাজ</td><td><span class="blank-amount">পূরণ করুন</span></td></tr>
-      <tr><td>৪</td><td>ওযুখানা ও বাইরের কাজ</td><td><span class="blank-amount">পূরণ করুন</span></td></tr>
-      <tr><td>৫</td><td>সৌন্দর্যবর্ধন ও মিনার</td><td><span class="blank-amount">পূরণ করুন</span></td></tr>
-      <tr><td>৬</td><td>আনুষঙ্গিক ও অপ্রত্যাশিত খরচ</td><td><span class="blank-amount">পূরণ করুন</span></td></tr>
-      <tr class="total"><td colspan="2">মোট (আনুমানিক)</td><td><span class="blank-amount">মোট যোগ করুন</span></td></tr>
+
+    <!-- Summary chips -->
+    <div style="display:flex;gap:12px;flex-wrap:wrap;padding:18px 20px 4px;justify-content:center;">
+      <div style="background:#f0faf5;border:1px solid #b7ddc9;border-radius:10px;padding:10px 20px;text-align:center;flex:1;min-width:130px;">
+        <div style="font-size:1.45em;font-weight:800;color:#1a3a2a;">১,০০০</div>
+        <div style="font-size:.75em;color:#555;margin-top:2px;">বর্গফুট আয়তন</div>
+      </div>
+      <div style="background:#fff8e6;border:1px solid #e0c96a;border-radius:10px;padding:10px 20px;text-align:center;flex:1;min-width:130px;">
+        <div style="font-size:1.45em;font-weight:800;color:#8a6000;">২৮,৯০,০০০৳</div>
+        <div style="font-size:.75em;color:#555;margin-top:2px;">সম্ভাব্য মোট বাজেট</div>
+      </div>
+      <div style="background:#f0faf5;border:1px solid #b7ddc9;border-radius:10px;padding:10px 20px;text-align:center;flex:1;min-width:130px;">
+        <div style="font-size:1.45em;font-weight:800;color:#1a3a2a;">১৪টি</div>
+        <div style="font-size:.75em;color:#555;margin-top:2px;">নির্মাণ খাত</div>
+      </div>
+    </div>
+
+    <table class="budget-table" style="margin-top:12px;">
+      <thead>
+        <tr>
+          <th style="width:40px;">ক্রম</th>
+          <th>খাত / বিবরণ</th>
+          <th style="font-size:.8em;opacity:.85;">পরিমাণ/ধারণা</th>
+          <th style="text-align:right;white-space:nowrap;">বরাদ্দ (৳)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>১</td><td>সাইট পরিষ্কার, মাটি ভরাট/সমতল ও লেআউট</td><td style="color:#777;font-size:.82em;">প্রয়োজন অনুযায়ী</td><td style="text-align:right;font-weight:600;">৭০,০০০</td></tr>
+        <tr><td>২</td><td>ফাউন্ডেশন + ভবিষ্যৎ দোতলার উপযোগী RCC কাঠামো</td><td style="color:#777;font-size:.82em;">ইঞ্জিনিয়ার্ড ডিজাইন অনুযায়ী</td><td style="text-align:right;font-weight:600;">৭,০০,০০০</td></tr>
+        <tr><td>৩</td><td>RCC কলাম, বিম, ছাদ ও সিঁড়ির কাঠামো</td><td style="color:#777;font-size:.82em;">প্রাথমিক ভবন</td><td style="text-align:right;font-weight:600;">৮,০০,০০০</td></tr>
+        <tr><td>৪</td><td>ইটের দেয়াল/পার্টিশন ও প্লাস্টার</td><td style="color:#777;font-size:.82em;">প্রায় ১,২০০ sq ft core</td><td style="text-align:right;font-weight:600;">২,৩০,০০০</td></tr>
+        <tr><td>৫</td><td>ফ্লোর টাইলস/সাধারণ মেঝে</td><td style="color:#777;font-size:.82em;">হল + বারান্দা + সার্ভিস</td><td style="text-align:right;font-weight:600;">১,৭০,০০০</td></tr>
+        <tr><td>৬</td><td>দরজা-জানালা/গ্রিল</td><td style="color:#777;font-size:.82em;">সাধারণ মান</td><td style="text-align:right;font-weight:600;">১,৩০,০০০</td></tr>
+        <tr><td>৭</td><td>অজুখানা + ২ WC + পানির লাইন/ড্রেনেজ</td><td style="color:#777;font-size:.82em;">উত্তর পাশে</td><td style="text-align:right;font-weight:600;">১,০০,০০০</td></tr>
+        <tr><td>৮</td><td>ইলেকট্রিক, ফ্যান, LED, DB</td><td style="color:#777;font-size:.82em;">বেসিক</td><td style="text-align:right;font-weight:600;">৮০,০০০</td></tr>
+        <tr><td>৯</td><td>পেইন্ট/চুনকাম</td><td style="color:#777;font-size:.82em;">ভিতর-বাহির</td><td style="text-align:right;font-weight:600;">১,০০,০০০</td></tr>
+        <tr><td>১০</td><td>মিহরাব, মিম্বর, সাধারণ সজ্জা</td><td style="color:#777;font-size:.82em;">বেসিক</td><td style="text-align:right;font-weight:600;">৭০,০০০</td></tr>
+        <tr><td>১১</td><td>পানি সংযোগ/পাম্প/ছোট ট্যাংক</td><td style="color:#777;font-size:.82em;">বেসিক</td><td style="text-align:right;font-weight:600;">৭০,০০০</td></tr>
+        <tr><td>১২</td><td>সেপটিক/সোকওয়ে/বর্জ্য ব্যবস্থাপনা</td><td style="color:#777;font-size:.82em;">প্রয়োজন অনুযায়ী</td><td style="text-align:right;font-weight:600;">৬০,০০০</td></tr>
+        <tr><td>১৩</td><td>সাইট পরিবহন, শ্রমিক আনুষঙ্গিক ও ছোটখাটো কাজ</td><td style="color:#777;font-size:.82em;">লাম্প সাম</td><td style="text-align:right;font-weight:600;">১,০০,০০০</td></tr>
+        <tr><td>১৪</td><td>মূল্য ওঠানামা/জরুরি রিজার্ভ</td><td style="color:#777;font-size:.82em;">অন্তত ১০% লক্ষ্য</td><td style="text-align:right;font-weight:600;">২,১০,০০০</td></tr>
+      </tbody>
+      <tfoot>
+        <tr class="total">
+          <td colspan="3" style="text-align:right;">সম্ভাব্য মোট</td>
+          <td style="text-align:right;font-size:1.1em;color:#1a3a2a;">৳ ২৮,৯০,০০০</td>
+        </tr>
+      </tfoot>
     </table>
-    <p style="padding:12px 16px;font-size:.82em;color:#666;">* চূড়ান্ত বাজেট প্রকৌশলী কর্তৃক জরিপের পর নির্ধারিত হবে।</p>
+    <p style="padding:14px 20px;font-size:.82em;color:#666;border-top:1px solid #eee;line-height:1.8;">
+      <i class="fas fa-info-circle" style="color:#2d6a4f;margin-right:6px;"></i>
+      মালামালের দামের তারতম্য হলে খরচ কিছু বাড়তে/কমতে পারে। মসজিদের জমির পরিমাণ ১,৭০০ বর্গফুট।
+    </p>
   </div>
 </div>
 
@@ -339,7 +521,7 @@
      Reads from localStorage (mosque_progress_v2)
      shared with admin.html & progress.html
      ══════════════════════════════════════════ -->
-<div class="section" id="progressSection">
+<div class="section" id="progressSection" data-nav-id="progress">
   <div class="section-header"><span class="icon"><i class="fas fa-tools"></i></span><h2>নির্মাণ অগ্রগতি</h2></div>
   <div class="section-body" id="progressBody">
     <div class="progress-empty">
@@ -350,7 +532,7 @@
 </div>
 
 <!-- WHY DONATE -->
-<div class="section">
+<div class="section" id="why">
   <div class="section-header"><span class="icon"><i class="fas fa-hand-holding-heart"></i></span><h2>কেন এই মসজিদে দান করবেন?</h2></div>
   <div class="section-body">
     <div class="hadith-box">
@@ -367,7 +549,7 @@
 </div>
 
 <!-- HOW TO DONATE -->
-<div class="section">
+<div class="section" id="how">
   <div class="section-header"><span class="icon"><i class="fas fa-donate"></i></span><h2>দানের পদ্ধতি</h2></div>
   <div class="section-body">
     <div class="donate-ways">
@@ -613,6 +795,106 @@
         render(1);
       });
   })();
+</script>
+
+<script>
+/* ── FUNDRAISER WIDGET ── */
+(function(){
+  const GOAL_DEFAULT = 2890000;
+  const FUND_KEY = 'mosque_fund_v1';
+  const FUND_URL = 'https://raw.githubusercontent.com/guatonmsq/web/main/fund.json';
+
+  function toBn(n) {
+    return String(n).replace(/[0-9]/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+  }
+  function fmtTaka(n) {
+    if (n >= 100000) return '৳ ' + toBn((n/100000).toFixed(n%100000===0?0:1)) + ' লক্ষ';
+    return '৳ ' + toBn(n.toLocaleString('en'));
+  }
+
+  function renderFund(collected, backers, goal) {
+    goal      = Math.max(goal || GOAL_DEFAULT, 1);
+    collected = Math.min(collected || 0, goal);
+    backers   = backers || 0;
+    const pct = Math.round((collected / goal) * 100);
+    const pending = goal - collected;
+
+    // update goal displays
+    var goalEl = document.getElementById('fr-goal');
+    if (goalEl) goalEl.textContent = fmtTaka(goal);
+    var pendEl = document.getElementById('fr-pending');
+    if (pendEl) pendEl.textContent = fmtTaka(pending);
+    // fund strip goal
+    var fsGoal = document.getElementById('fs-goal');
+    if (fsGoal) fsGoal.textContent = fmtTaka(goal);
+
+    document.getElementById('fr-collected').textContent = fmtTaka(collected);
+    document.getElementById('fr-backers').textContent   = toBn(backers);
+    document.getElementById('fr-pct').textContent       = toBn(pct) + '% সম্পন্ন';
+
+    // fund strip (top bar)
+    var fsC = document.getElementById('fs-collected');
+    var fsB = document.getElementById('fs-backers');
+    var fsP = document.getElementById('fs-pct');
+    var fsBar = document.getElementById('fs-bar');
+    if (fsC) fsC.textContent = fmtTaka(collected);
+    if (fsB) fsB.textContent = toBn(backers);
+    if (fsP) fsP.textContent = toBn(pct) + '%';
+
+    // animate bars
+    setTimeout(function(){
+      document.getElementById('fr-bar').style.width = pct + '%';
+      if (fsBar) fsBar.style.width = pct + '%';
+    }, 200);
+  }
+
+  // Try fund.json first, fallback to localStorage
+  fetch(FUND_URL + '?t=' + Date.now())
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
+    .then(function(d){ renderFund(d.collected, d.backers, d.goal); })
+    .catch(function(){
+      try {
+        var raw = localStorage.getItem(FUND_KEY);
+        if (raw) { var d = JSON.parse(raw); renderFund(d.collected, d.backers, d.goal); }
+        else renderFund(0, 0, GOAL_DEFAULT);
+      } catch(e){ renderFund(0, 0, GOAL_DEFAULT); }
+    });
+})();
+</script>
+
+<script>
+/* ── BURGER MENU ── */
+function toggleNav() {
+  var btn = document.getElementById('burgerBtn');
+  var drawer = document.getElementById('navDrawer');
+  var overlay = document.getElementById('navOverlay');
+  var open = drawer.classList.toggle('open');
+  overlay.classList.toggle('open', open);
+  btn.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+function closeNav() {
+  document.getElementById('navDrawer').classList.remove('open');
+  document.getElementById('navOverlay').classList.remove('open');
+  document.getElementById('burgerBtn').classList.remove('open');
+  document.body.style.overflow = '';
+}
+/* close on Escape */
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeNav(); });
+/* fundraiser anchor: map #fundraiser → #fundraiserSection */
+document.querySelectorAll('a[href="#fundraiser"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    e.preventDefault();
+    document.getElementById('fundraiserSection').scrollIntoView({behavior:'smooth'});
+  });
+});
+/* progress anchor */
+document.querySelectorAll('a[href="#progress"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    e.preventDefault();
+    document.getElementById('progressSection').scrollIntoView({behavior:'smooth'});
+  });
+});
 </script>
 </body>
 </html>
