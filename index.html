@@ -907,9 +907,9 @@
     document.querySelectorAll('[data-bn]').forEach(function(el){
       var val = lang === 'bn' ? el.getAttribute('data-bn') : el.getAttribute('data-en');
       if (!val) return;
-      // Use innerHTML for elements that contain HTML markup (encoded as &lt; &gt; in attr)
-      if (val.indexOf('&lt;') !== -1 || val.indexOf('&gt;') !== -1) {
-        el.innerHTML = val.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');
+      // Use innerHTML for elements that contain HTML tags (browser decodes &lt; to < in getAttribute)
+      if (val.indexOf('<') !== -1) {
+        el.innerHTML = val;
       } else {
         el.textContent = val;
       }
