@@ -146,9 +146,14 @@
   .fund-bar-fill { height:100%; border-radius:999px; background:linear-gradient(90deg,#2d6a4f,#52b788); transition:width 1.2s cubic-bezier(.4,0,.2,1); position:relative; min-width:4px; }
   .fund-bar-fill::after { content:''; position:absolute; right:0; top:0; bottom:0; width:18px; background:rgba(255,255,255,.3); border-radius:999px; }
   .fund-pct { font-size:.82em; font-weight:800; color:#2d6a4f; margin-top:5px; text-align:right; }
-  .fund-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border,#e0e0e0); border-top:1px solid #eee; }
-  .fund-stat { background:#fff; padding:16px 10px; text-align:center; }
-  .fund-stat-num { font-size:1.4em; font-weight:800; color:#1a3a2a; line-height:1; }
+  .fund-stats { display:grid; grid-template-columns:1fr 1.5fr 1fr; gap:1px; background:var(--border,#e0e0e0); border-top:1px solid #eee; }
+  .fund-stat { background:#fff; padding:16px 6px; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; min-width:0; }
+  .fund-stat-num { font-size:1.4em; font-weight:800; color:#1a3a2a; line-height:1.1; white-space:nowrap; }
+  .fund-stat-label { white-space:nowrap; }
+  @media(max-width:480px) {
+    .fund-stat-num { font-size:1.05em; }
+    .fund-stat-label { font-size:.62em; letter-spacing:0; }
+  }
   .fund-stat-num.collected { color:#2d6a4f; }
   .fund-stat-num.pending   { color:#c0392b; }
   .fund-stat-label { font-size:.7em; color:#777; margin-top:4px; font-weight:600; text-transform:uppercase; letter-spacing:.05em; }
@@ -448,7 +453,7 @@
   <div class="fund-stats">
     <div class="fund-stat">
       <div class="fund-stat-num collected" id="fr-collected">৳ ০</div>
-      <div class="fund-stat-label"><i class="fas fa-circle-check" style="color:#2d6a4f;margin-right:3px;font-size:.8em;"></i><span data-bn="সংগ্রহ হয়েছে" data-en="Collected">সংগ্রহ হয়েছে</span></div>
+      <div class="fund-stat-label"><i class="fas fa-circle-check" style="color:#2d6a4f;margin-right:3px;font-size:.8em;"></i><span data-bn="সংগৃহীত" data-en="Collected">সংগৃহীত</span></div>
     </div>
     <div class="fund-stat">
       <div class="fund-stat-num pending" id="fr-pending">৳ ২৮,৯০,০০০</div>
