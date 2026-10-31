@@ -32,7 +32,8 @@
   .fund-strip-fill { height:100%; border-radius:99px; background:linear-gradient(90deg,#ffd84d,#e2a93b); transition:width 1.2s cubic-bezier(.4,0,.2,1); }
   .fund-strip-nums { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
   .fund-strip-num { text-align:center; }
-  .fund-strip-num .val { font-size:.88em; font-weight:800; color:#ffd84d; line-height:1; }
+  .fund-strip-num .val { font-size:.88em; font-weight:800; color:#ffd84d; line-height:1; white-space:nowrap; }
+  @media(max-width:480px) { .fund-strip-nums { gap:8px; } .fund-strip-num .val { font-size:.76em; } }
   .fund-strip-num .lbl { font-size:.6em; color:rgba(255,255,255,.45); margin-top:2px; letter-spacing:.02em; }
   .fund-strip-divider { width:1px; height:20px; background:linear-gradient(180deg,transparent,rgba(255,255,255,.12),transparent); }
   .fund-strip-btn { background:linear-gradient(135deg,rgba(255,216,77,.22),rgba(180,136,58,.18)); color:#ffd84d; border:1px solid rgba(255,216,77,.4); border-radius:8px; padding:7px 16px; font-family:'Noto Sans Bengali',sans-serif; font-size:.78em; font-weight:800; text-decoration:none; white-space:nowrap; transition:background .2s; }
@@ -346,7 +347,7 @@
   <div class="fund-strip-nums">
     <div class="fund-strip-num"><div class="val" id="fs-collected">৳ ০</div><div class="lbl" data-bn="সংগৃহীত" data-en="Collected">সংগৃহীত</div></div>
     <div class="fund-strip-divider"></div>
-    <div class="fund-strip-num"><div class="val" id="fs-goal">৳ ২৮.৯ লক্ষ</div><div class="lbl" data-bn="লক্ষ্যমাত্রা" data-en="Goal">লক্ষ্যমাত্রা</div></div>
+    <div class="fund-strip-num"><div class="val" id="fs-goal">৳ ২,৮৯০,০০০</div><div class="lbl" data-bn="লক্ষ্যমাত্রা" data-en="Goal">লক্ষ্যমাত্রা</div></div>
     <div class="fund-strip-divider"></div>
     <div class="fund-strip-num"><div class="val" id="fs-backers">০</div><div class="lbl" data-bn="দানকারী" data-en="Donors">দানকারী</div></div>
   </div>
@@ -854,9 +855,9 @@
     if (pendEl) pendEl.textContent = fmtTakaFull(pending);
     // fund strip goal
     var fsGoal = document.getElementById('fs-goal');
-    if (fsGoal) fsGoal.textContent = fmtTakaStrip(goal);
+    if (fsGoal) fsGoal.textContent = fmtTakaFull(goal);
 
-    document.getElementById('fr-collected').textContent = lang === 'bn' ? fmtTaka(collected) : ('৳ ' + collected.toLocaleString('en'));
+    document.getElementById('fr-collected').textContent = fmtTakaFull(collected);
     document.getElementById('fr-backers').textContent   = numFmt(backers, lang === 'bn');
     document.getElementById('fr-pct').textContent       = numFmt(pct, lang === 'bn') + (lang === 'en' ? '% Complete' : '% সম্পন্ন');
 
@@ -865,7 +866,7 @@
     var fsB = document.getElementById('fs-backers');
     var fsP = document.getElementById('fs-pct');
     var fsBar = document.getElementById('fs-bar');
-    if (fsC) fsC.textContent = lang === 'bn' ? fmtTaka(collected) : ('৳ ' + collected.toLocaleString('en'));
+    if (fsC) fsC.textContent = fmtTakaFull(collected);
     if (fsB) fsB.textContent = numFmt(backers, lang === 'bn');
     if (fsP) fsP.textContent = numFmt(pct, lang === 'bn') + '%';
 
