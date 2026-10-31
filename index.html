@@ -597,6 +597,7 @@
       <div style="font-size:1em;font-weight:600;color:#a8e6c4;margin-bottom:12px;letter-spacing:.5px;" data-bn="🇺🇸 যুক্তরাষ্ট্র (USA) — Zelle" data-en="🇺🇸 United States (USA) — Zelle">🇺🇸 যুক্তরাষ্ট্র (USA) — Zelle</div>
       <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;">
         <div style="background:#6D1ED4;border-radius:8px;padding:8px 20px;font-size:1.1em;font-weight:700;color:white;letter-spacing:1px;">Zelle</div>
+        <div><div style="font-size:.82em;opacity:.7;margin-bottom:4px;" data-bn="নাম" data-en="Name">নাম</div><div style="font-size:1.2em;font-weight:700;letter-spacing:1px;">Saad Abdullah</div></div>
         <div><div style="font-size:.82em;opacity:.7;margin-bottom:4px;" data-bn="Zelle নম্বর" data-en="Zelle Number">Zelle নম্বর</div><div style="font-size:1.2em;font-weight:700;letter-spacing:1px;">+1 480-703-5453</div></div>
       </div>
       <div style="font-size:.8em;opacity:.7;margin-top:10px;" data-bn="* Zelle অ্যাপ থেকে Send Money অপশন ব্যবহার করুন" data-en="* Use the Send Money option from the Zelle app">* Zelle অ্যাপ থেকে Send Money অপশন ব্যবহার করুন</div>
@@ -871,7 +872,11 @@
   }
 
   // Expose renderFund globally so language toggle can re-render with correct digits
+  // Latest data loaded from fund.json (kept in memory so language toggle re-renders the real values)
+  var lastFund = null;
+
   window._renderFund = function() {
+    if (lastFund) { renderFund(lastFund.collected, lastFund.backers, lastFund.goal); return; }
     try {
       var raw = localStorage.getItem(FUND_KEY);
       if (raw) { var d = JSON.parse(raw); renderFund(d.collected, d.backers, d.goal); }
@@ -882,7 +887,7 @@
   // Try fund.json first, fallback to localStorage
   fetch(FUND_URL + '?t=' + Date.now())
     .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
-    .then(function(d){ renderFund(d.collected, d.backers, d.goal); })
+    .then(function(d){ lastFund = d; renderFund(d.collected, d.backers, d.goal); })
     .catch(function(){
       try {
         var raw = localStorage.getItem(FUND_KEY);
