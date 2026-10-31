@@ -613,16 +613,16 @@ body {
     <div class="fund-admin-grid">
       <div class="fund-admin-field">
         <label>সংগৃহীত পরিমাণ (টাকায়) *</label>
-        <input type="number" id="f-collected" placeholder="যেমন: 150000" min="0" oninput="updateFundPreview()">
+        <input type="text" inputmode="numeric" autocomplete="off" id="f-collected" placeholder="যেমন: 150000" oninput="fixNum(this);updateFundPreview()">
       </div>
       <div class="fund-admin-field">
         <label>মোট দাতা সংখ্যা *</label>
-        <input type="number" id="f-backers" placeholder="যেমন: 12" min="0" oninput="updateFundPreview()">
+        <input type="text" inputmode="numeric" autocomplete="off" id="f-backers" placeholder="যেমন: 12" oninput="fixNum(this);updateFundPreview()">
       </div>
     </div>
     <div class="fund-admin-field" style="margin-bottom:16px;">
       <label>লক্ষ্যমাত্রা (টাকায়) *</label>
-      <input type="number" id="f-goal" placeholder="যেমন: 2890000" min="1" oninput="updateFundPreview()">
+      <input type="text" inputmode="numeric" autocomplete="off" id="f-goal" placeholder="যেমন: 2890000" oninput="fixNum(this);updateFundPreview()">
     </div>
 
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
@@ -942,6 +942,13 @@ function previewPhoto() {
 const FUND_KEY       = 'mosque_fund_v1';
 const FUND_GOAL_DEFAULT = 2890000;
 let fundState = { collected: 0, backers: 0, goal: FUND_GOAL_DEFAULT };
+
+// Accept both Bengali (০-৯) and English (0-9) digits; keep digits only
+function fixNum(el) {
+  el.value = el.value
+    .replace(/[০-৯]/g, d => '০১২৩৪৫৬৭৮৯'.indexOf(d))
+    .replace(/[^0-9]/g, '');
+}
 
 function toBnF(n) { return String(n).replace(/[0-9]/g, d => '০১২৩৪৫৬৭৮৯'[d]); }
 function fmtTakaF(n) {
