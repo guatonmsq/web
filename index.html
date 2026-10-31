@@ -134,6 +134,24 @@
   .budget-table th { background:#1a3a2a; color:white; padding:12px 16px; text-align:left; font-size:.9em; }
   .budget-table td { padding:11px 16px; border-bottom:1px solid #eee; font-size:.9em; }
   .budget-table tr:nth-child(even) td { background:#f5fdf8; }
+  .section-body { overflow-x:auto; }
+  .budget-table tr.total td:last-child { white-space:nowrap; }
+  @media(max-width:340px) {
+    .bank-box { padding:20px 10px; }
+    .bank-box > div { padding:12px !important; }
+    .bank-line { max-width:100%; box-sizing:border-box; flex-wrap:wrap; justify-content:center; overflow-wrap:anywhere; }
+    [data-en="৳2,890,000"] { font-size:1.1em !important; }
+  }
+  @media(max-width:560px) {
+    .section-body { padding:16px 12px; }
+    .prob-table th, .budget-table th { padding:9px 7px; font-size:.78em; }
+    .prob-table td, .budget-table td { padding:9px 7px; font-size:.8em; overflow-wrap:break-word; word-break:normal; }
+    .prob-table th:last-child { width:24%; }
+    .prob-table th:first-child, .prob-table td:first-child, .budget-table th:first-child, .budget-table td:first-child { width:26px; padding-left:5px; padding-right:3px; text-align:center; }
+    .prob-table .badge { white-space:normal; font-size:.78em; padding:3px 7px; display:inline-block; text-align:center; word-break:normal; overflow-wrap:normal; }
+    .budget-table th[style*="nowrap"] { white-space:normal !important; }
+    .budget-table tr.total td:last-child { font-size:.95em; }
+  }
   .budget-table tr.total td { background:#e8f5e9; font-weight:700; font-size:1em; color:#1a3a2a; border-top:2px solid #2d6a4f; border-bottom:none; }
   .blank-amount { display:inline-block; border-bottom:2px dotted #999; min-width:120px; color:#999; font-style:italic; font-size:.85em; }
 
@@ -394,14 +412,14 @@
   <div class="section-body" style="padding:0;">
     <table class="prob-table">
       <tr><th width="5%">#</th><th width="25%" data-bn="সমস্যার ধরন" data-en="Issue Type">সমস্যার ধরন</th><th data-bn="বিবরণ" data-en="Description">বিবরণ</th><th width="20%" data-bn="অবস্থা" data-en="Status">অবস্থা</th></tr>
-      <tr><td>১</td><td data-bn="ছাদ ও সিলিং" data-en="Roof & Ceiling">ছাদ ও সিলিং</td><td data-bn="প্লাস্টার খসে পড়েছে, বড় গর্ত তৈরি হয়েছে, ছাদ ধসের ঝুঁকি" data-en="Plaster has fallen off, large holes formed, risk of roof collapse">প্লাস্টার খসে পড়েছে, বড় গর্ত তৈরি হয়েছে, ছাদ ধসের ঝুঁকি</td><td><span class="badge badge-danger" data-bn="অত্যন্ত বিপজ্জনক" data-en="Extremely Dangerous">অত্যন্ত বিপজ্জনক</span></td></tr>
-      <tr><td>২</td><td data-bn="দেওয়াল" data-en="Walls">দেওয়াল</td><td data-bn="একাধিক স্থানে বড় ও গভীর ফাটল, ইট বেরিয়ে পড়েছে" data-en="Large and deep cracks in multiple places, bricks exposed">একাধিক স্থানে বড় ও গভীর ফাটল, ইট বেরিয়ে পড়েছে</td><td><span class="badge badge-danger" data-bn="গুরুতর" data-en="Serious">গুরুতর</span></td></tr>
-      <tr><td>৩</td><td data-bn="পিলার/কলাম" data-en="Pillars/Columns">পিলার/কলাম</td><td data-bn="কর্নার পিলারে বহু ফাটল, কাঠামোগত দুর্বলতা স্পষ্ট" data-en="Multiple cracks in corner pillars, structural weakness evident">কর্নার পিলারে বহু ফাটল, কাঠামোগত দুর্বলতা স্পষ্ট</td><td><span class="badge badge-danger" data-bn="গুরুতর" data-en="Serious">গুরুতর</span></td></tr>
-      <tr><td>৪</td><td data-bn="দরজা-জানালা" data-en="Doors & Windows">দরজা-জানালা</td><td data-bn="জানালার গ্রিল মরিচা ধরে নষ্ট, দরজা ভাঙা ও বিচ্ছিন্ন" data-en="Window grills rusted and damaged, doors broken and disconnected">জানালার গ্রিল মরিচা ধরে নষ্ট, দরজা ভাঙা ও বিচ্ছিন্ন</td><td><span class="badge badge-warn" data-bn="জরুরি মেরামত" data-en="Urgent Repair">জরুরি মেরামত</span></td></tr>
-      <tr><td>৫</td><td data-bn="বাইরের দেওয়াল" data-en="Exterior Walls">বাইরের দেওয়াল</td><td data-bn="সম্পূর্ণ প্লাস্টার উঠে গেছে, শ্যাওলা ও ড্যাম্পনেস" data-en="All plaster peeled off, moss and dampness throughout">সম্পূর্ণ প্লাস্টার উঠে গেছে, শ্যাওলা ও ড্যাম্পনেস</td><td><span class="badge badge-warn" data-bn="জরুরি মেরামত" data-en="Urgent Repair">জরুরি মেরামত</span></td></tr>
-      <tr><td>৬</td><td data-bn="বাথরুম/ওযুখানা" data-en="Bathroom/Ablution Area">বাথরুম/ওযুখানা</td><td data-bn="জরাজীর্ণ ও অকার্যকর, ব্যবহার অনুপযোগী" data-en="Dilapidated and non-functional, unfit for use">জরাজীর্ণ ও অকার্যকর, ব্যবহার অনুপযোগী</td><td><span class="badge badge-danger" data-bn="অকার্যকর" data-en="Non-functional">অকার্যকর</span></td></tr>
-      <tr><td>৭</td><td data-bn="পানি জমা" data-en="Waterlogging">পানি জমা</td><td data-bn="মসজিদের আঙিনায় জলাবদ্ধতার সমস্যা" data-en="Waterlogging problem in the mosque courtyard">মসজিদের আঙিনায় জলাবদ্ধতার সমস্যা</td><td><span class="badge badge-warn" data-bn="সমস্যাযুক্ত" data-en="Problematic">সমস্যাযুক্ত</span></td></tr>
-      <tr><td>৮</td><td data-bn="বৈদ্যুতিক ব্যবস্থা" data-en="Electrical System">বৈদ্যুতিক ব্যবস্থা</td><td data-bn="অনিরাপদ ওয়্যারিং, সিলিং ফ্যান নষ্ট" data-en="Unsafe wiring, ceiling fans damaged">অনিরাপদ ওয়্যারিং, সিলিং ফ্যান নষ্ট</td><td><span class="badge badge-danger" data-bn="বিপজ্জনক" data-en="Dangerous">বিপজ্জনক</span></td></tr>
+      <tr><td data-bn="১" data-en="1">১</td><td data-bn="ছাদ ও সিলিং" data-en="Roof & Ceiling">ছাদ ও সিলিং</td><td data-bn="প্লাস্টার খসে পড়েছে, বড় গর্ত তৈরি হয়েছে, ছাদ ধসের ঝুঁকি" data-en="Plaster has fallen off, large holes formed, risk of roof collapse">প্লাস্টার খসে পড়েছে, বড় গর্ত তৈরি হয়েছে, ছাদ ধসের ঝুঁকি</td><td><span class="badge badge-danger" data-bn="অত্যন্ত বিপজ্জনক" data-en="Extremely Dangerous">অত্যন্ত বিপজ্জনক</span></td></tr>
+      <tr><td data-bn="২" data-en="2">২</td><td data-bn="দেওয়াল" data-en="Walls">দেওয়াল</td><td data-bn="একাধিক স্থানে বড় ও গভীর ফাটল, ইট বেরিয়ে পড়েছে" data-en="Large and deep cracks in multiple places, bricks exposed">একাধিক স্থানে বড় ও গভীর ফাটল, ইট বেরিয়ে পড়েছে</td><td><span class="badge badge-danger" data-bn="গুরুতর" data-en="Serious">গুরুতর</span></td></tr>
+      <tr><td data-bn="৩" data-en="3">৩</td><td data-bn="পিলার/কলাম" data-en="Pillars/Columns">পিলার/কলাম</td><td data-bn="কর্নার পিলারে বহু ফাটল, কাঠামোগত দুর্বলতা স্পষ্ট" data-en="Multiple cracks in corner pillars, structural weakness evident">কর্নার পিলারে বহু ফাটল, কাঠামোগত দুর্বলতা স্পষ্ট</td><td><span class="badge badge-danger" data-bn="গুরুতর" data-en="Serious">গুরুতর</span></td></tr>
+      <tr><td data-bn="৪" data-en="4">৪</td><td data-bn="দরজা-জানালা" data-en="Doors & Windows">দরজা-জানালা</td><td data-bn="জানালার গ্রিল মরিচা ধরে নষ্ট, দরজা ভাঙা ও বিচ্ছিন্ন" data-en="Window grills rusted and damaged, doors broken and disconnected">জানালার গ্রিল মরিচা ধরে নষ্ট, দরজা ভাঙা ও বিচ্ছিন্ন</td><td><span class="badge badge-warn" data-bn="জরুরি মেরামত" data-en="Urgent Repair">জরুরি মেরামত</span></td></tr>
+      <tr><td data-bn="৫" data-en="5">৫</td><td data-bn="বাইরের দেওয়াল" data-en="Exterior Walls">বাইরের দেওয়াল</td><td data-bn="সম্পূর্ণ প্লাস্টার উঠে গেছে, শ্যাওলা ও ড্যাম্পনেস" data-en="All plaster peeled off, moss and dampness throughout">সম্পূর্ণ প্লাস্টার উঠে গেছে, শ্যাওলা ও ড্যাম্পনেস</td><td><span class="badge badge-warn" data-bn="জরুরি মেরামত" data-en="Urgent Repair">জরুরি মেরামত</span></td></tr>
+      <tr><td data-bn="৬" data-en="6">৬</td><td data-bn="বাথরুম/ওযুখানা" data-en="Bathroom/Ablution Area">বাথরুম/ওযুখানা</td><td data-bn="জরাজীর্ণ ও অকার্যকর, ব্যবহার অনুপযোগী" data-en="Dilapidated and non-functional, unfit for use">জরাজীর্ণ ও অকার্যকর, ব্যবহার অনুপযোগী</td><td><span class="badge badge-danger" data-bn="অকার্যকর" data-en="Non-functional">অকার্যকর</span></td></tr>
+      <tr><td data-bn="৭" data-en="7">৭</td><td data-bn="পানি জমা" data-en="Waterlogging">পানি জমা</td><td data-bn="মসজিদের আঙিনায় জলাবদ্ধতার সমস্যা" data-en="Waterlogging problem in the mosque courtyard">মসজিদের আঙিনায় জলাবদ্ধতার সমস্যা</td><td><span class="badge badge-warn" data-bn="সমস্যাযুক্ত" data-en="Problematic">সমস্যাযুক্ত</span></td></tr>
+      <tr><td data-bn="৮" data-en="8">৮</td><td data-bn="বৈদ্যুতিক ব্যবস্থা" data-en="Electrical System">বৈদ্যুতিক ব্যবস্থা</td><td data-bn="অনিরাপদ ওয়্যারিং, সিলিং ফ্যান নষ্ট" data-en="Unsafe wiring, ceiling fans damaged">অনিরাপদ ওয়্যারিং, সিলিং ফ্যান নষ্ট</td><td><span class="badge badge-danger" data-bn="বিপজ্জনক" data-en="Dangerous">বিপজ্জনক</span></td></tr>
     </table>
   </div>
 </div>
