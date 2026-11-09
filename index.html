@@ -140,7 +140,7 @@
     .bank-box { padding:20px 10px; }
     .bank-box > div { padding:12px !important; }
     .bank-line { max-width:100%; box-sizing:border-box; flex-wrap:wrap; justify-content:center; overflow-wrap:anywhere; }
-    [data-en="৳2,890,000"] { font-size:1.1em !important; }
+    [data-en="৳28,90,000"] { font-size:1.1em !important; }
   }
   @media(max-width:560px) {
     .section-body { padding:16px 12px; }
@@ -365,7 +365,7 @@
   <div class="fund-strip-nums">
     <div class="fund-strip-num"><div class="val" id="fs-collected">৳ ০</div><div class="lbl" data-bn="সংগৃহীত" data-en="Collected">সংগৃহীত</div></div>
     <div class="fund-strip-divider"></div>
-    <div class="fund-strip-num"><div class="val" id="fs-goal">৳ ২,৮৯০,০০০</div><div class="lbl" data-bn="লক্ষ্যমাত্রা" data-en="Goal">লক্ষ্যমাত্রা</div></div>
+    <div class="fund-strip-num"><div class="val" id="fs-goal">৳ ২৮,৯০,০০০</div><div class="lbl" data-bn="লক্ষ্যমাত্রা" data-en="Goal">লক্ষ্যমাত্রা</div></div>
     <div class="fund-strip-divider"></div>
     <div class="fund-strip-num"><div class="val" id="fs-backers">০</div><div class="lbl" data-bn="দানকারী" data-en="Donors">দানকারী</div></div>
   </div>
@@ -456,7 +456,7 @@
   <!-- Goal header -->
   <div class="fund-hero">
     <h3 data-bn="পুনর্নির্মাণ তহবিল সংগ্রহ" data-en="Reconstruction Fundraiser">পুনর্নির্মাণ তহবিল সংগ্রহ</h3>
-    <div class="fund-goal-amount" id="fr-goal">৳ ২৮.৯ লক্ষ</div>
+    <div class="fund-goal-amount" id="fr-goal">৳ ২৮,৯০,০০০</div>
     <div class="fund-goal-label" data-bn="লক্ষ্যমাত্রা" data-en="Goal">লক্ষ্যমাত্রা</div>
   </div>
 
@@ -502,7 +502,7 @@
         <div style="font-size:.75em;color:#555;margin-top:2px;" data-bn="বর্গফুট আয়তন" data-en="sq ft area">বর্গফুট আয়তন</div>
       </div>
       <div style="background:#fff8e6;border:1px solid #e0c96a;border-radius:10px;padding:10px 20px;text-align:center;flex:1;min-width:130px;">
-        <div style="font-size:1.45em;font-weight:800;color:#8a6000;" data-bn="২৮,৯০,০০০৳" data-en="৳2,890,000">২৮,৯০,০০০৳</div>
+        <div style="font-size:1.45em;font-weight:800;color:#8a6000;" data-bn="৳২৮,৯০,০০০" data-en="৳28,90,000">৳২৮,৯০,০০০</div>
         <div style="font-size:.75em;color:#555;margin-top:2px;" data-bn="সম্ভাব্য মোট বাজেট" data-en="Estimated Total Budget">সম্ভাব্য মোট বাজেট</div>
       </div>
       <div style="background:#f0faf5;border:1px solid #b7ddc9;border-radius:10px;padding:10px 20px;text-align:center;flex:1;min-width:130px;">
@@ -539,7 +539,7 @@
       <tfoot>
         <tr class="total">
           <td colspan="3" style="text-align:right;" data-bn="সম্ভাব্য মোট" data-en="Estimated Total">সম্ভাব্য মোট</td>
-          <td style="text-align:right;font-size:1.1em;color:#1a3a2a;" data-bn="৳ ২৮,৯০,০০০" data-en="৳ 2,890,000">৳ ২৮,৯০,০০০</td>
+          <td style="text-align:right;font-size:1.1em;color:#1a3a2a;" data-bn="৳ ২৮,৯০,০০০" data-en="৳ 28,90,000">৳ ২৮,৯০,০০০</td>
         </tr>
       </tfoot>
     </table>
@@ -858,7 +858,14 @@
     var lang = (typeof _mosque_lang !== 'undefined') ? _mosque_lang : 'bn';
 
     // number formatters — bn uses Bengali digits, en uses Arabic digits
-    function numFmt(n, useBn) { return useBn ? toBn(n.toLocaleString('en')) : n.toLocaleString('en'); }
+    // 7+ digits → lakh/crore grouping (28,90,000), below 10 lakh → normal (725,455)
+    function grp(n) {
+      n = Math.round(n);
+      if (n < 1000000) return n.toLocaleString('en');
+      var s = String(n), last = s.slice(-3), rest = s.slice(0, -3);
+      return rest.replace(/\B(?=(\d{2})+(?!\d))/g, ',') + ',' + last;
+    }
+    function numFmt(n, useBn) { return useBn ? toBn(grp(n)) : grp(n); }
     function fmtTakaFull(n) { return '৳ ' + numFmt(n, lang === 'bn'); }
     function fmtTakaStrip(n) {
       // lakh format for strip in bn, comma format in en
