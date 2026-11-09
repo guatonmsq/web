@@ -88,6 +88,27 @@ body {
 }
 .hero-nav a:hover { background: rgba(255,255,255,.25); }
 
+/* ── HOME / BACK BUTTON ── */
+.home-fab {
+  position: fixed; top: 14px; left: 14px; z-index: 1100;
+  display: flex; align-items: center; gap: 8px;
+  height: 42px; padding: 0 16px;
+  background: rgba(26,58,42,.92); color: #ffd84d;
+  border: 1px solid rgba(255,255,255,.2); border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.3); backdrop-filter: blur(8px);
+  font-size: .85rem; font-weight: 700; text-decoration: none;
+  transition: background .2s;
+}
+.home-fab:hover { background: rgba(45,106,79,.95); }
+.home-back {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #2d6a4f; color: #fff; text-decoration: none;
+  border-radius: 25px; padding: 11px 28px;
+  font-size: .92rem; font-weight: 700;
+  box-shadow: 0 3px 12px rgba(45,106,79,.3); transition: background .2s;
+}
+.home-back:hover { background: #1a3a2a; }
+
 /* ── PAGE WRAP ── */
 .wrap { max-width: 980px; margin: 0 auto; padding: 24px 16px 48px; }
 
@@ -251,6 +272,9 @@ body {
 </head>
 <body>
 
+<!-- HOME BUTTON -->
+<a class="home-fab" href="index.html" aria-label="মূল পেজে ফিরে যান"><i class="fas fa-arrow-left"></i><span>হোম</span></a>
+
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
   <button class="lb-close" onclick="closeLB()" aria-label="Close">✕</button>
@@ -324,6 +348,10 @@ body {
       <span class="empty-icon"><i class="fas fa-trowel-bricks" style="color:#aaa;"></i></span>
       <p>নির্মাণ কাজ শুরু হলেই এখানে আপডেট, ভিডিও ও ছবি প্রকাশিত হবে।<br>আমাদের সাথে থাকুন।</p>
     </div>
+  </div>
+
+  <div style="text-align:center;margin-top:28px;">
+    <a class="home-back" href="index.html"><i class="fas fa-home"></i> মূল পেজে ফিরে যান</a>
   </div>
 
 </div><!-- /wrap -->
